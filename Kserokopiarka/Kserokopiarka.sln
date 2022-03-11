@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kserokopiarka", "Kserokopiarka\Kserokopiarka.csproj", "{A042CBED-24A7-4CB6-A213-86EC269C20D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kserokopiarka", "Kserokopiarka\Kserokopiarka.csproj", "{A042CBED-24A7-4CB6-A213-86EC269C20D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadanie1UnitTests", "Zadanie1UnitTests\Zadanie1UnitTests.csproj", "{7047119B-3980-455E-A9C7-D32D2F734C20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KserokopiarkaTestProject", "KserokopiarkaTestProject\KserokopiarkaTestProject.csproj", "{4155F8D3-D297-4320-A029-400FFD49FA93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7047119B-3980-455E-A9C7-D32D2F734C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7047119B-3980-455E-A9C7-D32D2F734C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7047119B-3980-455E-A9C7-D32D2F734C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7047119B-3980-455E-A9C7-D32D2F734C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4155F8D3-D297-4320-A029-400FFD49FA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4155F8D3-D297-4320-A029-400FFD49FA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4155F8D3-D297-4320-A029-400FFD49FA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4155F8D3-D297-4320-A029-400FFD49FA93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

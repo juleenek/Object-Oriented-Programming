@@ -1,10 +1,11 @@
+using Kserokopiarka.Zadanie1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using Xunit;
 
-namespace Zadanie1UnitTests
+namespace KserokopiarkaTestProject
 {
+
     public class ConsoleRedirectionToStringWriter : IDisposable
     {
         private StringWriter stringWriter;
@@ -219,7 +220,7 @@ namespace Zadanie1UnitTests
             copier.ScanAndPrint();
 
             // 5 wydruków, gdy urz¹dzenie w³¹czone
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(5, copier.PrintCounter);
+            Assert.AreEqual(5, copier.PrintCounter);
         }
 
         [TestMethod]
