@@ -2,6 +2,7 @@
 ## Zadanie: Kserokopiarka. Implementacje interfejsów, kompozycje
 
 - Krzysztof Molenda, ver. 01/2020.11.10
+
 Dla wszystkich zadań utwórz jedno solution. Projekty nazywaj: Zadanie1, Zadanie2, ... . Będą to projekty typu Console Application.
 
 Podobnie dla projektów typu unit tests, przyjmij nazwy Zadanie1UnitTests, Zadanie2UnitTests, ... .
