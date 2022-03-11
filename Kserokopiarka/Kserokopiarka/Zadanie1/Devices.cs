@@ -45,6 +45,7 @@ namespace Kserokopiarka.Zadanie1
         /// </summary>
         /// <param name="document">obiekt typu IDocument, różny od `null`</param>
         void Print(in IDocument document);
+        void Scan(out IDocument document, IDocument.FormatType formatType);
     }
 
     public interface IScanner : IDevice
