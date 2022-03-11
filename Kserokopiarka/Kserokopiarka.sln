@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kserokopiarka", "Kserokopiarka\Kserokopiarka.csproj", "{A042CBED-24A7-4CB6-A213-86EC269C20D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadanie1UnitTests", "Zadanie1UnitTests\Zadanie1UnitTests.csproj", "{7047119B-3980-455E-A9C7-D32D2F734C20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A042CBED-24A7-4CB6-A213-86EC269C20D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7047119B-3980-455E-A9C7-D32D2F734C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7047119B-3980-455E-A9C7-D32D2F734C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7047119B-3980-455E-A9C7-D32D2F734C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7047119B-3980-455E-A9C7-D32D2F734C20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C92070C-2FAF-4283-825C-7E369F7D9D3C}
+	EndGlobalSection
+EndGlobal
