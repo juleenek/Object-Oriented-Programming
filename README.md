@@ -16,3 +16,11 @@ Zastosujesz relacje is-a oraz has-a, wzorzec delegacji, kompozycję zamiast dzie
 Orientacyjny czas realizacji ćwiczenia: od 60 do 90 minut.
 
 [Zadanie. Implementacje interfejsów (explicit, implicit), kompozycja - Copier](https://github.com/wsei-csharp201/cs-lab04-Implementacje-interfejsow-implicit-explicit-kompozycja)
+
+
+## Implementacja interfejsów IEquatable, IComparable, IComparer
+
+- Autor: Krzysztof Molenda
+- Wersja: 2019-10-03
+
+[Implementacja interfejsów IEquatable, IComparable, IComparer](https://github.com/wsei-csharp201/cs-lab02-Implementacja-IEquatable-IComparable-IComparer/blob/main/docs/index.md)
