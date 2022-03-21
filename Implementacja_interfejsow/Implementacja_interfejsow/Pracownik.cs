@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Implementacja_interfejsow
 {
-    class Pracownik
+    class Pracownik : IEquatable<Pracownik>
     {
         private string _nazwisko;
         private DateTime _dataZatrudnienia;
@@ -48,5 +49,55 @@ namespace Implementacja_interfejsow
         }
 
         public override string ToString() => $"({Nazwisko}, {DataZatrudnienia:d MMM yyyy}, ({CzasZatrudnienia}) {Wynagrodzenie} PLN)";
+
+        public override bool Equals(object value)
+        {
+            // Is null?
+            if (Object.ReferenceEquals(null, value))
+            {
+                return false;
+            }
+
+            // Is the same object?
+            if (Object.ReferenceEquals(this, value))
+            {
+                return true;
+            }
+
+            // Is the same type?
+            if (value.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return IsEqual((Pracownik)value);
+        }
+        public bool Equals(Pracownik pracownik)
+        {
+            // Is null?
+            if (Object.ReferenceEquals(null, pracownik))
+            {
+                return false;
+            }
+
+            // Is the same object?
+            if (Object.ReferenceEquals(this, pracownik))
+            {
+                return true;
+            }
+
+            return IsEqual(pracownik);
+        }
+
+        private bool IsEqual(Pracownik pracownik)
+        {
+            // A pure implementation of value equality that avoids the routine checks above
+            // We use String.Equals to really drive home our fear of an improperly overridden "=="
+            return String.Equals(Nazwisko, pracownik.Nazwisko)
+                && String.Equals(DataZatrudnienia, pracownik.DataZatrudnienia)
+                && String.Equals(Wynagrodzenie, pracownik.Wynagrodzenie);
+        }
     }
+
+   
 }
