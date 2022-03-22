@@ -18,6 +18,7 @@ namespace Kserokopiarka.Zadanie1
                 return; // Do nothing
 
             Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}");
+            
         }
 
         public void Scan(out IDocument document, IDocument.FormatType formatType)
@@ -33,20 +34,20 @@ namespace Kserokopiarka.Zadanie1
 
             if (formatType == IDocument.FormatType.PDF)
             {
-               fileName = $"PDFScan{Counter}.pdf";
+               fileName = $"PDFScan{Counter + 1}.pdf";
                document = new PDFDocument(fileName);
                Console.WriteLine($"{date} Scan: {fileName}");
                 return;
 
             } else if (formatType == IDocument.FormatType.JPG)
             {
-                fileName = $"ImageScan{Counter}.jpg";
+                fileName = $"ImageScan{Counter + 1}.jpg";
                 document = new ImageDocument(fileName);
                 Console.WriteLine($"{date} Scan: {fileName}");
                 return;
             }else
             {
-                fileName = $"TextScan{Counter}.txt";
+                fileName = $"TextScan{Counter+ 1}.txt";
                 document = new TextDocument(fileName);
                 Console.WriteLine($"{date} Scan: {fileName}");
                 return;
@@ -60,7 +61,7 @@ namespace Kserokopiarka.Zadanie1
                 return; // Do nothing
             }
         
-            IDocument.FormatType formatType = IDocument.FormatType.PDF;
+            IDocument.FormatType formatType = IDocument.FormatType.JPG;
             Scan(out document, formatType);
         }
 
@@ -85,7 +86,14 @@ namespace Kserokopiarka.Zadanie1
 
         public void ScanAndPrint()
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.off)
+            {
+                return; // Do nothing
+            }
+
+            Scan(out IDocument document);
+            Print(in document);
+            
         }
     }
 }
