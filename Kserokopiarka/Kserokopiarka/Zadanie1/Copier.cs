@@ -70,7 +70,7 @@ namespace Kserokopiarka.Zadanie1
             }
             Counter++;
             state = IDevice.State.on;
-            Console.WriteLine("Device is on.");
+            Console.WriteLine("Device is on ...");
         }
         public new void PowerOff()
         {
@@ -80,7 +80,7 @@ namespace Kserokopiarka.Zadanie1
                 return; 
             }
             state = IDevice.State.off;
-            Console.WriteLine("Device is off.");
+            Console.WriteLine("... Device is off!");
         }
 
         public void ScanAndPrint()
