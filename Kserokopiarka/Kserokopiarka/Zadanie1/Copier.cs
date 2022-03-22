@@ -8,29 +8,34 @@ namespace Kserokopiarka.Zadanie1
 {
     public class Copier : BaseDevice, IPrinter, IScanner{
 
-        public int PrintCounter { get; set; } = 0;
-        public int ScanCounter { get; set; } = 0;
-        public new int Counter { get; set; } = 0;
+        public int PrintCounter { get; set; } 
+        public int ScanCounter { get; set; } 
+        public new int Counter { get; set; } 
 
         public void Print(in IDocument document)
         {
-            if (state == IDevice.State.off)
-                return; // Do nothing
-
+            if (state == IDevice.State.off) 
+            {
+                Console.WriteLine("You need to turn on the device.");
+                return;
+            }
+                
             Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}");
-            
+            PrintCounter++;      
         }
 
-        public void Scan(out IDocument document, IDocument.FormatType formatType)
+        public void Scan(out IDocument document, IDocument.FormatType formatType = IDocument.FormatType.JPG)
         {
             if (state == IDevice.State.off)
             {
+                Console.WriteLine("You need to turn on the device.");
                 document = null;
-                return; // Do nothing
+                return; 
             }
 
             string fileName;
             DateTime date = new DateTime();
+            ScanCounter++;
 
             if (formatType == IDocument.FormatType.PDF)
             {
@@ -45,50 +50,45 @@ namespace Kserokopiarka.Zadanie1
                 document = new ImageDocument(fileName);
                 Console.WriteLine($"{date} Scan: {fileName}");
                 return;
+
             }else
             {
                 fileName = $"TextScan{Counter+ 1}.txt";
                 document = new TextDocument(fileName);
                 Console.WriteLine($"{date} Scan: {fileName}");
                 return;
+
             };
-        }
-        public void Scan(out IDocument document)
-        {
-            if (state == IDevice.State.off)
-            {
-                document = null;
-                return; // Do nothing
-            }
-        
-            IDocument.FormatType formatType = IDocument.FormatType.JPG;
-            Scan(out document, formatType);
         }
 
         public new void PowerOn()
         {
             if (state == IDevice.State.on)
             {
-                return; // Do nothing
+                Console.WriteLine("Device is already on.");
+                return; 
             }
+            Counter++;
             state = IDevice.State.on;
-            Console.WriteLine("Device is on ...");
+            Console.WriteLine("Device is on.");
         }
         public new void PowerOff()
         {
             if (state == IDevice.State.off)
             {
-                return; // Do nothing
+                Console.WriteLine("Device is already off.");
+                return; 
             }
             state = IDevice.State.off;
-            Console.WriteLine("... Device is off !");
+            Console.WriteLine("Device is off.");
         }
 
         public void ScanAndPrint()
         {
             if (state == IDevice.State.off)
             {
-                return; // Do nothing
+                Console.WriteLine("You need to turn on the device.");
+                return; 
             }
 
             Scan(out IDocument document);
