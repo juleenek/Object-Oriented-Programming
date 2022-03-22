@@ -22,7 +22,23 @@ namespace Kserokopiarka.Zadanie1
 
         public void Scan(out IDocument document, IDocument.FormatType formatType)
         {
-            throw new NotImplementedException();
+            document = null;
+            if (state == IDevice.State.off)
+            {
+                document = null;
+                return; // Do nothing
+            }
+
+            if (formatType == IDocument.FormatType.PDF)
+            {
+                Console.WriteLine($"{DateTime.Now} Scan: PDFScan{Counter}.pdf");
+            } else if (formatType == IDocument.FormatType.JPG)
+            {
+                Console.WriteLine($"{DateTime.Now} Scan: ImageScan{Counter}.jpg");
+            }else if(formatType == IDocument.FormatType.TXT)
+            {
+                Console.WriteLine($"{DateTime.Now} Scan: TextScan{Counter}.txt");
+            };
         }
         public void Scan(out IDocument document)
         {
