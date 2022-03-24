@@ -59,6 +59,6 @@ namespace Kserokopiarka.Zadanie2
         // dokument jest faxowany, jeśli urządzenie włączone
         // w przeciwnym przypadku nic się dzieje
         void SendFax(out IDocument document, int reciverFaxNumber, IDocument.FormatType formatType);
-        void ReceiveFax(in IDocument document, int faxNumber);
+        void ReceiveFax(int faxNumber);
     }
 }

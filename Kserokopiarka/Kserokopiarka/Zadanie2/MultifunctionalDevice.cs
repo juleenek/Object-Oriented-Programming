@@ -10,9 +10,10 @@ namespace Kserokopiarka.Zadanie2
     {
         public int PrintCounter { get; set; }
         public int ScanCounter { get; set; }
+        // FaxCounter - zlicza ile razy został użyty Fax 
         public int FaxCounter { get; set; }
         public new int Counter { get; set; }
-        public Dictionary<int, string> faxDocuments = new Dictionary<int, string>();
+        public List<string[]> faxDocuments = new List<string[]>();
 
         public void Print(in IDocument document)
         {
@@ -36,30 +37,29 @@ namespace Kserokopiarka.Zadanie2
             }
 
             string fileName;
-            DateTime date = new DateTime();
             ScanCounter++;
 
             if (formatType == IDocument.FormatType.PDF)
             {
-                fileName = $"PDFScan{Counter + 1}.pdf";
+                fileName = $"PDFScan{Counter}.pdf";
                 document = new PDFDocument(fileName);
-                Console.WriteLine($"{date} Scan: {fileName}");
+                Console.WriteLine($"{DateTime.Now} Scan: {fileName}");
                 return;
 
             }
             else if (formatType == IDocument.FormatType.JPG)
             {
-                fileName = $"ImageScan{Counter + 1}.jpg";
+                fileName = $"ImageScan{Counter}.jpg";
                 document = new ImageDocument(fileName);
-                Console.WriteLine($"{date} Scan: {fileName}");
+                Console.WriteLine($"{DateTime.Now} Scan: {fileName}");
                 return;
 
             }
             else
             {
-                fileName = $"TextScan{Counter + 1}.txt";
+                fileName = $"TextScan{Counter}.txt";
                 document = new TextDocument(fileName);
-                Console.WriteLine($"{date} Scan: {fileName}");
+                Console.WriteLine($"{DateTime.Now} Scan: {fileName}");
                 return;
 
             };
@@ -110,38 +110,62 @@ namespace Kserokopiarka.Zadanie2
             }
 
             string fileName;
-            DateTime date = new DateTime();
             FaxCounter++;
 
             if (formatType == IDocument.FormatType.PDF)
             {
-                fileName = $"PDFScan{Counter + 1}.pdf";
+                fileName = $"PDFScan{Counter}.pdf";
                 document = new PDFDocument(fileName);
-                Console.WriteLine($"{date} To: {reciverFaxNumber} Fax: {fileName}");
+                string[] arr = { reciverFaxNumber.ToString(), fileName, DateTime.Now.ToString() };
+                faxDocuments.Add(arr);
+                Console.WriteLine($"{DateTime.Now} To: {reciverFaxNumber} Fax: {fileName}");
                 return;
 
             }
             else if (formatType == IDocument.FormatType.JPG)
             {
-                fileName = $"ImageScan{Counter + 1}.jpg";
+                fileName = $"ImageScan{Counter}.jpg";
                 document = new ImageDocument(fileName);
-                Console.WriteLine($"{date} To: {reciverFaxNumber} Fax: {fileName}");
+                string[] arr = { reciverFaxNumber.ToString(), fileName, DateTime.Now.ToString()};
+                faxDocuments.Add(arr);
+                Console.WriteLine($"{DateTime.Now} To: {reciverFaxNumber} Fax: {fileName}");
                 return;
 
             }
             else
             {
-                fileName = $"TextScan{Counter + 1}.txt";
+                fileName = $"TextScan{Counter}.txt";
                 document = new TextDocument(fileName);
-                Console.WriteLine($"{date} To: {reciverFaxNumber} Fax: {fileName}");
+                string[] arr = { reciverFaxNumber.ToString(), fileName, DateTime.Now.ToString()};
+                faxDocuments.Add(arr);
+                Console.WriteLine($"{DateTime.Now} To: {reciverFaxNumber} Fax: {fileName}");
                 return;
 
             };
         }
 
-        public void ReceiveFax(in IDocument document, int faxNumber)
+        public void ReceiveFax(int faxNumber)
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.off)
+            {
+                Console.WriteLine("You need to turn on the device.");
+                return;
+            }
+            int anyFaxCounter = 0;
+            foreach (var faxItem in faxDocuments.ToList())
+            {
+                if (faxItem[0] == faxNumber.ToString())
+                {
+                    Console.WriteLine($"At: {faxItem[2]} For: {faxItem[0]} File: {faxItem[1]}");
+                    faxDocuments.Remove(faxItem);
+                    FaxCounter++;
+                    anyFaxCounter++;
+                }
+            }
+            if (anyFaxCounter == 0)
+            {
+                Console.WriteLine("You don't have any fax.");
+            }
         }
     }
 }

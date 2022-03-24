@@ -34,28 +34,27 @@ namespace Kserokopiarka.Zadanie1
             }
 
             string fileName;
-            DateTime date = new DateTime();
             ScanCounter++;
 
             if (formatType == IDocument.FormatType.PDF)
             {
-               fileName = $"PDFScan{Counter + 1}.pdf";
+               fileName = $"PDFScan{Counter }.pdf";
                document = new PDFDocument(fileName);
-               Console.WriteLine($"{date} Scan: {fileName}");
+               Console.WriteLine($"{DateTime.Now} Scan: {fileName}");
                 return;
 
             } else if (formatType == IDocument.FormatType.JPG)
             {
-                fileName = $"ImageScan{Counter + 1}.jpg";
+                fileName = $"ImageScan{Counter}.jpg";
                 document = new ImageDocument(fileName);
-                Console.WriteLine($"{date} Scan: {fileName}");
+                Console.WriteLine($"{DateTime.Now} Scan: {fileName}");
                 return;
 
             }else
             {
-                fileName = $"TextScan{Counter+ 1}.txt";
+                fileName = $"TextScan{Counter}.txt";
                 document = new TextDocument(fileName);
-                Console.WriteLine($"{date} Scan: {fileName}");
+                Console.WriteLine($"{DateTime.Now} Scan: {fileName}");
                 return;
 
             };
