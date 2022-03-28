@@ -40,8 +40,8 @@ namespace Kserokopiarka.Zadanie3
                 return;
             }
             Fax.PowerOnFax();
-            Fax.ReceiveFax(faxNumber);
             FaxCounter++;
+            Fax.ReceiveFax(faxNumber);
             Fax.PowerOffFax();
         }
     }

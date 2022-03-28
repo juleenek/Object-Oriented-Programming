@@ -57,18 +57,18 @@ namespace Kserokopiarka
 
             ////// Copier //////
 
-            var xerox = new Copier();
-            xerox.PowerOn();
-            IDocument doc1 = new PDFDocument("aaa.pdf");
-            xerox.Print(in doc1);
+            //var xerox = new Copier();
+            //xerox.PowerOn();
+            //IDocument doc1 = new PDFDocument("aaa.pdf");
+            //xerox.Print(in doc1);
 
-            IDocument doc2;
-            xerox.Scan(out doc2);
+            //IDocument doc2;
+            //xerox.Scan(out doc2);
 
-            xerox.ScanAndPrint();
-            Console.WriteLine(xerox.Counter);
-            Console.WriteLine(xerox.PrintCounter);
-            Console.WriteLine(xerox.ScanCounter);
+            //xerox.ScanAndPrint();
+            //Console.WriteLine(xerox.Counter);
+            //Console.WriteLine(xerox.PrintCounter);
+            //Console.WriteLine(xerox.ScanCounter);
 
 
             ////// MultifunctionalDevice //////
@@ -93,6 +93,17 @@ namespace Kserokopiarka
             //multifunctionalDevice.ReceiveFax(faxNum);
 
             //Console.WriteLine(multifunctionalDevice.FaxCounter);
+
+            var copier = new Copier();
+            copier.PowerOn();
+
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            
+                IDocument doc1 = new PDFDocument("aaa.pdf");
+                copier.Print(in doc1);
+              
+            
         }
     }
 }
