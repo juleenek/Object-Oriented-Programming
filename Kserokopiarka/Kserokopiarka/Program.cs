@@ -55,6 +55,8 @@ namespace Kserokopiarka
 
             ///////////////// using Kserokopiarka.Zadanie3 /////////////////
 
+            ////// Copier //////
+
             var xerox = new Copier();
             xerox.PowerOn();
             IDocument doc1 = new PDFDocument("aaa.pdf");
@@ -68,6 +70,29 @@ namespace Kserokopiarka
             Console.WriteLine(xerox.PrintCounter);
             Console.WriteLine(xerox.ScanCounter);
 
+
+            ////// MultifunctionalDevice //////
+
+            //var multifunctionalDevice = new MultifunctionalDevice();
+            //multifunctionalDevice.PowerOn();
+            //int faxNum = 123;
+
+            //IDocument doc1 = new PDFDocument("aaa.pdf");
+            //multifunctionalDevice.SendFax(out doc1, faxNum, IDocument.FormatType.PDF);
+            //IDocument doc2 = new TextDocument("aaa.txt");
+            //multifunctionalDevice.SendFax(out doc2, faxNum, IDocument.FormatType.TXT);
+            //IDocument doc3 = new ImageDocument("aaa.jpg");
+            //multifunctionalDevice.SendFax(out doc3, faxNum, IDocument.FormatType.JPG);
+
+
+            //multifunctionalDevice.PowerOff();
+            //multifunctionalDevice.ReceiveFax(faxNum);
+            //multifunctionalDevice.SendFax(out doc1, faxNum, IDocument.FormatType.PDF);
+            //multifunctionalDevice.PowerOn();
+
+            //multifunctionalDevice.ReceiveFax(faxNum);
+
+            //Console.WriteLine(multifunctionalDevice.FaxCounter);
         }
     }
 }

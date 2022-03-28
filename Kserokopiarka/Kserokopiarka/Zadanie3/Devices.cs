@@ -53,4 +53,11 @@ namespace Kserokopiarka.Zadanie3
         // w przeciwnym przypadku nic się dzieje
         void Scan(out IDocument document, IDocument.FormatType formatType);
     }
+    public interface IFax : IDevice
+    {
+        // dokument jest faxowany, jeśli urządzenie włączone
+        // w przeciwnym przypadku nic się dzieje
+        void SendFax(out IDocument document, int reciverFaxNumber, IDocument.FormatType formatType);
+        void ReceiveFax(int faxNumber);
+    }
 }
