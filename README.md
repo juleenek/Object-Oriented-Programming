@@ -42,4 +42,4 @@ Pudełko to prostopadłościan o zadanych długościach krawędzi (umownie: dłu
 
 - Klasa jest zapieczętowana (nie można z niej dziedziczyć).
 
-[Implementacja interfejsów IEquatable, IComparable, IComparer](https://github.com/wsei-csharp201/cs-lab03-Pudelko)
+[Lab-03. Well formed class - Pudelko](https://github.com/wsei-csharp201/cs-lab03-Pudelko)
