@@ -10,10 +10,15 @@ namespace Kserokopiarka.Zadanie4
 {
     public class Copier : IPrinter, IScanner
     {
-        public int Counter => throw new NotImplementedException();
+        private IPrinter printer;
+        private IScanner scanner;
+        private IDevice.State printerState = IDevice.State.off;
+        private IDevice.State scannerState = IDevice.State.off;
+        public int Counter { get; set; } = 0;
         public Copier()
         {
-
+            printer = this;
+            scanner = this;
         }
 
         public IDevice.State GetState()
