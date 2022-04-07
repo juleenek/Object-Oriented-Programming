@@ -10,7 +10,8 @@ namespace Pudelko_lab
         {
             var pudelko = new Pudelko(a: 2.5, b: 9.321, c: 0.1);
 
-            Console.WriteLine(pudelko.ToString("cm"));
+            //Console.WriteLine(pudelko.ToString("cm"));
+            Console.WriteLine(pudelko.Pole);
 
         }
     }

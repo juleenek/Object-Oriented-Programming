@@ -18,6 +18,8 @@ namespace PudelkoLib
         public double B { get => Math.Round(b, 3); }
         public double C { get => Math.Round(c, 3); }
         public UnitOfMeasure Unit { get; }
+        public double Objetosc { get => Math.Round((a * b * c), 9); }
+        public double Pole { get => Math.Round((2.0 * (a * b + a * c + b * c)), 6); }
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
         {    
             if (a == null) a = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
