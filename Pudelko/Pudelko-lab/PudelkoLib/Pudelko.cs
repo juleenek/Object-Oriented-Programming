@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace PudelkoLib
 {
@@ -8,17 +9,21 @@ namespace PudelkoLib
         centimeter,
         millimeter
     }
-    public sealed class Pudelko
+    public sealed class Pudelko : IFormatable
     {
         private readonly double a;
         private readonly double b;
         private readonly double c;
-        public double A { get => a; }
-        public double B { get => b; }
-        public double C { get => c; }
+        public double A { get => Math.Round(a, 3); }
+        public double B { get => Math.Round(b, 3); }
+        public double C { get => Math.Round(c, 3); }
         public UnitOfMeasure Unit { get; }
-        public Pudelko(double? a = 10.0, double? b = 10.0, double? c = 10.0, UnitOfMeasure unit = UnitOfMeasure.meter)
-        {
+        public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
+        {    
+            if (a == null) a = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
+            if (b == null) b = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
+            if (c == null) c = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
+
             if (a > 0 && b > 0 && c > 0)
             {
                 if (ConvertNum((double)a, unit, UnitOfMeasure.meter) > 10.0 ||
@@ -27,9 +32,9 @@ namespace PudelkoLib
                 {
                     throw new ArgumentOutOfRangeException("Dimensions must be less than 10 meters!");
                 }
-                this.a = (double)a;
-                this.b = (double)b;
-                this.c = (double)c;
+                this.a = ConvertNum((double)a, unit, UnitOfMeasure.meter);
+                this.b = ConvertNum((double)b, unit, UnitOfMeasure.meter);
+                this.c = ConvertNum((double)c, unit, UnitOfMeasure.meter);
             } else
             {
                 throw new ArgumentOutOfRangeException("Dimensions must be positive!");
@@ -56,5 +61,12 @@ namespace PudelkoLib
                 default: return dimension;
             }
         }
+        public override string ToString()
+        {
+            return $"{string.Format("{0:0.000}", A)} m × " +
+                   $"{string.Format("{0:0.000}", B)} m × " +
+                   $"{string.Format("{0:0.000}", C)} m";
+        }
+
     }
 }
