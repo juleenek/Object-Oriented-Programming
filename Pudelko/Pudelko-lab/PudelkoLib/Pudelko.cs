@@ -67,6 +67,37 @@ namespace PudelkoLib
                    $"{string.Format("{0:0.000}", B)} m × " +
                    $"{string.Format("{0:0.000}", C)} m";
         }
+        public string ToString(string format, IFormatProvider provider = null)
+        {
+            double _A, _B, _C;
 
+            if (String.IsNullOrEmpty(format)) format = "G";
+            if (provider == null) _ = CultureInfo.CurrentCulture;
+            // 2.500 m × 9.321 m × 0.100 m
+            switch (format)
+            {
+                case "G":
+                case "m":
+                    return ToString();
+                case "cm":
+                    // 250.0 cm × 932.1 cm × 10.0 cm
+                    _A = Math.Round(A * 100.0, 1);
+                    _B = Math.Round(B * 100.0, 1);
+                    _C = Math.Round(C * 100.0, 1);
+                    return $"{string.Format("{0:0.0}", _A)} cm × " +
+                           $"{string.Format("{0:0.0}", _B)} cm × " +
+                           $"{string.Format("{0:0.0}", _C)} cm";
+                case "mm":
+                    // 2500 mm × 9321 mm × 100 mm
+                    _A = Math.Round(A * 1000.0, 0);
+                    _B = Math.Round(B * 1000.0, 0);
+                    _C = Math.Round(C * 1000.0, 0);
+                    return $"{string.Format("{0:0}", _A)} mm × " +
+                           $"{string.Format("{0:0}", _B)} mm × " +
+                           $"{string.Format("{0:0}", _C)} mm";
+                default:
+                    throw new FormatException(String.Format("The {0} format string is not supported.", format));
+            }
+        }
     }
 }

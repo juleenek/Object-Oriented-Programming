@@ -8,11 +8,10 @@ namespace Pudelko_lab
     {
         static void Main(string[] args)
         {
-            var pudelko = new Pudelko(a: 3, b: 2.39292, c: 3, unit: UnitOfMeasure.centimeter);
-            Console.WriteLine(pudelko);
+            var pudelko = new Pudelko(a: 2.5, b: 9.321, c: 0.1);
 
-            //double lol = 100.0;
-            //Console.WriteLine(decimal.Parse((lol.ToString("F3", CultureInfo.InvariantCulture)).Replace('.', ',')));
+            Console.WriteLine(pudelko.ToString("cm"));
+
         }
     }
 }
