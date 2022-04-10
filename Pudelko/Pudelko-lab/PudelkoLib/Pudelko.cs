@@ -9,7 +9,7 @@ namespace PudelkoLib
         centimeter,
         millimeter
     }
-    public sealed class Pudelko : IFormatable
+    public sealed class Pudelko : IFormatable, IEquatable<Pudelko>
     {
         private readonly double a;
         private readonly double b;
@@ -100,6 +100,48 @@ namespace PudelkoLib
                 default:
                     throw new FormatException(String.Format("The {0} format string is not supported.", format));
             }
+        }
+        public override bool Equals(object value)
+        {
+            if (ReferenceEquals(null, value)) return false; // Is null?
+            if (ReferenceEquals(this, value)) return true; // Is the same object?
+            if (value.GetType() != GetType()) return false; // Is the same type?
+
+            Pudelko pudelko = (Pudelko)value;
+            return pudelko.Pole == Pole && pudelko.Objetosc == Objetosc;
+        }
+        public bool Equals(Pudelko pudelko)
+        {
+            return Equals((object)pudelko);
+        }
+        public override int GetHashCode()
+        {
+            return (A, B, C).GetHashCode();
+        }
+        ///////////////////////////////// OPERATORY //////////////////////////////////
+        public static bool operator ==(Pudelko lewePudelko, Pudelko prawePudelko)
+        {
+            if (lewePudelko is null && prawePudelko is null) return true;
+            return lewePudelko.Equals(prawePudelko);
+        }
+        public static bool operator !=(Pudelko lewePudelko, Pudelko prawePudelko)
+        {
+            return !(lewePudelko == prawePudelko);
+        }
+        public static Pudelko operator +(Pudelko lewePudelko, Pudelko prawePudelko)
+        {
+            if(lewePudelko == null || prawePudelko == null) throw new Exception();
+            double[] p1 = new double[3] { lewePudelko.A, lewePudelko.B, lewePudelko.C };
+            double[] p2 = new double[3] { prawePudelko.A, prawePudelko.B, prawePudelko.C };
+ 
+            Array.Sort(p1);
+            Array.Sort(p2);
+
+            double newA = p1[0] + p2[0];
+            double newB = p1[1] + p2[1];
+            double newC = p1[2] + p2[2];
+
+            return new Pudelko(newA, newB, newC);
         }
     }
 }
