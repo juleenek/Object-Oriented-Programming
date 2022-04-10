@@ -29,6 +29,19 @@ namespace Pudelko_lab
             //var pudelko1 = new Pudelko(a: 53, b: 211, c: 23, UnitOfMeasure.centimeter); // 0,53 | 2,11 | 0,23 
             //var pudelko2 = new Pudelko(a: 312, b: 522, c: 412, UnitOfMeasure.millimeter); // 0,312 | 0,522 | 0,412
             //Console.WriteLine(pudelko1 + pudelko2);
+
+            // Konwersja
+
+            Pudelko pudelko1 = (30, 133, 292);
+            Console.WriteLine(pudelko1.ToString());
+
+            var pudelko2 = new Pudelko(32, 11, 5421, UnitOfMeasure.millimeter);
+            double[] arr = (double[])pudelko2;
+
+            foreach (var item in arr)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

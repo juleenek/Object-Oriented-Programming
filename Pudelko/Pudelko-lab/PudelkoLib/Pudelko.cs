@@ -63,6 +63,9 @@ namespace PudelkoLib
                 default: return dimension;
             }
         }
+
+        //////////////////////////////////////////////////// TOSTRING ////////////////////////////////////////////////////
+
         public override string ToString()
         {
             return $"{string.Format("{0:0.000}", A)} m × " +
@@ -101,6 +104,9 @@ namespace PudelkoLib
                     throw new FormatException(String.Format("The {0} format string is not supported.", format));
             }
         }
+
+        //////////////////////////////////////////////////// EQUALS ////////////////////////////////////////////////////
+
         public override bool Equals(object value)
         {
             if (ReferenceEquals(null, value)) return false; // Is null?
@@ -118,7 +124,7 @@ namespace PudelkoLib
         {
             return (A, B, C).GetHashCode();
         }
-        ///////////////////////////////// OPERATORY //////////////////////////////////
+        //////////////////////////////////////////////////// OPERATORY ////////////////////////////////////////////////////
         public static bool operator ==(Pudelko lewePudelko, Pudelko prawePudelko)
         {
             if (lewePudelko is null && prawePudelko is null) return true;
@@ -142,6 +148,21 @@ namespace PudelkoLib
             double newC = p1[2] + p2[2];
 
             return new Pudelko(newA, newB, newC);
+        }
+
+        //////////////////////////////////////////////////// KONWERSJE ////////////////////////////////////////////////////
+
+        public static explicit operator double[](Pudelko pudelko)
+        {
+            double[] edges = new double[3] { pudelko.A, pudelko.B, pudelko.C };
+            return edges;
+        }
+
+        public static implicit operator Pudelko(ValueTuple<int, int, int> valueTuple)
+        {
+            //if (resultUnit == UnitOfMeasure.meter) return (dimension / 1000.0);
+            Pudelko pudelko = new Pudelko(a: valueTuple.Item1, b: valueTuple.Item2, c: valueTuple.Item3, unit: UnitOfMeasure.millimeter);
+            return pudelko;
         }
     }
 }
