@@ -14,14 +14,16 @@ namespace PudelkoLib
         private readonly double a;
         private readonly double b;
         private readonly double c;
+        private readonly double[] edges;
         public double A { get => Math.Round(a, 3); }
         public double B { get => Math.Round(b, 3); }
         public double C { get => Math.Round(c, 3); }
+        public double[] Edges { get; }
         public UnitOfMeasure Unit { get; }
         public double Objetosc { get => Math.Round((a * b * c), 9); }
         public double Pole { get => Math.Round((2.0 * (a * b + a * c + b * c)), 6); }
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
-        {    
+        {
             if (a == null) a = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
             if (b == null) b = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
             if (c == null) c = ConvertNum(10.0, UnitOfMeasure.centimeter, unit);
@@ -37,11 +39,12 @@ namespace PudelkoLib
                 this.a = ConvertNum((double)a, unit, UnitOfMeasure.meter);
                 this.b = ConvertNum((double)b, unit, UnitOfMeasure.meter);
                 this.c = ConvertNum((double)c, unit, UnitOfMeasure.meter);
+                edges = new double[3] { (double)a, (double)b, (double)c };
             } else
             {
                 throw new ArgumentOutOfRangeException("Dimensions must be positive!");
             }
-         
+
             Unit = unit;
         }
         private double ConvertNum(double dimension, UnitOfMeasure unit, UnitOfMeasure resultUnit)
@@ -136,10 +139,10 @@ namespace PudelkoLib
         }
         public static Pudelko operator +(Pudelko lewePudelko, Pudelko prawePudelko)
         {
-            if(lewePudelko == null || prawePudelko == null) throw new Exception();
+            if (lewePudelko == null || prawePudelko == null) throw new Exception();
             double[] p1 = new double[3] { lewePudelko.A, lewePudelko.B, lewePudelko.C };
             double[] p2 = new double[3] { prawePudelko.A, prawePudelko.B, prawePudelko.C };
- 
+
             Array.Sort(p1);
             Array.Sort(p2);
 
@@ -150,7 +153,7 @@ namespace PudelkoLib
             return new Pudelko(newA, newB, newC);
         }
 
-        //////////////////////////////////////////////////// KONWERSJE ////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static explicit operator double[](Pudelko pudelko)
         {
@@ -160,9 +163,26 @@ namespace PudelkoLib
 
         public static implicit operator Pudelko(ValueTuple<int, int, int> valueTuple)
         {
-            //if (resultUnit == UnitOfMeasure.meter) return (dimension / 1000.0);
             Pudelko pudelko = new Pudelko(a: valueTuple.Item1, b: valueTuple.Item2, c: valueTuple.Item3, unit: UnitOfMeasure.millimeter);
             return pudelko;
+        }
+
+        public double this[int i]
+        {
+            get
+            {
+                switch (i)
+                {
+                    case 0:
+                        return edges[0];
+                    case 1:
+                        return edges[1];
+                    case 2:
+                        return edges[2];
+                    default:
+                        throw new IndexOutOfRangeException();
+                }
+            }
         }
     }
 }

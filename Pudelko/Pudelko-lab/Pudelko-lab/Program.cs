@@ -32,16 +32,22 @@ namespace Pudelko_lab
 
             // Konwersja
 
-            Pudelko pudelko1 = (30, 133, 292);
-            Console.WriteLine(pudelko1.ToString());
+            //Pudelko pudelko1 = (30, 133, 292);
+            //Console.WriteLine(pudelko1.ToString());
 
-            var pudelko2 = new Pudelko(32, 11, 5421, UnitOfMeasure.millimeter);
-            double[] arr = (double[])pudelko2;
+            //var pudelko2 = new Pudelko(32, 11, 5421, UnitOfMeasure.millimeter);
+            //double[] arr = (double[])pudelko2;
 
-            foreach (var item in arr)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in arr)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            // Indexer
+
+            //var pudelko1 = new Pudelko(a: 3, b: 1);
+            //Console.WriteLine(pudelko1[1]);
+
         }
     }
 }
