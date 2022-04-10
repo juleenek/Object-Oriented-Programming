@@ -48,6 +48,20 @@ namespace Pudelko_lab
             //var pudelko1 = new Pudelko(a: 3, b: 1);
             //Console.WriteLine(pudelko1[1]);
 
+            // Iterator
+
+            var pudelko1 = new Pudelko(a: 3, b: 1);
+            Pudelko pudelko2 = (30, 133, 292);
+
+            foreach (var item in pudelko1)
+            {
+                Console.WriteLine(item);
+            }
+
+            foreach (var item in pudelko2)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

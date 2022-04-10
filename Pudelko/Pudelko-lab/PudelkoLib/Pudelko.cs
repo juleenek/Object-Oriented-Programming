@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Globalization;
 
 namespace PudelkoLib
@@ -9,7 +10,7 @@ namespace PudelkoLib
         centimeter,
         millimeter
     }
-    public sealed class Pudelko : IFormatable, IEquatable<Pudelko>
+    public sealed class Pudelko : IFormatable, IEquatable<Pudelko>, IEnumerable
     {
         private readonly double a;
         private readonly double b;
@@ -127,6 +128,7 @@ namespace PudelkoLib
         {
             return (A, B, C).GetHashCode();
         }
+
         //////////////////////////////////////////////////// OPERATORY ////////////////////////////////////////////////////
         public static bool operator ==(Pudelko lewePudelko, Pudelko prawePudelko)
         {
@@ -154,7 +156,6 @@ namespace PudelkoLib
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         public static explicit operator double[](Pudelko pudelko)
         {
             double[] edges = new double[3] { pudelko.A, pudelko.B, pudelko.C };
@@ -167,6 +168,7 @@ namespace PudelkoLib
             return pudelko;
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public double this[int i]
         {
             get
@@ -182,6 +184,15 @@ namespace PudelkoLib
                     default:
                         throw new IndexOutOfRangeException();
                 }
+            }
+        }
+
+        //////////////////////////////////////////////////// IENUMERABLE ////////////////////////////////////////////////////
+        public IEnumerator GetEnumerator()
+        {
+            foreach (var e in edges)
+            {
+                yield return e;
             }
         }
     }
