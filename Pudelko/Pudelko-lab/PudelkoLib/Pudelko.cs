@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace PudelkoLib
 {
@@ -67,14 +68,11 @@ namespace PudelkoLib
                 default: return dimension;
             }
         }
-
-        //////////////////////////////////////////////////// TOSTRING ////////////////////////////////////////////////////
-
         public override string ToString()
         {
-            return $"{string.Format("{0:0.000}", A)} m × " +
-                   $"{string.Format("{0:0.000}", B)} m × " +
-                   $"{string.Format("{0:0.000}", C)} m";
+            return $"{string.Format("{0:0.000}", A).Replace(",", ".")} m × " +
+                   $"{string.Format("{0:0.000}", B).Replace(",", ".")} m × " +
+                   $"{string.Format("{0:0.000}", C).Replace(",", ".")} m";
         }
         public string ToString(string format, IFormatProvider provider = null)
         {
@@ -93,24 +91,21 @@ namespace PudelkoLib
                     _A = Math.Round(A * 100.0, 1);
                     _B = Math.Round(B * 100.0, 1);
                     _C = Math.Round(C * 100.0, 1);
-                    return $"{string.Format("{0:0.0}", _A)} cm × " +
-                           $"{string.Format("{0:0.0}", _B)} cm × " +
-                           $"{string.Format("{0:0.0}", _C)} cm";
+                    return $"{string.Format("{0:0.0}", _A).Replace(",", ".")} cm × " +
+                           $"{string.Format("{0:0.0}", _B).Replace(",", ".")} cm × " +
+                           $"{string.Format("{0:0.0}", _C).Replace(",", ".")} cm";
                 case "mm":
                     // 2500 mm × 9321 mm × 100 mm
                     _A = Math.Round(A * 1000.0, 0);
                     _B = Math.Round(B * 1000.0, 0);
                     _C = Math.Round(C * 1000.0, 0);
-                    return $"{string.Format("{0:0}", _A)} mm × " +
-                           $"{string.Format("{0:0}", _B)} mm × " +
-                           $"{string.Format("{0:0}", _C)} mm";
+                    return $"{string.Format("{0:0}", _A).Replace(",", ".")} mm × " +
+                           $"{string.Format("{0:0}", _B).Replace(",", ".")} mm × " +
+                           $"{string.Format("{0:0}", _C).Replace(",", ".")} mm";
                 default:
                     throw new FormatException(String.Format("The {0} format string is not supported.", format));
             }
         }
-
-        //////////////////////////////////////////////////// EQUALS ////////////////////////////////////////////////////
-
         public override bool Equals(object value)
         {
             if (ReferenceEquals(null, value)) return false; // Is null?
@@ -128,8 +123,6 @@ namespace PudelkoLib
         {
             return (A, B, C).GetHashCode();
         }
-
-        //////////////////////////////////////////////////// OPERATORY ////////////////////////////////////////////////////
         public static bool operator ==(Pudelko lewePudelko, Pudelko prawePudelko)
         {
             if (lewePudelko is null && prawePudelko is null) return true;
@@ -154,21 +147,16 @@ namespace PudelkoLib
 
             return new Pudelko(newA, newB, newC);
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static explicit operator double[](Pudelko pudelko)
         {
             double[] edges = new double[3] { pudelko.A, pudelko.B, pudelko.C };
             return edges;
         }
-
         public static implicit operator Pudelko(ValueTuple<int, int, int> valueTuple)
         {
             Pudelko pudelko = new Pudelko(a: valueTuple.Item1, b: valueTuple.Item2, c: valueTuple.Item3, unit: UnitOfMeasure.millimeter);
             return pudelko;
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public double this[int i]
         {
             get
@@ -186,14 +174,52 @@ namespace PudelkoLib
                 }
             }
         }
-
-        //////////////////////////////////////////////////// IENUMERABLE ////////////////////////////////////////////////////
         public IEnumerator GetEnumerator()
         {
             foreach (var e in edges)
             {
                 yield return e;
             }
+        }
+        // Do sprawdzenia, co jeśli są różne jednostki miary? 
+        public static Pudelko Parse(string inputText)
+        {
+            string[] inputArr = inputText.Replace(" ", "").Split("×");
+            if (inputArr.Length != 3) throw new Exception("Incorrect input");
+
+            UnitOfMeasure unit = UnitOfMeasure.meter;
+            double edgeA, edgeB, edgeC;
+            for (int i = 0; i < inputArr.Length; i++)
+            {
+                inputArr[i].ToLower();
+
+                if ((inputArr[i].Contains("m") || inputArr[i].Contains("mm") || inputArr[i].Contains("cm")))
+                {
+                    if (inputArr[i].Contains("m") && !inputArr[i].Contains("mm") && !inputArr[i].Contains("cm"))
+                    {
+                        unit = UnitOfMeasure.meter;
+                        inputArr[i] = inputArr[i].Replace("m", "").Replace(".", ",");   
+                    }
+                    if (inputArr[i].Contains("mm") && !inputArr[i].Contains("cm"))
+                    {
+                        unit = UnitOfMeasure.millimeter;
+                        inputArr[i] = inputArr[i].Replace("mm", "").Replace(".", ",");
+                    }
+                    if (!inputArr[i].Contains("mm") && inputArr[i].Contains("cm"))
+                    {
+                        unit = UnitOfMeasure.centimeter;
+                        inputArr[i] = inputArr[i].Replace("cm", "").Replace(".", ",");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Incorrect unit");
+                }
+            }
+            edgeA = Convert.ToDouble(inputArr[0]);
+            edgeB = Convert.ToDouble(inputArr[1]);
+            edgeC = Convert.ToDouble(inputArr[2]);
+            return new Pudelko(edgeA, edgeB, edgeC, unit);
         }
     }
 }

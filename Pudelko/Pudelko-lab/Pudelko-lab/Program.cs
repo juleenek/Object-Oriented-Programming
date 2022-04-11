@@ -18,8 +18,8 @@ namespace Pudelko_lab
 
             // Porównywanie pudelek
 
-            //var pudelko1 = new Pudelko(a: 3, b: 1); 
-            //var pudelko2 = new Pudelko(a: 3, b: 1); 
+            //var pudelko1 = new Pudelko(a: 3, b: 1);
+            //var pudelko2 = new Pudelko(a: 3, b: 1);
             //Console.WriteLine(pudelko1 == pudelko2);
             //Console.WriteLine(pudelko1.Equals(pudelko2));
             //Console.WriteLine(pudelko2.Equals(pudelko1));
@@ -50,18 +50,26 @@ namespace Pudelko_lab
 
             // Iterator
 
-            var pudelko1 = new Pudelko(a: 3, b: 1);
-            Pudelko pudelko2 = (30, 133, 292);
+            //var pudelko1 = new Pudelko(a: 3, b: 1);
+            //Pudelko pudelko2 = (30, 133, 292);
 
-            foreach (var item in pudelko1)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in pudelko1)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
-            foreach (var item in pudelko2)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in pudelko2)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            // Parse
+
+            Pudelko P1 = Pudelko.Parse("2.500 cm × 9.321 m × 0.100 cm");
+            //Pudelko P2 = new Pudelko(2.5, 9.321, 0.1);
+            Console.WriteLine(P1);
+            //Console.WriteLine(P2);
+            //Console.WriteLine(P1 == P2);
         }
     }
 }
