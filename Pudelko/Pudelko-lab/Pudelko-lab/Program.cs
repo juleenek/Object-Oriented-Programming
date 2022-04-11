@@ -4,8 +4,14 @@ using PudelkoLib;
 
 namespace Pudelko_lab
 {
-    class Program
+    static class Program
     {
+        public static Pudelko Kompresuj(this Pudelko pudelko)
+        {
+            double V = pudelko.Objetosc;
+            double cubeEdge = Math.Pow(V, (1 / 3D)); 
+            return new Pudelko(cubeEdge, cubeEdge, cubeEdge);
+        }
         static void Main(string[] args)
         {
             // ToString, Pole, Objetosc
@@ -65,11 +71,16 @@ namespace Pudelko_lab
 
             // Parse
 
-            Pudelko P1 = Pudelko.Parse("2.500 cm × 9.321 m × 0.100 cm");
+            //Pudelko P1 = Pudelko.Parse("2.500 cm × 9.321 m × 0.100 cm");
             //Pudelko P2 = new Pudelko(2.5, 9.321, 0.1);
-            Console.WriteLine(P1);
+            //Console.WriteLine(P1);
             //Console.WriteLine(P2);
             //Console.WriteLine(P1 == P2);
+
+            // Kompresuj
+
+            //var pudelko = new Pudelko(a: 6, b: 3, c: 4);
+            //Console.WriteLine(Kompresuj(pudelko));
         }
     }
 }
