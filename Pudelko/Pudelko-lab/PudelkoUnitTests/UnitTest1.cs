@@ -447,16 +447,514 @@ namespace PudelkoUnitTests
 
 
         #region Pole, Objêtoœæ ===================================
-        // ToDo
+
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(5.0, 2.5, 3.1, 71.5)]
+        [DataRow(0.2, 10.0, 1.11, 26.644)] 
+        public void Area_3params_InMeter(double a, double b, double c,
+                                                  double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, c: c);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(5.0, 2.5, 26.500)]
+        [DataRow(0.2, 10.0, 6.040)]
+        public void Area_2params_InMeter(double a, double b,
+                                                double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(5.0, 2.020)]
+        [DataRow(0.2, 0.100)]
+        public void Area_1param_InMeter(double a,
+                                                double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(0.060)]
+        public void Area_0params(double expectedArea)
+        {
+            Pudelko p = new Pudelko();
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(515.0, 21.5, 31.1, 5.55153)]
+        [DataRow(10.2, 110.0, 11.11, 0.491484)]
+        public void Area_3params_InCentimeter(double a, double b, double c,
+                                               double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(100.0, 950.0, 21.1)]
+        [DataRow(100.0, 800.0, 17.8)]
+        public void Area_2params_InCentimeter(double a, double b,
+                                                double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+       
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(5.23425, 2.52532, 3.1235252, 41.287244019)]
+        public void Volume_3params_InMeter(double a, double b, double c,
+                                                  double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, c: c);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(5.23425, 2.52532, 1.321815621)]
+        public void Volume_2params_InMeter(double a, double b, 
+                                          double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(0.001)]
+        public void Volume_0params(double expectedArea)
+        {
+            Pudelko p = new Pudelko();
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(5555.555, 1234.123, 1122.334, 7.694989248)]
+        public void Volume_3params_InMilimeter(double a, double b, double c,
+                                          double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.milimeter);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(9000.22, 1233.21, 1.109916131)]
+        public void Volume_2params_InMilimeter(double a, double b,
+                                        double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, unit: UnitOfMeasure.milimeter);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(2000, 0.02)]
+        public void Volume_1param_InMilimeter(double a,
+                                      double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, unit: UnitOfMeasure.milimeter);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(54.0, 2.5, 3.1, 71.5)]
+        [DataRow(0.2, 10.1, 1.11, 26.644)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Area_3params_InMeter_ArgumentOutOfRangeException(double a, double b, double c,
+                                           double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, c: c);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+
+        [DataTestMethod, TestCategory("Area")]
+        [DataRow(1100.0, 950.0, 21.1)]
+        [DataRow(1000.011, 800.0, 17.8)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Area_2params_InCentimeter_ArgumentOutOfRangeException(double a, double b,
+                                          double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+            Assert.AreEqual(p.Pole, expectedArea);
+        }
+
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(5.23425, 2.52532, 10.1235252, 41.287244019)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Volume_3params_InMeter_ArgumentOutOfRangeException(double a, double b, double c,
+                                                  double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b, c: c);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
+        [DataTestMethod, TestCategory("Volume")]
+        [DataRow(5.23425, 22.52532, 1.321815621)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Volume_2params_InMeter_ArgumentOutOfRangeException(double a, double b,
+                                          double expectedArea)
+        {
+            Pudelko p = new Pudelko(a: a, b: b);
+            Assert.AreEqual(p.Objetosc, expectedArea);
+        }
 
         #endregion
 
         #region Equals ===========================================
-        // ToDo
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(5.0, 2.5, 3.1)]
+        [DataRow(0.2, 10.0, 1.11)]
+        public void EqualsMeters(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c);
+
+            Pudelko p3 = new Pudelko(a: a, b: b);
+            Pudelko p4 = new Pudelko(a: a, b: b);
+
+            Pudelko p5 = new Pudelko(a: a);
+            Pudelko p6 = new Pudelko(a: a);
+
+            Pudelko p7 = new Pudelko();
+            Pudelko p8 = new Pudelko();
+
+            Assert.AreEqual(p1.Equals(p2), true);
+            Assert.AreEqual(p2.Equals(p1), true);
+            Assert.AreEqual(p3.Equals(p4), true);
+            Assert.AreEqual(p4.Equals(p3), true);
+            Assert.AreEqual(p5.Equals(p6), true);
+            Assert.AreEqual(p6.Equals(p5), true);
+            Assert.AreEqual(p7.Equals(p8), true);
+            Assert.AreEqual(p8.Equals(p7), true);
+
+            Assert.AreEqual(p1.Equals(p1), true);
+            Assert.AreEqual(p2.Equals(p2), true);
+            Assert.AreEqual(p3.Equals(p3), true);
+            Assert.AreEqual(p4.Equals(p4), true);
+            Assert.AreEqual(p5.Equals(p5), true);
+            Assert.AreEqual(p6.Equals(p6), true);
+            Assert.AreEqual(p7.Equals(p7), true);
+            Assert.AreEqual(p8.Equals(p8), true);
+   
+
+            Assert.AreEqual(p1.Equals(p4), false);
+            Assert.AreEqual(p2.Equals(p3), false);
+            Assert.AreEqual(p3.Equals(p2), false);
+            Assert.AreEqual(p4.Equals(p1), false);
+            Assert.AreEqual(p5.Equals(p8), false);
+            Assert.AreEqual(p6.Equals(p7), false);
+            Assert.AreEqual(p7.Equals(p6), false);
+            Assert.AreEqual(p8.Equals(p5), false);
+        }
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(100.1, 222.5, 332.1)]
+        [DataRow(123.22, 120.0, 121.11)]
+        public void EqualsCentimeters(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+
+            Pudelko p3 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+            Pudelko p4 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+
+            Pudelko p5 = new Pudelko(a: a, unit: UnitOfMeasure.centimeter);
+            Pudelko p6 = new Pudelko(a: a, unit: UnitOfMeasure.centimeter);
+
+            Assert.AreEqual(p1.Equals(p2), true);
+            Assert.AreEqual(p2.Equals(p1), true);
+            Assert.AreEqual(p3.Equals(p4), true);
+            Assert.AreEqual(p4.Equals(p3), true);
+            Assert.AreEqual(p5.Equals(p6), true);
+            Assert.AreEqual(p6.Equals(p5), true);
+
+            Assert.AreEqual(p1.Equals(p1), true);
+            Assert.AreEqual(p2.Equals(p2), true);
+            Assert.AreEqual(p3.Equals(p3), true);
+            Assert.AreEqual(p4.Equals(p4), true);
+            Assert.AreEqual(p5.Equals(p5), true);
+            Assert.AreEqual(p6.Equals(p6), true);
+
+            Assert.AreEqual(p1.Equals(p4), false);
+            Assert.AreEqual(p2.Equals(p3), false);
+            Assert.AreEqual(p3.Equals(p2), false);
+            Assert.AreEqual(p4.Equals(p1), false);
+            Assert.AreEqual(p5.Equals(p1), false);
+            Assert.AreEqual(p6.Equals(p2), false);
+        }
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(1040.1, 3222.5, 4332.1)]
+        [DataRow(3123.22, 5120.40, 4121.11)]
+        public void EqualsMilimeters(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.milimeter);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.milimeter);
+
+            Pudelko p3 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.milimeter);
+            Pudelko p4 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.milimeter);
+
+            Pudelko p5 = new Pudelko(a: a, unit: UnitOfMeasure.milimeter);
+            Pudelko p6 = new Pudelko(a: a, unit: UnitOfMeasure.milimeter);
+
+            Assert.AreEqual(p1.Equals(p2), true);
+            Assert.AreEqual(p2.Equals(p1), true);
+            Assert.AreEqual(p3.Equals(p4), true);
+            Assert.AreEqual(p4.Equals(p3), true);
+            Assert.AreEqual(p5.Equals(p6), true);
+            Assert.AreEqual(p6.Equals(p5), true);
+
+            Assert.AreEqual(p1.Equals(p1), true);
+            Assert.AreEqual(p2.Equals(p2), true);
+            Assert.AreEqual(p3.Equals(p3), true);
+            Assert.AreEqual(p4.Equals(p4), true);
+            Assert.AreEqual(p5.Equals(p5), true);
+            Assert.AreEqual(p6.Equals(p6), true);
+
+            Assert.AreEqual(p1.Equals(p4), false);
+            Assert.AreEqual(p2.Equals(p3), false);
+            Assert.AreEqual(p3.Equals(p2), false);
+            Assert.AreEqual(p4.Equals(p1), false);
+            Assert.AreEqual(p5.Equals(p1), false);
+            Assert.AreEqual(p6.Equals(p2), false);
+        }
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(1443040.1, 433222.5, 334332.1)]
+        [DataRow(3433123.22, 5533120.40, 444121.11)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void EqualsMilimetersArgumentOutOfRangeException(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.milimeter);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.milimeter);
+
+            Pudelko p3 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.milimeter);
+            Pudelko p4 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.milimeter);
+
+            Pudelko p5 = new Pudelko(a: a, unit: UnitOfMeasure.milimeter);
+            Pudelko p6 = new Pudelko(a: a, unit: UnitOfMeasure.milimeter);
+
+            Assert.AreEqual(p1.Equals(p2), true);
+            Assert.AreEqual(p2.Equals(p1), true);
+            Assert.AreEqual(p3.Equals(p4), true);
+            Assert.AreEqual(p4.Equals(p3), true);
+            Assert.AreEqual(p5.Equals(p6), true);
+            Assert.AreEqual(p6.Equals(p5), true);
+
+            Assert.AreEqual(p1.Equals(p1), true);
+            Assert.AreEqual(p2.Equals(p2), true);
+            Assert.AreEqual(p3.Equals(p3), true);
+            Assert.AreEqual(p4.Equals(p4), true);
+            Assert.AreEqual(p5.Equals(p5), true);
+            Assert.AreEqual(p6.Equals(p6), true);
+
+            Assert.AreEqual(p1.Equals(p4), false);
+            Assert.AreEqual(p2.Equals(p3), false);
+            Assert.AreEqual(p3.Equals(p2), false);
+            Assert.AreEqual(p4.Equals(p1), false);
+            Assert.AreEqual(p5.Equals(p1), false);
+            Assert.AreEqual(p6.Equals(p2), false);
+        }
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(15.0, 2.5, 3.1)]
+        [DataRow(0.2, 10.1, 1.11)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void EqualsMetersArgumentOutOfRangeException(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c);
+
+            Pudelko p3 = new Pudelko(a: a, b: b);
+            Pudelko p4 = new Pudelko(a: a, b: b);
+
+            Pudelko p5 = new Pudelko(a: a);
+            Pudelko p6 = new Pudelko(a: a);
+
+            Pudelko p7 = new Pudelko();
+            Pudelko p8 = new Pudelko();
+
+            Assert.AreEqual(p1.Equals(p2), true);
+            Assert.AreEqual(p2.Equals(p1), true);
+            Assert.AreEqual(p3.Equals(p4), true);
+            Assert.AreEqual(p4.Equals(p3), true);
+            Assert.AreEqual(p5.Equals(p6), true);
+            Assert.AreEqual(p6.Equals(p5), true);
+            Assert.AreEqual(p7.Equals(p8), true);
+            Assert.AreEqual(p8.Equals(p7), true);
+
+            Assert.AreEqual(p1.Equals(p1), true);
+            Assert.AreEqual(p2.Equals(p2), true);
+            Assert.AreEqual(p3.Equals(p3), true);
+            Assert.AreEqual(p4.Equals(p4), true);
+            Assert.AreEqual(p5.Equals(p5), true);
+            Assert.AreEqual(p6.Equals(p6), true);
+            Assert.AreEqual(p7.Equals(p7), true);
+            Assert.AreEqual(p8.Equals(p8), true);
+
+
+            Assert.AreEqual(p1.Equals(p4), false);
+            Assert.AreEqual(p2.Equals(p3), false);
+            Assert.AreEqual(p3.Equals(p2), false);
+            Assert.AreEqual(p4.Equals(p1), false);
+            Assert.AreEqual(p5.Equals(p8), false);
+            Assert.AreEqual(p6.Equals(p7), false);
+            Assert.AreEqual(p7.Equals(p6), false);
+            Assert.AreEqual(p8.Equals(p5), false);
+        }
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(1001.1, 222.5, 332.1)]
+        [DataRow(123.22, 120.0, 1000.1)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void EqualsCentimetersArgumentOutOfRangeException(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+
+            Pudelko p3 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+            Pudelko p4 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+
+            Pudelko p5 = new Pudelko(a: a, unit: UnitOfMeasure.centimeter);
+            Pudelko p6 = new Pudelko(a: a, unit: UnitOfMeasure.centimeter);
+
+            Assert.AreEqual(p1.Equals(p2), true);
+            Assert.AreEqual(p2.Equals(p1), true);
+            Assert.AreEqual(p3.Equals(p4), true);
+            Assert.AreEqual(p4.Equals(p3), true);
+            Assert.AreEqual(p5.Equals(p6), true);
+            Assert.AreEqual(p6.Equals(p5), true);
+
+            Assert.AreEqual(p1.Equals(p1), true);
+            Assert.AreEqual(p2.Equals(p2), true);
+            Assert.AreEqual(p3.Equals(p3), true);
+            Assert.AreEqual(p4.Equals(p4), true);
+            Assert.AreEqual(p5.Equals(p5), true);
+            Assert.AreEqual(p6.Equals(p6), true);
+
+            Assert.AreEqual(p1.Equals(p4), false);
+            Assert.AreEqual(p2.Equals(p3), false);
+            Assert.AreEqual(p3.Equals(p2), false);
+            Assert.AreEqual(p4.Equals(p1), false);
+            Assert.AreEqual(p5.Equals(p1), false);
+            Assert.AreEqual(p6.Equals(p2), false);
+        }
         #endregion
 
         #region Operators overloading ===========================
-        // ToDo
+
+        [DataTestMethod, TestCategory("Operators")]
+        [DataRow(1.1, 2.5, 3.1)]
+        [DataRow(1.22, 10.0, 5.1)]
+        public void EqualityOperatorsMeters(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c);
+
+            Pudelko p3 = new Pudelko(a: a, b: b);
+            Pudelko p4 = new Pudelko(a: a, b: b);
+
+            Pudelko p5 = new Pudelko(a: a);
+            Pudelko p6 = new Pudelko(a: a);
+
+            Assert.AreEqual(p1 == p2, true);
+            Assert.AreEqual(p3 == p4, true);
+            Assert.AreEqual(p5 == p6, true);
+
+            Assert.AreEqual(p1 != p3, true);
+            Assert.AreEqual(p1 != p4, true);
+            Assert.AreEqual(p1 != p5, true);
+            Assert.AreEqual(p1 != p6, true);
+
+            Assert.AreEqual(p2 != p3, true);
+            Assert.AreEqual(p2 != p4, true);
+            Assert.AreEqual(p2 != p5, true);
+            Assert.AreEqual(p2 != p6, true);
+
+            Assert.AreEqual(p1 != p2, false);
+            Assert.AreEqual(p3 != p4, false);
+            Assert.AreEqual(p5 != p6, false);
+
+            Assert.AreEqual(p1 == p3, false);
+            Assert.AreEqual(p1 == p4, false);
+            Assert.AreEqual(p1 == p5, false);
+            Assert.AreEqual(p1 == p6, false);
+
+            Assert.AreEqual(p2 == p3, false);
+            Assert.AreEqual(p2 == p4, false);
+            Assert.AreEqual(p2 == p5, false);
+            Assert.AreEqual(p2 == p6, false);
+        }
+        [DataTestMethod, TestCategory("Operators")]
+        [DataRow(100.1, 222.5, 332.1)]
+        [DataRow(123.22, 120.0, 500.1)]
+        public void EqualityOperatorsCentimeters(double a, double b, double c)
+        {
+            Pudelko p1 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+            Pudelko p2 = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
+
+            Pudelko p3 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+            Pudelko p4 = new Pudelko(a: a, b: b, unit: UnitOfMeasure.centimeter);
+
+            Pudelko p5 = new Pudelko(a: a, unit: UnitOfMeasure.centimeter);
+            Pudelko p6 = new Pudelko(a: a, unit: UnitOfMeasure.centimeter);
+
+            Assert.AreEqual(p1 == p2, true);
+            Assert.AreEqual(p3 == p4, true);
+            Assert.AreEqual(p5 == p6, true);
+
+            Assert.AreEqual(p1 != p3, true);
+            Assert.AreEqual(p1 != p4, true);
+            Assert.AreEqual(p1 != p5, true);
+            Assert.AreEqual(p1 != p6, true);
+
+            Assert.AreEqual(p2 != p3, true);
+            Assert.AreEqual(p2 != p4, true);
+            Assert.AreEqual(p2 != p5, true);
+            Assert.AreEqual(p2 != p6, true);
+
+            Assert.AreEqual(p1 != p2, false);
+            Assert.AreEqual(p3 != p4, false);
+            Assert.AreEqual(p5 != p6, false);
+
+            Assert.AreEqual(p1 == p3, false);
+            Assert.AreEqual(p1 == p4, false);
+            Assert.AreEqual(p1 == p5, false);
+            Assert.AreEqual(p1 == p6, false);
+
+            Assert.AreEqual(p2 == p3, false);
+            Assert.AreEqual(p2 == p4, false);
+            Assert.AreEqual(p2 == p5, false);
+            Assert.AreEqual(p2 == p6, false);
+        }
+
+        [DataTestMethod, TestCategory("Operators")]
+        public void PlusOperatorMeters()
+        {
+            Pudelko p1 = new Pudelko(1, 2, 3);
+            Pudelko p2 = new Pudelko(4, 5, 6);
+
+            Pudelko p3 = new Pudelko(2.2, 3, 1);
+            Pudelko p4 = new Pudelko(3.1, 1, 1.1);
+
+            Pudelko p5 = new Pudelko(2000, 3000, 1000, UnitOfMeasure.milimeter);
+            Pudelko p6 = new Pudelko(3000, 1000, 1000, UnitOfMeasure.milimeter);
+
+            Assert.AreEqual(p1 + p2, new Pudelko(5, 7, 9));
+            Assert.AreEqual(p3 + p4, new Pudelko(2, 3.3, 6.1));
+            Assert.AreEqual(p5 + p6, new Pudelko(2, 3, 6));
+        }
+        [DataTestMethod, TestCategory("Operators")]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void PlusOperatorMetersArgumentOutOfRangeException()
+        {
+            Pudelko p1 = new Pudelko(1, 7, 3);
+            Pudelko p2 = new Pudelko(4, 5, 6);
+
+            Pudelko p3 = new Pudelko(2.2, 3, 1);
+            Pudelko p4 = new Pudelko(3.1, 5, 8.1);
+
+            Pudelko p5 = new Pudelko(2000, 6000, 1000, UnitOfMeasure.milimeter);
+            Pudelko p6 = new Pudelko(5000, 1000, 1000, UnitOfMeasure.milimeter);
+
+            Assert.AreEqual(p1 + p2, new Pudelko(5, 7, 9));
+            Assert.AreEqual(p3 + p4, new Pudelko(2, 3.3, 6.1));
+            Assert.AreEqual(p5 + p6, new Pudelko(2, 3, 6));
+        }
         #endregion
 
         #region Conversions =====================================

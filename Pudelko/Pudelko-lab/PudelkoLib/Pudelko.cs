@@ -79,17 +79,14 @@ namespace PudelkoLib
         public string ToString(string format, IFormatProvider provider = null)
         {
             double _A, _B, _C;
-
             if (String.IsNullOrEmpty(format)) format = "G";
             if (provider == null) _ = CultureInfo.CurrentCulture;
-            // 2.500 m × 9.321 m × 0.100 m
             switch (format)
             {
                 case "G":
                 case "m":
                     return ToString();
                 case "cm":
-                    // 250.0 cm × 932.1 cm × 10.0 cm
                     _A = Math.Round(A * 100.0, 1);
                     _B = Math.Round(B * 100.0, 1);
                     _C = Math.Round(C * 100.0, 1);
@@ -97,7 +94,6 @@ namespace PudelkoLib
                            $"{string.Format("{0:0.0}", _B).Replace(",", ".")} cm × " +
                            $"{string.Format("{0:0.0}", _C).Replace(",", ".")} cm";
                 case "mm":
-                    // 2500 mm × 9321 mm × 100 mm
                     _A = Math.Round(A * 1000.0, 0);
                     _B = Math.Round(B * 1000.0, 0);
                     _C = Math.Round(C * 1000.0, 0);
@@ -142,7 +138,6 @@ namespace PudelkoLib
 
             Array.Sort(p1);
             Array.Sort(p2);
-
             double newA = p1[0] + p2[0];
             double newB = p1[1] + p2[1];
             double newC = p1[2] + p2[2];
@@ -183,7 +178,6 @@ namespace PudelkoLib
                 yield return e;
             }
         }
-        // Do sprawdzenia, co jeśli są różne jednostki miary? 
         public static Pudelko Parse(string inputText)
         {
             string[] inputArr = inputText.Replace(" ", "").Split("×");
