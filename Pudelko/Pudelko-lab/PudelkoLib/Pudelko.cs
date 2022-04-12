@@ -9,7 +9,7 @@ namespace PudelkoLib
     {
         meter,
         centimeter,
-        millimeter
+        milimeter
     }
     public sealed class Pudelko : IFormatable, IEquatable<Pudelko>, IEnumerable
     {
@@ -17,9 +17,9 @@ namespace PudelkoLib
         private readonly double b;
         private readonly double c;
         private readonly double[] edges;
-        public double A { get => Math.Round(a, 3); }
-        public double B { get => Math.Round(b, 3); }
-        public double C { get => Math.Round(c, 3); }
+        public double A { get => Math.Round(a, 3, MidpointRounding.ToZero); }
+        public double B { get => Math.Round(b, 3, MidpointRounding.ToZero); }
+        public double C { get => Math.Round(c, 3, MidpointRounding.ToZero); }
         public double[] Edges { get; }
         public UnitOfMeasure Unit { get; }
         public double Objetosc { get => Math.Round((a * b * c), 9); }
@@ -41,6 +41,8 @@ namespace PudelkoLib
                 this.a = ConvertNum((double)a, unit, UnitOfMeasure.meter);
                 this.b = ConvertNum((double)b, unit, UnitOfMeasure.meter);
                 this.c = ConvertNum((double)c, unit, UnitOfMeasure.meter);
+                if(A <= 0 || B <= 0 || C <= 0) throw new ArgumentOutOfRangeException();
+
                 edges = new double[3] { (double)a, (double)b, (double)c };
             } else
             {
@@ -55,13 +57,13 @@ namespace PudelkoLib
             {
                 case UnitOfMeasure.meter:
                     if (resultUnit == UnitOfMeasure.centimeter) return (dimension * 100.0);
-                    if (resultUnit == UnitOfMeasure.millimeter) return (dimension * 1000.0);
+                    if (resultUnit == UnitOfMeasure.milimeter) return (dimension * 1000.0);
                     return dimension;
                 case UnitOfMeasure.centimeter:
-                    if (resultUnit == UnitOfMeasure.millimeter) return (dimension * 10.0);
+                    if (resultUnit == UnitOfMeasure.milimeter) return (dimension * 10.0);
                     if (resultUnit == UnitOfMeasure.meter) return (dimension / 100.0);
                     return dimension;
-                case UnitOfMeasure.millimeter:
+                case UnitOfMeasure.milimeter:
                     if (resultUnit == UnitOfMeasure.centimeter) return (dimension / 10.0);
                     if (resultUnit == UnitOfMeasure.meter) return (dimension / 1000.0);
                     return dimension;
@@ -154,7 +156,7 @@ namespace PudelkoLib
         }
         public static implicit operator Pudelko(ValueTuple<int, int, int> valueTuple)
         {
-            Pudelko pudelko = new Pudelko(a: valueTuple.Item1, b: valueTuple.Item2, c: valueTuple.Item3, unit: UnitOfMeasure.millimeter);
+            Pudelko pudelko = new Pudelko(a: valueTuple.Item1, b: valueTuple.Item2, c: valueTuple.Item3, unit: UnitOfMeasure.milimeter);
             return pudelko;
         }
         public double this[int i]
@@ -202,7 +204,7 @@ namespace PudelkoLib
                     }
                     if (inputArr[i].Contains("mm") && !inputArr[i].Contains("cm"))
                     {
-                        unit = UnitOfMeasure.millimeter;
+                        unit = UnitOfMeasure.milimeter;
                         inputArr[i] = inputArr[i].Replace("mm", "").Replace(".", ",");
                     }
                     if (!inputArr[i].Contains("mm") && inputArr[i].Contains("cm"))
