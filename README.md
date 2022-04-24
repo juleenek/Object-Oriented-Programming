@@ -11,3 +11,8 @@
 ## Zadanie: Pudelko
 
 [Lab-03. Well formed class - Pudelko](https://github.com/wsei-csharp201/cs-lab03-Pudelko)
+
+## Zadanie: Pojazdy
+
+[Lab. Pojazdy - złożona hierarchia klas i interfejsów](https://github.com/wsei-csharp201/cs-lab-Pojazdy)
+
