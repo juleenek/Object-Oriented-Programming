@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PojazdyLib
+namespace PojazdyLib.Ladowe
 {
-    class Wodny
+    class Motorcycle
     {
     }
 }

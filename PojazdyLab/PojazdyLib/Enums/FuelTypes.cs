@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PojazdyLib
+namespace PojazdyLib.Enums
 {
-    class Ladowy
+   public enum FuelType
     {
+        gasoline, 
+        oil,
+        LPG,
+        electricity
     }
 }

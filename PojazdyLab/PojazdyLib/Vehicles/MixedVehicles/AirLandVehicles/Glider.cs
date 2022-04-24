@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PojazdyLib.Powietrzne
+namespace PojazdyLib.PowietrzneLadowe
 {
-    class Lotnia
+    class Glider
     {
     }
 }

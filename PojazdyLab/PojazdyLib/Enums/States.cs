@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PojazdyLib.Wodne
+namespace PojazdyLib.Enums
 {
-    class Motorowka
+   public enum State
     {
+        on,
+        off
     }
 }

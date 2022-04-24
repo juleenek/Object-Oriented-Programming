@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PojazdyLib.Ladowe;
+using System;
 
 namespace PojazdyLab
 {
@@ -6,7 +7,10 @@ namespace PojazdyLab
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var car = new Car(PojazdyLib.Enums.FuelType.gasoline, 50);
+            car.Start();
+            car.IncreaseSpeed(60);
+            Console.WriteLine(car.CurrentSpeed);
         }
     }
 }

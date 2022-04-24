@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PojazdyLib.Interfejsy
+namespace PojazdyLib.Wodne
 {
-    interface IPowietrzny
+    class Motorboat
     {
     }
 }

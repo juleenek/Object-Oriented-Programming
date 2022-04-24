@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PojazdyLib.Ladowe
 {
-    class Motocykl
+    class Bicycle
     {
     }
 }

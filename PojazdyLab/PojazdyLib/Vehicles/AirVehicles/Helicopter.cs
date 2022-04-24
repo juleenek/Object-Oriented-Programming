@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PojazdyLib.Wodne
+namespace PojazdyLib.Powietrzne
 {
-    class Kajak
+    class Helicopter
     {
     }
 }
