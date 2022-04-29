@@ -181,8 +181,49 @@ namespace PojazdyLab
 
             //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+            // Rower 
+
+            //var rower = new Bicycle();
+
+            //rower.Start();
+            //rower.Stop();
+            //rower.Start();
+
+            //rower.IncreaseSpeed(100);
+            //rower.IncreaseSpeed(-350);
+            //rower.IncreaseSpeed(1350);
+            //Console.WriteLine("\n" + rower + "\n");
+
+            //rower.IncreaseSpeed(50);
+            //rower.IncreaseSpeed(100);
+            //Console.WriteLine("\n" + rower + "\n");
+
+            //rower.Start();
+            //rower.Stop();
 
 
+            //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            // Motocykl
+
+            ////var motocykl = new Motorcycle(50);
+            //var motocykl = new Motorcycle(160);
+
+            //motocykl.Start();
+            //motocykl.Stop();
+            //motocykl.Start();
+
+            //motocykl.IncreaseSpeed(1);
+            //motocykl.IncreaseSpeed(-350);
+            //motocykl.IncreaseSpeed(1350);
+            //Console.WriteLine("\n" + motocykl + "\n");
+
+            //motocykl.IncreaseSpeed(50);
+            //motocykl.IncreaseSpeed(100);
+            //Console.WriteLine("\n" + motocykl + "\n");
+
+            //motocykl.Start();
+            //motocykl.Stop();
         }
     }
 }

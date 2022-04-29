@@ -102,7 +102,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed += partialSpeed;
                     Console.WriteLine($"Speed increased by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    //Thread.Sleep(2000);
+                    Thread.Sleep(2000);
                 }
                 return;
             }
@@ -130,7 +130,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed -= partialSpeed;
                     Console.WriteLine($"Speed reduced by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    //Thread.Sleep(2000);
+                    Thread.Sleep(2000);
                 }
                 return;
             }
