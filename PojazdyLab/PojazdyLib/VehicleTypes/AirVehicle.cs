@@ -93,7 +93,7 @@ namespace PojazdyLib.VehicleTypes
                 return;
             }
             if ((IsInTheAir && currentSpeed + speed <= MaxSpeed && currentSpeed + speed > MinSpeed) ||
-                (!IsInTheAir && currentSpeed + speed < MinSpeed + LandingRisingBoundary && currentSpeed + speed > 0))
+                (!IsInTheAir && currentSpeed + speed < MinSpeed + LandingRisingBoundary && currentSpeed + speed > 0) && speed > 0)
             {
                 int partialNum = 4;
                 double partialSpeed = (speed / (double)partialNum);
@@ -121,7 +121,7 @@ namespace PojazdyLib.VehicleTypes
                 return;
             }
             if ((IsInTheAir && currentSpeed - speed <= MaxSpeed && currentSpeed - speed > MinSpeed) ||
-                (!IsInTheAir && currentSpeed - speed < MinSpeed + LandingRisingBoundary && currentSpeed - speed > 0))
+                (!IsInTheAir && currentSpeed - speed < MinSpeed + LandingRisingBoundary && currentSpeed - speed > 0) && speed > 0)
             {
                 int partialNum = 4;
                 double partialSpeed = (speed / (double)partialNum);

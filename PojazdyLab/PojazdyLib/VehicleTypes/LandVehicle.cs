@@ -13,16 +13,17 @@ namespace PojazdyLib.VehicleTypes
     {
         public string VehicleType => "Pojazd lądowy";
         public string Environment => "Lądowe";
-
         public double MinSpeed => 1.0;
-
         public double MaxSpeed => 350.0;
-
+        public byte NumberOfWheels => 0;
+        public bool HasAnEngine => false;
+        public FuelType FuelType => FuelType.none;
+        public int EnginePower => 0;
         public SpeedUnit Unit => SpeedUnit.kilometersPerHour;
 
         public new void IncreaseSpeed(double speed)
         {
-            if (State == State.on && speed >= MinSpeed && speed <= MaxSpeed && currentSpeed + speed <= MaxSpeed)
+            if (State == State.on && speed >= MinSpeed && speed <= MaxSpeed && currentSpeed + speed <= MaxSpeed && speed > 0)
             {
                 int partialNum = 4;
                 double partialSpeed = (speed / (double)partialNum);
@@ -41,7 +42,7 @@ namespace PojazdyLib.VehicleTypes
         }
         public new void ReduceSpeed(double speed)
         {
-            if (State == State.on && speed >= MinSpeed && speed < MaxSpeed && currentSpeed - speed >= MinSpeed)
+            if (State == State.on && speed >= MinSpeed && speed < MaxSpeed && currentSpeed - speed >= MinSpeed && speed > 0)
             {
                 currentSpeed -= speed;
                 Console.WriteLine("Speed reduced ...");
@@ -52,14 +53,5 @@ namespace PojazdyLib.VehicleTypes
             }
         }
 
-
-        // Zależne od pojazdu
-        public byte NumberOfWheels => throw new NotImplementedException();
-
-        public bool HasAnEngine => throw new NotImplementedException();
-
-        public FuelType FuelType => throw new NotImplementedException();
-
-        public int EnginePower => throw new NotImplementedException();
     }
 }

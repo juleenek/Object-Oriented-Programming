@@ -33,6 +33,7 @@ namespace PojazdyLib
             if (State == State.off)
             {
                 State = State.on;
+                currentSpeed = 0;
                 Console.WriteLine("Vehicle is on ...");
             } else
             {
@@ -45,6 +46,7 @@ namespace PojazdyLib
             if (State == State.on)
             {
                 State = State.off;
+                currentSpeed = 0;
                 Console.WriteLine("Vehicle is off ...");
             }
             else

@@ -2,6 +2,7 @@
 using PojazdyLib.Powietrzne;
 using System;
 using PojazdyLib.PowietrzneLadowe;
+using PojazdyLib.Wodne;
 
 namespace PojazdyLab
 {
@@ -11,13 +12,14 @@ namespace PojazdyLab
         {
             // Samochód
 
-            //var car = new Car(PojazdyLib.Enums.FuelType.gasoline, 50);
+            //var car = new Car(PojazdyLib.Enums.FuelType.gasoline, 170);
             //car.Start();
             ////car.Stop();
             ////car.IncreaseSpeed(350);
             ////car.IncreaseSpeed(-350);
             ////car.IncreaseSpeed(1350);
             //car.IncreaseSpeed(50);
+            //car.Stop();
             //Console.WriteLine("\n" + car + "\n");
 
             //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -224,6 +226,32 @@ namespace PojazdyLab
 
             //motocykl.Start();
             //motocykl.Stop();
+
+
+            //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            // Kajak
+
+            //var kajak = new Kayak(120);
+
+            //kajak.Start();
+            //kajak.IncreaseSpeed(20);
+
+            //kajak.GoToWater();
+            //kajak.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + kajak + "\n");
+
+            //kajak.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + kajak + "\n");
+
+            //kajak.IncreaseSpeed(1);
+            //kajak.IncreaseSpeed(-10);
+            //kajak.ReduceSpeed(5);
+            //Console.WriteLine("\n" + kajak + "\n");
+
+            //kajak.Start();
+            //kajak.Stop();
+            //Console.WriteLine("\n" + kajak + "\n");
         }
     }
 }
