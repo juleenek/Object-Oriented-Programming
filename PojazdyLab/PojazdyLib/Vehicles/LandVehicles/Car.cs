@@ -20,8 +20,12 @@ namespace PojazdyLib.Ladowe
         public new int EnginePower { get => enginePower; }
         public Car(FuelType fuelType, int enginePower)
         {
+            if (enginePower > 100 && enginePower < 990) this.enginePower = enginePower;
+            else
+            {
+                throw new ArgumentOutOfRangeException("Engine power is too low or too high!");
+            }
             this.fuelType = fuelType;
-            this.enginePower = enginePower;
         }
         public override string ToString() => 
              $"Pojazd: Samochód \n" +
@@ -32,7 +36,8 @@ namespace PojazdyLib.Ladowe
              $"Maksymalna prędkość: {MaxSpeed} {TextSpeedUnit(Unit)} \n" +
              $"Aktualna prędkość: {CurrentSpeed} {TextSpeedUnit(Unit)} \n" +
              $"Czy posiada silnik: {HasAnEngine} \n" +
-             $"Liczba kół: {NumberOfWheels}";
+             $"Liczba kół: {NumberOfWheels} \n" +
+             $"Moc silnika: {EnginePower} KM";
 
     }
 }

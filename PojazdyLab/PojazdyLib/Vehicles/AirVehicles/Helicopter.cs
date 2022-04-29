@@ -25,7 +25,7 @@ namespace PojazdyLib.Powietrzne
                 throw new ArgumentOutOfRangeException("Engine power is too low or too high!");
             }
         }
-        public void StartRotors()
+        public void StartRotors() // Włącza wirniki w helikopterze 
         {
             if (isRotorsStarted)
             {
@@ -35,7 +35,7 @@ namespace PojazdyLib.Powietrzne
             isRotorsStarted = true;
             Console.WriteLine("Rotors are on...");
         }
-        public void StopRotors()
+        public void StopRotors() // Wyłącza wirniki w helikopterze 
         {
             if (!isRotorsStarted)
             {
@@ -138,6 +138,7 @@ namespace PojazdyLib.Powietrzne
            $"Minimalna prędkość: {MinSpeed} {TextSpeedUnit(Unit)} \n" +
            $"Maksymalna prędkość: {MaxSpeed} {TextSpeedUnit(Unit)} \n" +
            $"Aktualna prędkość: {CurrentSpeed} {TextSpeedUnit(Unit)} \n" +
-           $"Czy posiada silnik: {HasAnEngine} \n";
+           $"Czy posiada silnik: {HasAnEngine} \n" +
+           $"Moc silnika: {EnginePower} KM";
     }
 }
