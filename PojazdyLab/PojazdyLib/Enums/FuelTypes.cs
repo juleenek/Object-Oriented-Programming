@@ -8,9 +8,11 @@ namespace PojazdyLib.Enums
 {
    public enum FuelType
     {
+        none,
         gasoline, 
         oil,
         LPG,
-        electricity
+        electricity,
+        aviationKerosene // Paliwo lotnicze
     }
 }

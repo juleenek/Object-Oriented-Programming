@@ -9,10 +9,12 @@ namespace PojazdyLib.Interfaces
 {
     interface IBase
     {
-        int MinSpeed { get; }
-        int MaxSpeed { get; }
+        string VehicleType { get; }
+        double MinSpeed { get; }
+        double MaxSpeed { get; }
+        //string VehicleType { get; }
         SpeedUnit Unit { get; }
-       bool HasAnEngine { get; } // Czy pojazd ma silnik?
+        bool HasAnEngine { get; } // Czy pojazd ma silnik?
         FuelType FuelType { get; } // Typ paliwa
         int EnginePower { get; } // Moc silnika
         

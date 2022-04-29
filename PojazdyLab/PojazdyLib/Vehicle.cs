@@ -11,18 +11,18 @@ namespace PojazdyLib
     public abstract class Vehicle : IVehicle
     {
         public State state;
-        public int currentSpeed = 0;
+        public double currentSpeed = 0;
 
         public State State = State.off;
-        public int CurrentSpeed { get => currentSpeed; }
+        public double CurrentSpeed { get => currentSpeed; }
         public bool? CanVahicleBeStopped { get; private set; }
-        public void IncreaseSpeed(int speed)
+        public void IncreaseSpeed(double speed)
         {
             currentSpeed += speed;
             Console.WriteLine("Speed increased ...");
         }
 
-        public void ReduceSpeed(int speed)
+        public void ReduceSpeed(double speed)
         {
             currentSpeed -= speed;
             Console.WriteLine("Speed reduced ...");
@@ -30,14 +30,41 @@ namespace PojazdyLib
 
         public void Start()
         {
-            State = State.on;
-            Console.WriteLine("Vehicle is on ...");
+            if (State == State.off)
+            {
+                State = State.on;
+                Console.WriteLine("Vehicle is on ...");
+            } else
+            {
+                Console.WriteLine("Vehicle is already on.");
+            }
         }
 
         public void Stop()
         {
-            State = State.off;
-            Console.WriteLine("Vehicle is off ...");
+            if (State == State.on)
+            {
+                State = State.off;
+                Console.WriteLine("Vehicle is off ...");
+            }
+            else
+            {
+                Console.WriteLine("Vehicle is already off.");
+            }
+        }
+        static public string TextSpeedUnit(SpeedUnit speedUnit)
+        {
+            switch (speedUnit)
+            {
+                case SpeedUnit.kilometersPerHour:
+                    return "k/h";
+                case SpeedUnit.nauticalMilePerHour:
+                    return "knot";
+                case SpeedUnit.metersPerSecond:
+                    return "m/s";
+                default:
+                    return "";
+            }
         }
     }
 }

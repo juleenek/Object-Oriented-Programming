@@ -9,5 +9,9 @@ namespace PojazdyLib.Interfejsy
 {
     interface IAirVehicle : IBase
     {
+       double LandingRisingBoundary { get; }
+       bool IsInTheAir { get; }
+       void Land();
+       void RiseUp();
     }
 }
