@@ -70,6 +70,32 @@ namespace PojazdyLab
             //Console.WriteLine("\n" + lotnia);
             //lotnia.Stop();
 
+            // Helikopter
+
+            var helikopter = new Helicopter(6000);
+
+            helikopter.Start();
+
+            helikopter.IncreaseSpeed(10);
+            helikopter.RiseUp();
+
+
+            helikopter.IncreaseSpeed(15);
+            helikopter.RiseUp();
+
+            Console.WriteLine("\n" + helikopter + "\n");
+
+            helikopter.IncreaseSpeed(230);
+            helikopter.ReduceSpeed(30);
+            helikopter.ReduceSpeed(3);
+
+            Console.WriteLine("\n" + helikopter + "\n");
+
+            helikopter.Stop();
+            helikopter.Land();
+            helikopter.Stop();
+
+            Console.WriteLine("\n" + helikopter + "\n");
         }
     }
 }

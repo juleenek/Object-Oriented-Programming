@@ -11,12 +11,11 @@ namespace PojazdyLib.VehicleTypes
 {
     public class AirVehicle : Vehicle, IAirVehicle
     {
-        // Zależne od pojazdu
-        public double LandingRisingBoundary => 10.0; // Granica od której pojazd się wznosi
+        public double LandingRisingBoundary => 10.0; // Granica od której pojazd się wznosi i ląduje
         public bool HasAnEngine => false;
         public FuelType FuelType => FuelType.none;
         public int EnginePower => 0;
-        // --------------------------
+
         public bool isInTheAir = false;
         public string environment = "Lądowe";
         public string Environment => environment;
@@ -103,7 +102,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed += partialSpeed;
                     Console.WriteLine($"Speed increased by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
                 return;
             }
@@ -130,12 +129,12 @@ namespace PojazdyLib.VehicleTypes
                 for (int i = 0; i < partialNum; i++)
                 {
                     currentSpeed -= partialSpeed;
-                    Console.WriteLine($"Speed increased by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    Console.WriteLine($"Speed reduced by {partialSpeed} {TextSpeedUnit(Unit)} ...");
+                    //Thread.Sleep(2000);
                 }
                 return;
             }
-            Console.WriteLine("You can't increase speed.");
+            Console.WriteLine("You can't reduce speed.");
         }
 
         public new void Stop()

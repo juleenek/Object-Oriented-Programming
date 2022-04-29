@@ -21,13 +21,13 @@ namespace PojazdyLib.Powietrzne
         {
         }
         public override string ToString() =>
-        $"Pojazd: Lotnia \n" +
-        $"Typ pojazdu: {VehicleType} \n" +
-        $"Aktualne środowisko: {Environment} \n" +
-        $"Aktualny stan: {State} \n" +
-        $"Minimalna prędkość: {MinSpeed} {TextSpeedUnit(Unit)} \n" +
-        $"Maksymalna prędkość: {MaxSpeed} {TextSpeedUnit(Unit)} \n" +
-        $"Aktualna prędkość: {CurrentSpeed} {TextSpeedUnit(Unit)} \n" +
-        $"Czy posiada silnik: {HasAnEngine} \n";
+            $"Pojazd: Lotnia \n" +
+            $"Typ pojazdu: {VehicleType} \n" +
+            $"Aktualne środowisko: {Environment} \n" +
+            $"Aktualny stan: {State} \n" +
+            $"Minimalna prędkość: {MinSpeed} {TextSpeedUnit(Unit)} \n" +
+            $"Maksymalna prędkość: {MaxSpeed} {TextSpeedUnit(Unit)} \n" +
+            $"Aktualna prędkość: {CurrentSpeed} {TextSpeedUnit(Unit)} \n" +
+            $"Czy posiada silnik: {HasAnEngine} \n";
     }
 }
