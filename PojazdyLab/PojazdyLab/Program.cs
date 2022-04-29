@@ -252,6 +252,44 @@ namespace PojazdyLab
             //kajak.Start();
             //kajak.Stop();
             //Console.WriteLine("\n" + kajak + "\n");
+
+
+
+            //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            // Motorówka 
+
+            ////var motorowka = new Motorboat(10);
+            //var motorowka = new Motorboat(700);
+
+            //motorowka.Start();
+            //motorowka.IncreaseSpeed(20);
+
+            //motorowka.GoToWater();
+            //motorowka.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + motorowka + "\n");
+
+            //motorowka.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + motorowka + "\n");
+
+            //motorowka.IncreaseSpeed(1);
+            //motorowka.IncreaseSpeed(-10);
+            //motorowka.ReduceSpeed(5);
+            //Console.WriteLine("\n" + motorowka + "\n");
+
+            //motorowka.Start();
+            //motorowka.Stop();
+            //Console.WriteLine("\n" + motorowka + "\n");
+
+            //motorowka.GoAshore();
+            //motorowka.Start();
+            //Console.WriteLine("\n" + motorowka + "\n");
+
+            //motorowka.GoToWater();
+            //motorowka.GoAshore();
+
+            //Console.WriteLine("\n" + motorowka + "\n");
+
         }
     }
 }

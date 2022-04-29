@@ -15,8 +15,8 @@ namespace PojazdyLib.VehicleTypes
         public bool HasAnEngine => false;
         public FuelType FuelType => FuelType.none;
         public int EnginePower => 0;
-        public string environment = "Lądowe";
-        public string Environment => environment;
+        private string environment;
+        public string Environment { get => environment; }
         public string VehicleType => "Wodny";
         public double MinSpeed => 1;
         public double MaxSpeed => 40;
@@ -37,7 +37,7 @@ namespace PojazdyLib.VehicleTypes
                 Console.WriteLine("Vehicle is in the water ...");
                 return;
             }
-            Console.WriteLine("Vehicle is off.");
+            Console.WriteLine("Vehicle is off or too low speed.");
         }
         public void GoAshore()
         {
@@ -53,7 +53,7 @@ namespace PojazdyLib.VehicleTypes
                 Console.WriteLine("Vehicle is on land ...");
                 return;
             }
-            Console.WriteLine("Vehicle is off.");
+            Console.WriteLine("Vehicle is off or too low speed.");
         }
         public new void IncreaseSpeed(double speed)
         {
@@ -76,7 +76,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed += partialSpeed;
                     Console.WriteLine($"Speed increased by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
                 return;
             }
@@ -103,7 +103,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed -= partialSpeed;
                     Console.WriteLine($"Speed reduced by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
                 return;
             }
