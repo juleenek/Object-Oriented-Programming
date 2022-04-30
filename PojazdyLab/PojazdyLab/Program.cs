@@ -260,7 +260,7 @@ namespace PojazdyLab
             // Motorówka 
 
             ////var motorowka = new Motorboat(10);
-            //var motorowka = new Motorboat(700);
+            //var motorowka = new Motorboat(700, 250);
 
             //motorowka.Start();
             //motorowka.IncreaseSpeed(20);
@@ -290,6 +290,40 @@ namespace PojazdyLab
 
             //Console.WriteLine("\n" + motorowka + "\n");
 
+
+            //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            // Łódź podwodna
+
+            //var podwodna = new Submarine(1500000, 50000);
+
+            //podwodna.Start();
+            //podwodna.IncreaseSpeed(20);
+
+            //podwodna.GoToWater();
+            //podwodna.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + podwodna + "\n");
+
+            //podwodna.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + podwodna + "\n");
+
+            //podwodna.IncreaseSpeed(1);
+            //podwodna.IncreaseSpeed(-10);
+            //podwodna.ReduceSpeed(5);
+            //Console.WriteLine("\n" + podwodna + "\n");
+
+            //podwodna.Start();
+            //podwodna.Stop();
+            //Console.WriteLine("\n" + podwodna + "\n");
+
+            //podwodna.GoAshore();
+            //podwodna.Start();
+            //Console.WriteLine("\n" + podwodna + "\n");
+
+            //podwodna.GoToWater();
+            //podwodna.GoAshore();
+
+            //Console.WriteLine("\n" + podwodna + "\n");
         }
     }
 }

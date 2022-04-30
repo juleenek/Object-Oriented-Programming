@@ -10,9 +10,9 @@ namespace PojazdyLib.Enums
     {
         none,
         gasoline, 
-        oil,
         LPG,
         electricity,
-        aviationKerosene // Paliwo lotnicze
+        aviationKerosene, // Paliwo lotnicze
+        fuelCells // Ogniwa paliwowe
     }
 }

@@ -20,6 +20,10 @@ namespace PojazdyLib.Ladowe
         public new int EnginePower { get => enginePower; }
         public Car(FuelType fuelType, int enginePower)
         {
+            if (fuelType != FuelType.electricity || fuelType != FuelType.gasoline || fuelType != FuelType.LPG)
+            {
+                throw new ArgumentOutOfRangeException("Change the fuel type!");
+            }
             if (enginePower > 100 && enginePower < 990) this.enginePower = enginePower;
             else
             {
