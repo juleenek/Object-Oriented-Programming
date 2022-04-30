@@ -3,6 +3,7 @@ using PojazdyLib.Powietrzne;
 using System;
 using PojazdyLib.PowietrzneLadowe;
 using PojazdyLib.Wodne;
+using PojazdyLib.WodneLadowe;
 
 namespace PojazdyLab
 {
@@ -114,38 +115,38 @@ namespace PojazdyLab
 
             //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-            // Samolot
+            //Samolot
 
             //var samolot = new Plane(10000, 12);
-            //samolot.Start();
-            //samolot.IncreaseSpeed(18);
+            // samolot.Start();
+            // samolot.IncreaseSpeed(18);
 
-            //Console.WriteLine("\n" + samolot + "\n");
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.IncreaseSpeed(20);
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.IncreaseSpeed(20);
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.IncreaseSpeed(5);
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.IncreaseSpeed(5);
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.RiseUp();
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.RiseUp();
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.IncreaseSpeed(100);
-            //samolot.ReduceSpeed(10);
-            //samolot.Land();
-            //samolot.Stop();
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.IncreaseSpeed(100);
+            // samolot.ReduceSpeed(10);
+            // samolot.Land();
+            // samolot.Stop();
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.ReduceSpeed(110);
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.ReduceSpeed(90);
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.Land();
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.Land();
+            // Console.WriteLine("\n" + samolot + "\n");
 
-            //samolot.Start();
-            //samolot.Stop();
-            //Console.WriteLine("\n" + samolot + "\n");
+            // samolot.Start();
+            // samolot.Stop();
+            // Console.WriteLine("\n" + samolot + "\n");
 
 
 
@@ -324,6 +325,44 @@ namespace PojazdyLab
             //podwodna.GoAshore();
 
             //Console.WriteLine("\n" + podwodna + "\n");
+
+
+
+            //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            // Amfibia 
+
+            //var amfibia = new Amphibious(2000, 700);
+
+            //amfibia.Start();
+            //amfibia.IncreaseSpeed(30);
+
+            //amfibia.GoToWater();
+            //amfibia.IncreaseSpeed(5);
+            //Console.WriteLine("\n" + amfibia + "\n");
+
+            //amfibia.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + amfibia + "\n");
+
+            //amfibia.IncreaseSpeed(1);
+            //amfibia.IncreaseSpeed(-10);
+            //amfibia.ReduceSpeed(5);
+            //Console.WriteLine("\n" + amfibia + "\n");
+
+            //amfibia.Start();
+            //amfibia.Stop();
+            //Console.WriteLine("\n" + amfibia + "\n");
+
+            //amfibia.GoAshore();
+            //amfibia.Start();
+            //Console.WriteLine("\n" + amfibia + "\n");
+
+            //amfibia.GoToWater();
+            //amfibia.GoAshore();
+
+            //amfibia.IncreaseSpeed(40);
+
+            //Console.WriteLine("\n" + amfibia + "\n");
         }
     }
 }

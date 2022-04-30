@@ -12,7 +12,6 @@ namespace PojazdyLib
     {
         public State state;
         public double currentSpeed = 0;
-
         public State State = State.off;
         public double CurrentSpeed { get => currentSpeed; }
         public bool? CanVahicleBeStopped { get; private set; }
@@ -66,6 +65,31 @@ namespace PojazdyLib
                     return "m/s";
                 default:
                     return "";
+            }
+        }
+        static public double Convert(SpeedUnit currentUnit, SpeedUnit toUnit, double value)
+        {
+            double result = 0.0;
+
+            switch (toUnit)
+            {
+                case SpeedUnit.kilometersPerHour:
+                    if (currentUnit == SpeedUnit.metersPerSecond) result = value / 3.6;
+                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value / 1.85;
+                    if (currentUnit == SpeedUnit.kilometersPerHour) result = value;
+                    return result;
+                case SpeedUnit.nauticalMilePerHour:
+                    if (currentUnit == SpeedUnit.kilometersPerHour) result = value * 1.85;
+                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value;
+                    if (currentUnit == SpeedUnit.metersPerSecond) result = value * 0.51;
+                    return result;
+                case SpeedUnit.metersPerSecond:
+                    if (currentUnit == SpeedUnit.kilometersPerHour) result = value * 3.6;
+                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value / 0.51;
+                    if (currentUnit == SpeedUnit.metersPerSecond) result = value;
+                    return result;
+                default:
+                    return result;
             }
         }
     }

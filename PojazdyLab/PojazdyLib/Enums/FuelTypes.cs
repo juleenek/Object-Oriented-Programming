@@ -13,6 +13,6 @@ namespace PojazdyLib.Enums
         LPG,
         electricity,
         aviationKerosene, // Paliwo lotnicze
-        fuelCells // Ogniwa paliwowe
+        oil 
     }
 }

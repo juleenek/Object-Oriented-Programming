@@ -13,7 +13,6 @@ namespace PojazdyLib.Wodne
         private int displacement;
         private int enginePower;
         public new bool HasAnEngine => true;
-        public new FuelType FuelType { get => FuelType.gasoline; }
         public new int Displacement { get => displacement; }
         public new int EnginePower { get => enginePower; }
         public Motorboat(int displacement, int enginePower)

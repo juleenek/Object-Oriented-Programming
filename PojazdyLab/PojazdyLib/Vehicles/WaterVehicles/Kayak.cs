@@ -1,4 +1,5 @@
-﻿using PojazdyLib.VehicleTypes;
+﻿using PojazdyLib.Enums;
+using PojazdyLib.VehicleTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace PojazdyLib.Wodne
     {
         private int displacement;
         public new bool HasAnEngine => false;
+        public new FuelType FuelType { get => FuelType.none; }
         public new int Displacement { get => displacement; }
         public Kayak(int displacement)
         {

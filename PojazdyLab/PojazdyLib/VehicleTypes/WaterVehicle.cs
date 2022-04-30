@@ -13,7 +13,7 @@ namespace PojazdyLib.VehicleTypes
     {
         private bool isOnWater = false;
         public bool HasAnEngine => false;
-        public FuelType FuelType => FuelType.none;
+        public FuelType FuelType => FuelType.oil;
         public int EnginePower => 0;
         private string environment;
         public string Environment { get => environment; }

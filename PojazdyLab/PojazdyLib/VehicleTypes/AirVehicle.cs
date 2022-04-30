@@ -11,20 +11,18 @@ namespace PojazdyLib.VehicleTypes
 {
     public class AirVehicle : Vehicle, IAirVehicle
     {
+        private SpeedUnit unit = SpeedUnit.metersPerSecond;
         public double LandingRisingBoundary => 10.0; // Granica od której pojazd się wznosi i ląduje
         public bool HasAnEngine => false;
         public FuelType FuelType => FuelType.none;
         public int EnginePower => 0;
-
         public bool isInTheAir = false;
         public string environment = "Lądowe";
         public string Environment => environment;
         public string VehicleType => "Powietrzny";
         public double MinSpeed => 20;
-
         public double MaxSpeed => 200;
-
-        public SpeedUnit Unit => SpeedUnit.metersPerSecond;
+        public SpeedUnit Unit => unit;
         public bool IsInTheAir => isInTheAir;
 
         public void RiseUp()
@@ -48,6 +46,7 @@ namespace PojazdyLib.VehicleTypes
                 }
                 isInTheAir = true;
                 environment = "Powietrzne";
+                unit = SpeedUnit.metersPerSecond;
                 Console.WriteLine("Vehicle rises ...");
                 return;
             }
@@ -75,6 +74,7 @@ namespace PojazdyLib.VehicleTypes
 
                 isInTheAir = false;
                 environment = "Lądowe";
+                unit = SpeedUnit.kilometersPerHour;
                 Console.WriteLine("Vehicle landing ...");
                 return;
             }
@@ -95,14 +95,14 @@ namespace PojazdyLib.VehicleTypes
             if ((IsInTheAir && currentSpeed + speed <= MaxSpeed && currentSpeed + speed > MinSpeed) ||
                 (!IsInTheAir && currentSpeed + speed < MinSpeed + LandingRisingBoundary && currentSpeed + speed > 0) && speed > 0)
             {
-                int partialNum = 4;
+                int partialNum = 4;     
                 double partialSpeed = (speed / (double)partialNum);
 
                 for (int i = 0; i < partialNum; i++)
                 {
                     currentSpeed += partialSpeed;
                     Console.WriteLine($"Speed increased by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
                 return;
             }
@@ -130,7 +130,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed -= partialSpeed;
                     Console.WriteLine($"Speed reduced by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
                 return;
             }

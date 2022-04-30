@@ -44,8 +44,15 @@ namespace PojazdyLib.VehicleTypes
         {
             if (State == State.on && speed >= MinSpeed && speed < MaxSpeed && currentSpeed - speed >= MinSpeed && speed > 0)
             {
-                currentSpeed -= speed;
-                Console.WriteLine("Speed reduced ...");
+                int partialNum = 4;
+                double partialSpeed = (speed / (double)partialNum);
+
+                for (int i = 0; i < partialNum; i++)
+                {
+                    currentSpeed -= partialSpeed;
+                    Console.WriteLine($"Speed reduced by {partialSpeed} {TextSpeedUnit(Unit)} ...");
+                    Thread.Sleep(2000);
+                }
             }
             else
             {
