@@ -25,7 +25,7 @@ namespace PojazdyLib.Ladowe
             }
         }
         public override string ToString() =>
-             $"Pojazd: Rower \n" +
+             $"Pojazd: Motocykl \n" +
              $"Typ pojazdu: {VehicleType} \n" +
              $"Aktualne środowisko: {Environment} \n" +
              $"Aktualny stan: {State} \n" +

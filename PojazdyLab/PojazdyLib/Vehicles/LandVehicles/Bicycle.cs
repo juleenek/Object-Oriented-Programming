@@ -16,9 +16,6 @@ namespace PojazdyLib.Ladowe
         public new bool HasAnEngine => false;
         public new FuelType FuelType { get => fuelType; }
         public new int EnginePower { get => enginePower; }
-        public Bicycle()
-        {
-        }
         public override string ToString() =>
              $"Pojazd: Rower \n" +
              $"Typ pojazdu: {VehicleType} \n" +

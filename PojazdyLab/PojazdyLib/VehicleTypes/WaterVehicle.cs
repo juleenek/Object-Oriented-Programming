@@ -16,11 +16,11 @@ namespace PojazdyLib.VehicleTypes
         public FuelType FuelType => FuelType.oil;
         public int EnginePower => 0;
         private string environment;
-        public string Environment { get => environment; }
+        public new string Environment { get => environment; }
         public string VehicleType => "Wodny";
         public double MinSpeed => 1;
         public double MaxSpeed => 40;
-        public SpeedUnit Unit => SpeedUnit.nauticalMilePerHour;
+        public new SpeedUnit Unit => SpeedUnit.nauticalMilePerHour;
         public int Displacement => 0;
         public bool IsOnWater { get => isOnWater; }
         public void GoToWater()

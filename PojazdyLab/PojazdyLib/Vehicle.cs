@@ -13,7 +13,9 @@ namespace PojazdyLib
         public State state;
         public double currentSpeed = 0;
         public State State = State.off;
+        public string Environment;
         public double CurrentSpeed { get => currentSpeed; }
+        public SpeedUnit Unit;
         public bool? CanVahicleBeStopped { get; private set; }
         public void IncreaseSpeed(double speed)
         {
@@ -53,7 +55,7 @@ namespace PojazdyLib
                 Console.WriteLine("Vehicle is already off.");
             }
         }
-        static public string TextSpeedUnit(SpeedUnit speedUnit)
+        public static string TextSpeedUnit(SpeedUnit speedUnit)
         {
             switch (speedUnit)
             {
@@ -67,15 +69,15 @@ namespace PojazdyLib
                     return "";
             }
         }
-        static public double Convert(SpeedUnit currentUnit, SpeedUnit toUnit, double value)
+        public static double ConvertUnits(SpeedUnit currentUnit, SpeedUnit toUnit, double value)
         {
             double result = 0.0;
 
             switch (toUnit)
             {
                 case SpeedUnit.kilometersPerHour:
-                    if (currentUnit == SpeedUnit.metersPerSecond) result = value / 3.6;
-                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value / 1.85;
+                    if (currentUnit == SpeedUnit.metersPerSecond) result = value * 0.28;
+                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value * 0.54;
                     if (currentUnit == SpeedUnit.kilometersPerHour) result = value;
                     return result;
                 case SpeedUnit.nauticalMilePerHour:
@@ -85,7 +87,7 @@ namespace PojazdyLib
                     return result;
                 case SpeedUnit.metersPerSecond:
                     if (currentUnit == SpeedUnit.kilometersPerHour) result = value * 3.6;
-                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value / 0.51;
+                    if (currentUnit == SpeedUnit.nauticalMilePerHour) result = value * 1.94;
                     if (currentUnit == SpeedUnit.metersPerSecond) result = value;
                     return result;
                 default:

@@ -12,14 +12,14 @@ namespace PojazdyLib.VehicleTypes
     public class LandVehicle : Vehicle, ILandVehicle
     {
         public string VehicleType => "Pojazd lądowy";
-        public string Environment => "Lądowe";
+        public new string Environment => "Lądowe";
         public double MinSpeed => 1.0;
         public double MaxSpeed => 350.0;
         public byte NumberOfWheels => 0;
         public bool HasAnEngine => false;
         public FuelType FuelType => FuelType.none;
         public int EnginePower => 0;
-        public SpeedUnit Unit => SpeedUnit.kilometersPerHour;
+        public new SpeedUnit Unit => SpeedUnit.kilometersPerHour;
 
         public new void IncreaseSpeed(double speed)
         {
@@ -32,7 +32,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed += partialSpeed;
                     Console.WriteLine($"Speed increased by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
             }
             else
@@ -51,7 +51,7 @@ namespace PojazdyLib.VehicleTypes
                 {
                     currentSpeed -= partialSpeed;
                     Console.WriteLine($"Speed reduced by {partialSpeed} {TextSpeedUnit(Unit)} ...");
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
                 }
             }
             else

@@ -18,11 +18,11 @@ namespace PojazdyLib.VehicleTypes
         public int EnginePower => 0;
         public bool isInTheAir = false;
         public string environment = "Lądowe";
-        public string Environment => environment;
+        public new string Environment => environment;
         public string VehicleType => "Powietrzny";
         public double MinSpeed => 20;
         public double MaxSpeed => 200;
-        public SpeedUnit Unit => unit;
+        public new SpeedUnit Unit => unit;
         public bool IsInTheAir => isInTheAir;
 
         public void RiseUp()

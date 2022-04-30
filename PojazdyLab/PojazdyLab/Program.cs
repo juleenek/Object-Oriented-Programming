@@ -4,6 +4,10 @@ using System;
 using PojazdyLib.PowietrzneLadowe;
 using PojazdyLib.Wodne;
 using PojazdyLib.WodneLadowe;
+using System.Collections.Generic;
+using PojazdyLib;
+using PojazdyLib.VehicleTypes;
+using System.Linq;
 
 namespace PojazdyLab
 {
@@ -13,64 +17,66 @@ namespace PojazdyLab
         {
             // Samochód
 
-            //var car = new Car(PojazdyLib.Enums.FuelType.gasoline, 170);
-            //car.Start();
-            ////car.Stop();
-            ////car.IncreaseSpeed(350);
-            ////car.IncreaseSpeed(-350);
-            ////car.IncreaseSpeed(1350);
-            //car.IncreaseSpeed(50);
-            //car.Stop();
-            //Console.WriteLine("\n" + car + "\n");
+            var samochod = new Car(PojazdyLib.Enums.FuelType.gasoline, 170);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            samochod.Start();
+            samochod.IncreaseSpeed(50);
+
+            // --------------- TEST ----------------
+
+            //samochod.Start();
+            //samochod.Stop();
+            //samochod.IncreaseSpeed(350);
+            //samochod.IncreaseSpeed(-350);
+            //samochod.IncreaseSpeed(1350);
+            //samochod.IncreaseSpeed(50);
+            //samochod.Stop();
+            //Console.WriteLine("\n" + samochod + "\n");
 
             //////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
             // Lotnia
 
-            //var lotnia = new HangGlider();
+            var lotnia = new HangGlider();
 
-            //Console.WriteLine("1\n");
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            lotnia.Start();
+            lotnia.IncreaseSpeed(26);
+            lotnia.RiseUp();
+            lotnia.IncreaseSpeed(10);
+
+            // --------------- TEST ----------------
 
             //lotnia.Start();
             //lotnia.Stop();
 
-            // Console.WriteLine("\n2\n");
+            //lotnia.Land();
+            //lotnia.RiseUp();
 
-            // lotnia.Land();
-            // lotnia.RiseUp();
+            //lotnia.Start();
+            //lotnia.IncreaseSpeed(26);
+            //lotnia.RiseUp();
 
-            // Console.WriteLine("\n3\n");
+            //lotnia.IncreaseSpeed(19);
+            //lotnia.Stop();
+            //Console.WriteLine("\n" + lotnia);
 
-            // lotnia.Start();
-            // lotnia.IncreaseSpeed(26);
-            // lotnia.RiseUp();
+            //lotnia.Start();
+            //lotnia.IncreaseSpeed(10);
+            //Console.WriteLine("\n" + lotnia);
+            //lotnia.RiseUp();
 
-            // Console.WriteLine("\n4\n");
+            //lotnia.Stop();
+            //lotnia.IncreaseSpeed(200);
 
-            // lotnia.IncreaseSpeed(19);
+            //lotnia.ReduceSpeed(5);
+            //lotnia.ReduceSpeed(21);
+            //Console.WriteLine("\n" + lotnia);
             // lotnia.Stop();
-            // Console.WriteLine("\n" + lotnia);
 
-            // Console.WriteLine("\n5\n");
-
-            // lotnia.Start();
-            // lotnia.IncreaseSpeed(10);
-            // Console.WriteLine("\n" + lotnia);
-            // lotnia.RiseUp();
-
-            // Console.WriteLine("\n6\n");
-
-            // lotnia.Stop();
-            // lotnia.IncreaseSpeed(200);
-            // Console.WriteLine("\n" + lotnia);
-
-            // Console.WriteLine("\n7\n");
-
-            // lotnia.ReduceSpeed(5);
-            // Console.WriteLine("\n" + lotnia);
-            // lotnia.ReduceSpeed(21);
-            // lotnia.Stop();
-            // Console.WriteLine("\n" + lotnia);
             // lotnia.Land();
             // lotnia.ReduceSpeed(5);
             // Console.WriteLine("\n" + lotnia);
@@ -81,7 +87,16 @@ namespace PojazdyLab
 
             // Helikopter
 
-            //var helikopter = new Helicopter(6000);
+            var helikopter = new Helicopter(6000);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            helikopter.Start();
+            helikopter.StartRotors();
+            helikopter.IncreaseSpeed(25);
+            helikopter.RiseUp();
+
+            // --------------- TEST ----------------
 
             //helikopter.Start();
 
@@ -117,29 +132,37 @@ namespace PojazdyLab
 
             //Samolot
 
-            //var samolot = new Plane(10000, 12);
-            // samolot.Start();
-            // samolot.IncreaseSpeed(18);
+            var samolot = new Plane(10000, 12);
 
-            // Console.WriteLine("\n" + samolot + "\n");
+            // --------- NA POTRZEBĘ LISTY ---------
 
-            // samolot.IncreaseSpeed(20);
-            // Console.WriteLine("\n" + samolot + "\n");
+            samolot.Start();
+            samolot.IncreaseSpeed(10);
 
-            // samolot.IncreaseSpeed(5);
-            // Console.WriteLine("\n" + samolot + "\n");
+            // --------------- TEST ----------------
 
-            // samolot.RiseUp();
-            // Console.WriteLine("\n" + samolot + "\n");
+            //samolot.Start();
+            //samolot.IncreaseSpeed(18);
 
-            // samolot.IncreaseSpeed(100);
-            // samolot.ReduceSpeed(10);
-            // samolot.Land();
-            // samolot.Stop();
-            // Console.WriteLine("\n" + samolot + "\n");
+            //Console.WriteLine("\n" + samolot + "\n");
 
-            // samolot.ReduceSpeed(90);
-            // Console.WriteLine("\n" + samolot + "\n");
+            //samolot.IncreaseSpeed(20);
+            //Console.WriteLine("\n" + samolot + "\n");
+
+            //samolot.IncreaseSpeed(5);
+            //Console.WriteLine("\n" + samolot + "\n");
+
+            //samolot.RiseUp();
+            //Console.WriteLine("\n" + samolot + "\n");
+
+            //samolot.IncreaseSpeed(100);
+            //samolot.ReduceSpeed(10);
+            //samolot.Land();
+            //samolot.Stop();
+            //Console.WriteLine("\n" + samolot + "\n");
+
+            //samolot.ReduceSpeed(90);
+            //Console.WriteLine("\n" + samolot + "\n");
 
             // samolot.Land();
             // Console.WriteLine("\n" + samolot + "\n");
@@ -154,7 +177,16 @@ namespace PojazdyLab
 
             // Szybowiec
 
-            //var szybowiec = new Glider();
+            var szybowiec = new Glider();
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            szybowiec.Start();
+            szybowiec.IncreaseSpeed(23);
+            szybowiec.RiseUp();
+            szybowiec.IncreaseSpeed(5);
+
+            // --------------- TEST ----------------
 
             //szybowiec.Stop();
             //szybowiec.Start();
@@ -186,7 +218,14 @@ namespace PojazdyLab
 
             // Rower 
 
-            //var rower = new Bicycle();
+            var rower = new Bicycle();
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            rower.Start();
+            rower.IncreaseSpeed(2);
+
+            // --------------- TEST ----------------
 
             //rower.Start();
             //rower.Stop();
@@ -209,8 +248,13 @@ namespace PojazdyLab
 
             // Motocykl
 
-            ////var motocykl = new Motorcycle(50);
-            //var motocykl = new Motorcycle(160);
+            var motocykl = new Motorcycle(160);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            motocykl.Start();
+
+            // --------------- TEST ----------------
 
             //motocykl.Start();
             //motocykl.Stop();
@@ -233,7 +277,15 @@ namespace PojazdyLab
 
             // Kajak
 
-            //var kajak = new Kayak(120);
+            var kajak = new Kayak(120);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            kajak.Start();
+            kajak.GoToWater();
+            kajak.IncreaseSpeed(20);
+
+            // --------------- TEST ----------------
 
             //kajak.Start();
             //kajak.IncreaseSpeed(20);
@@ -260,8 +312,15 @@ namespace PojazdyLab
 
             // Motorówka 
 
-            ////var motorowka = new Motorboat(10);
-            //var motorowka = new Motorboat(700, 250);
+            var motorowka = new Motorboat(700, 250);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            motorowka.Start();
+            motorowka.GoToWater();
+            motorowka.IncreaseSpeed(40);
+
+            // --------------- TEST ----------------
 
             //motorowka.Start();
             //motorowka.IncreaseSpeed(20);
@@ -296,7 +355,13 @@ namespace PojazdyLab
 
             // Łódź podwodna
 
-            //var podwodna = new Submarine(1500000, 50000);
+            var podwodna = new Submarine(1500000, 50000);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            podwodna.Start();
+
+            // --------------- TEST ----------------
 
             //podwodna.Start();
             //podwodna.IncreaseSpeed(20);
@@ -332,7 +397,14 @@ namespace PojazdyLab
 
             // Amfibia 
 
-            //var amfibia = new Amphibious(2000, 700);
+            var amfibia = new Amphibious(2000, 700);
+
+            // --------- NA POTRZEBĘ LISTY ---------
+
+            amfibia.Start();
+            amfibia.IncreaseSpeed(30);
+
+            // --------------- TEST ----------------
 
             //amfibia.Start();
             //amfibia.IncreaseSpeed(30);
@@ -363,6 +435,46 @@ namespace PojazdyLab
             //amfibia.IncreaseSpeed(40);
 
             //Console.WriteLine("\n" + amfibia + "\n");
+
+            /////////////////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            List<Vehicle> pojazdy = new List<Vehicle>() { samochod, rower, motocykl, lotnia, helikopter, szybowiec, kajak, motorowka, podwodna, amfibia };
+
+            Console.WriteLine($"\nWszystkie pojazdy:");
+
+            foreach (var pojazd in pojazdy)
+            {
+                Console.WriteLine("\n" + pojazd);
+            }
+
+            Console.WriteLine($"\nPojazdy lądowe:");
+
+            foreach (var pojazd in pojazdy)
+            {
+                if (pojazd is LandVehicle && pojazd is not WaterVehicle && pojazd is not AirVehicle) Console.WriteLine("\n" + pojazd);
+            }
+
+            Console.WriteLine($"\nPojazdy rosnąco:");
+
+            List<Vehicle> posortowanePojazdy = pojazdy.OrderBy(o =>
+            {
+                if (o.Unit == PojazdyLib.Enums.SpeedUnit.metersPerSecond)
+                {
+                    o.currentSpeed = Vehicle.ConvertUnits(PojazdyLib.Enums.SpeedUnit.metersPerSecond, PojazdyLib.Enums.SpeedUnit.kilometersPerHour, o.CurrentSpeed);
+                    o.Unit = PojazdyLib.Enums.SpeedUnit.kilometersPerHour;
+                } else if (o.Unit == PojazdyLib.Enums.SpeedUnit.nauticalMilePerHour)
+                {
+                    o.currentSpeed = Vehicle.ConvertUnits(PojazdyLib.Enums.SpeedUnit.nauticalMilePerHour, PojazdyLib.Enums.SpeedUnit.kilometersPerHour, o.CurrentSpeed);
+                    o.Unit = PojazdyLib.Enums.SpeedUnit.kilometersPerHour;
+                }
+                return o.CurrentSpeed;
+             
+            }).ToList();
+
+            foreach (var pojazd in posortowanePojazdy)
+            {
+                Console.WriteLine("\n" + pojazd);
+            }
         }
     }
 }
