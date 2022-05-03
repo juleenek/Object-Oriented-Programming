@@ -87,7 +87,7 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// Overloaded ToString method
+        /// Overriding ToString method
         /// </summary>
         /// <returns> Returns the standard text representation of time in the format hh:mm:ss </returns>
         public override string ToString() => $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
@@ -112,6 +112,7 @@ namespace TimeTimePeriod_Lib
         /// <param name="other"> Comparison object of Time type </param>
         /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
         public bool Equals(Time other) => (Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds);
+
         /// <summary>
         /// Overloaded Equals method
         /// </summary>
@@ -122,6 +123,7 @@ namespace TimeTimePeriod_Lib
             if(obj is Time) return base.Equals(obj);
             return false;
         }
+
         /// <summary>
         /// Implemented IComparable<Time> interface
         /// </summary>
@@ -149,40 +151,35 @@ namespace TimeTimePeriod_Lib
             return -1;
         }
 
-        public override int GetHashCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool operator ==(Time left, Time right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(Time left, Time right)
-        {
-            return !(left == right);
-        }
-
-        public static bool operator <(Time left, Time right)
-        {
-            return left.CompareTo(right) < 0;
-        }
-
-        public static bool operator <=(Time left, Time right)
-        {
-            return left.CompareTo(right) <= 0;
-        }
-
-        public static bool operator >(Time left, Time right)
-        {
-            return left.CompareTo(right) > 0;
-        }
-
-        public static bool operator >=(Time left, Time right)
-        {
-            return left.CompareTo(right) >= 0;
-        }
+        /// <summary>
+        /// Overriding GetHashCode method
+        /// </summary>
+        /// <returns> A hash code for the current object. </returns>
+        public override int GetHashCode() => (Hours, Minutes, Seconds).GetHashCode();
+        /// <summary>
+        /// Overloaded relational operator ==
+        /// </summary>
+        public static bool operator ==(Time left, Time right) => left.Equals(right);
+        /// <summary>
+        /// Overloaded relational operator !=
+        /// </summary>
+        public static bool operator !=(Time left, Time right) => !(left == right);
+        /// <summary>
+        /// Overloaded relational operator <
+        /// </summary>
+        public static bool operator <(Time left, Time right) => left.CompareTo(right) < 0;
+        /// <summary>
+        /// Overloaded relational operator <=
+        /// </summary>
+        public static bool operator <=(Time left, Time right) => left.CompareTo(right) <= 0;
+        /// <summary>
+        /// Overloaded relational operator >
+        /// </summary>
+        public static bool operator >(Time left, Time right) => left.CompareTo(right) > 0;
+        /// <summary>
+        /// Overloaded relational operator >=
+        /// </summary>
+        public static bool operator >=(Time left, Time right) => left.CompareTo(right) >= 0;
     }
 }
 

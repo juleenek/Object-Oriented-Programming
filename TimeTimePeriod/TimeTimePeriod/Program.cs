@@ -40,6 +40,20 @@ namespace TimeTimePeriod
 
             //Console.WriteLine(time1.CompareTo(time2));
 
+            // Operators
+
+            //var time1 = new Time("19:1:");
+            //var time2 = new Time(19, 1);
+            //var time1 = new Time("19:1:");
+            //var time2 = new Time(19, 0, 59);
+
+            //Console.WriteLine(time1 == time2);
+            //Console.WriteLine(time1 != time2);
+            //Console.WriteLine(time1 > time2);
+            //Console.WriteLine(time1 >= time2);
+            //Console.WriteLine(time1 < time2);
+            //Console.WriteLine(time1 <= time2);
+
         }
     }
 }
