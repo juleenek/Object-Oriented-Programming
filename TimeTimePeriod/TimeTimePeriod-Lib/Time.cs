@@ -107,15 +107,81 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// Implemented interfaces IEquatable<Time>
+        /// Implemented IEquatable<Time> interface
         /// </summary>
         /// <param name="other"> Comparison object of Time type </param>
         /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
         public bool Equals(Time other) => (Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds);
-
+        /// <summary>
+        /// Overloaded Equals method
+        /// </summary>
+        /// <param name="obj"> Comparison object </param>
+        /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
+        public override bool Equals(object obj)
+        {
+            if(obj is Time) return base.Equals(obj);
+            return false;
+        }
+        /// <summary>
+        /// Implemented IComparable<Time> interface
+        /// </summary>
+        /// <param name="other"> Comparison object of Time type </param>
+        /// <returns> 
+        /// Return the integer:
+        /// -1 if the object on which the method is used is an earlier point in time than the object (param "other") on which the comparison is being used
+        /// 0 if the object on which the method is used is the same point in time as the object (param "other") on which the comparison is used
+        /// 1 if the object on which the method is used is a later point in time than the object (param "other") on which the comparison is used
+        /// </returns>
         public int CompareTo(Time other)
         {
+            if(Equals(other)) return 0;
+
+            if (Hours > other.Hours)
+                return 1;
+
+            if (Minutes > other.Minutes)
+                return 1;
+
+            if (Minutes == other.Minutes)
+                if (Seconds > other.Seconds)
+                    return 1;
+
+            return -1;
+        }
+
+        public override int GetHashCode()
+        {
             throw new NotImplementedException();
+        }
+
+        public static bool operator ==(Time left, Time right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Time left, Time right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator <(Time left, Time right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        public static bool operator <=(Time left, Time right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        public static bool operator >(Time left, Time right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        public static bool operator >=(Time left, Time right)
+        {
+            return left.CompareTo(right) >= 0;
         }
     }
 }
