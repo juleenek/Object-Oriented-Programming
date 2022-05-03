@@ -16,3 +16,6 @@
 
 [Lab. Pojazdy - złożona hierarchia klas i interfejsów](https://github.com/wsei-csharp201/cs-lab-Pojazdy)
 
+## Zadanie: Time and TimePeriod
+
+[C#-Lab: Implementacja Time, TimePeriod](https://github.com/wsei-csharp201/cs-lab-Time-and-TimePeriod)
