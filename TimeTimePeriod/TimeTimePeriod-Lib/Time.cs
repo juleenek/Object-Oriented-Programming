@@ -60,7 +60,10 @@ namespace TimeTimePeriod_Lib
 
             string[] splittedTime = time.Split(":");
 
-            if (splittedTime.Length != 2) throw new FormatException("Invalid format.");
+            if (splittedTime.Length != 3) throw new FormatException("Invalid format.");
+            if (splittedTime[0] == "") splittedTime[0] = "0";
+            if (splittedTime[1] == "") splittedTime[1] = "0";
+            if (splittedTime[2] == "") splittedTime[2] = "0";
 
             byte hours, minutes, seconds;
 
@@ -69,6 +72,7 @@ namespace TimeTimePeriod_Lib
                 hours = byte.Parse(splittedTime[0]);
                 minutes = byte.Parse(splittedTime[1]);
                 seconds = byte.Parse(splittedTime[2]);
+  
             }
             catch (Exception)
             {
@@ -81,6 +85,13 @@ namespace TimeTimePeriod_Lib
             this.minutes = minutes;
             this.seconds = seconds;
         }
+
+        /// <summary>
+        /// Overloaded ToString method
+        /// </summary>
+        /// <returns> Returns the standard text representation of time in the format hh:mm:ss </returns>
+        public override string ToString() => $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
+
         /// <summary>
         /// A private method that checks if the arguments (hours, minutes, seconds) are valid.
         /// Method was used in constructors. 

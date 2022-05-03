@@ -1,4 +1,5 @@
 ﻿using System;
+using TimeTimePeriod_Lib;
 
 namespace TimeTimePeriod
 {
@@ -6,7 +7,11 @@ namespace TimeTimePeriod
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //var time = new Time("1:2:1");
+            //var time = new Time("11:2:1");
+            //var time = new Time("11::");
+            var time = new Time("::");
+            Console.WriteLine(time);
         }
     }
 }
