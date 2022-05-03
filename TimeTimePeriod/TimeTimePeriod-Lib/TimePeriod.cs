@@ -8,6 +8,5 @@ namespace TimeTimePeriod_Lib
 {
     public struct TimePeriod
     {
-      
     }
 }
