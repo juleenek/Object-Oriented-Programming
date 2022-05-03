@@ -9,7 +9,7 @@ namespace TimeTimePeriod_Lib
     /// <summary>
     ///  The struct specifies a point in time at 00:00:00… 23:59:59
     /// </summary>
-    public struct Time
+    public struct Time : IEquatable<Time>, IComparable<Time>
     {
         private byte hours;
         private byte minutes;
@@ -104,6 +104,18 @@ namespace TimeTimePeriod_Lib
             if (hours >= 24 || hours < 0) throw new ArgumentException("Hours was entered incorrectly.");
             if (minutes >= 60 || minutes < 0) throw new ArgumentException("Minutes was entered incorrectly.");
             if (seconds >= 60 || seconds < 0) throw new ArgumentException("Seconds was entered incorrectly.");
+        }
+
+        /// <summary>
+        /// Implemented interfaces IEquatable<Time>
+        /// </summary>
+        /// <param name="other"> Comparison object of Time type </param>
+        /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
+        public bool Equals(Time other) => (Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds);
+
+        public int CompareTo(Time other)
+        {
+            throw new NotImplementedException();
         }
     }
 }
