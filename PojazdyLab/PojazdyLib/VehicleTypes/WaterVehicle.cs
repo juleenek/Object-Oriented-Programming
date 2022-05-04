@@ -12,10 +12,10 @@ namespace PojazdyLib.VehicleTypes
     public class WaterVehicle : Vehicle, IWaterVehicle
     {
         private bool isOnWater = false;
+        private string environment = "Lądowe";
         public bool HasAnEngine => false;
         public FuelType FuelType => FuelType.oil;
         public int EnginePower => 0;
-        private string environment;
         public new string Environment { get => environment; }
         public string VehicleType => "Wodny";
         public double MinSpeed => 1;

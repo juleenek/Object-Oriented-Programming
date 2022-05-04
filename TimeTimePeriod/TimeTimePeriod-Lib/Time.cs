@@ -87,12 +87,6 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// Overriding ToString method
-        /// </summary>
-        /// <returns> Returns the standard text representation of time in the format hh:mm:ss </returns>
-        public override string ToString() => $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
-
-        /// <summary>
         /// A private method that checks if the arguments (hours, minutes, seconds) are valid.
         /// Method was used in constructors. 
         /// </summary>
@@ -105,6 +99,12 @@ namespace TimeTimePeriod_Lib
             if (minutes >= 60 || minutes < 0) throw new ArgumentException("Minutes was entered incorrectly.");
             if (seconds >= 60 || seconds < 0) throw new ArgumentException("Seconds was entered incorrectly.");
         }
+
+        /// <summary>
+        /// Overriding ToString method
+        /// </summary>
+        /// <returns> Returns the standard text representation of time in the format hh:mm:ss </returns>
+        public override string ToString() => $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
 
         /// <summary>
         /// Implemented IEquatable<Time> interface
@@ -156,30 +156,37 @@ namespace TimeTimePeriod_Lib
         /// </summary>
         /// <returns> A hash code for the current object. </returns>
         public override int GetHashCode() => (Hours, Minutes, Seconds).GetHashCode();
+
         /// <summary>
         /// Overloaded relational operator ==
         /// </summary>
         public static bool operator ==(Time left, Time right) => left.Equals(right);
+
         /// <summary>
         /// Overloaded relational operator !=
         /// </summary>
         public static bool operator !=(Time left, Time right) => !(left == right);
+
         /// <summary>
         /// Overloaded relational operator <
         /// </summary>
         public static bool operator <(Time left, Time right) => left.CompareTo(right) < 0;
+
         /// <summary>
         /// Overloaded relational operator <=
         /// </summary>
         public static bool operator <=(Time left, Time right) => left.CompareTo(right) <= 0;
+
         /// <summary>
         /// Overloaded relational operator >
         /// </summary>
         public static bool operator >(Time left, Time right) => left.CompareTo(right) > 0;
+
         /// <summary>
         /// Overloaded relational operator >=
         /// </summary>
         public static bool operator >=(Time left, Time right) => left.CompareTo(right) >= 0;
+
     }
 }
 

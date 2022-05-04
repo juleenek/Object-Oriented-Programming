@@ -59,6 +59,5 @@ namespace PojazdyLib.VehicleTypes
                 Console.WriteLine("You can't reduce speed.");
             }
         }
-
     }
 }

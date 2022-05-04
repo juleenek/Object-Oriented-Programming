@@ -8,8 +8,9 @@ namespace PojazdyLib.Enums
 {
     public enum SpeedUnit
     {
-        kilometersPerHour, // k/h - kilometry na godzinę
+        
         nauticalMilePerHour, // węzły (knot) - mila morska na godzinę
-        metersPerSecond // m/s - metry na sekundę 
+        metersPerSecond, // m/s - metry na sekundę 
+            kilometersPerHour, // k/h - kilometry na godzinę
     }
 }

@@ -11,7 +11,7 @@ namespace PojazdyLib.Ladowe
     public class Bicycle : LandVehicle
     {
         private FuelType fuelType = FuelType.none;
-        private int enginePower;
+        private int enginePower = 0;
         public new byte NumberOfWheels => 2;
         public new bool HasAnEngine => false;
         public new FuelType FuelType { get => fuelType; }
