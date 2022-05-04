@@ -14,24 +14,32 @@ namespace TimeTimePeriod_Lib
         private byte hours;
         private byte minutes;
         private byte seconds;
+
         /// <summary>
         /// Representation of hours over time, read-only field
         /// </summary>
         public readonly byte Hours => hours;
+
         /// <summary>
         /// Representation of minutes over time, read-only field
         /// </summary>
         public readonly byte Minutes => minutes;
+
         /// <summary>
         /// Representation of seconds over time, read-only field
         /// </summary>
         public readonly byte Seconds => seconds;
+
         /// <summary>
         /// Constructor of Time struct that takes into account three variants of initializing
         /// Three parameters: hours, minutes, seconds
         /// Two parameters: hours, minutes (default value of seconds is 0)  
         /// One parameter: hours (default value of minutes and seconds is 0)  
         /// </summary>
+        /// <exception cref="ArgumentException">
+        /// Thrown when parameters are not in range  00:00:00… 23:59:59
+        /// The "TimeParamsCheck" method is used to throw this exception when the arguments are invalid
+        /// </exception>
         /// <param name="hours"> Representation of hours over time </param>
         /// <param name="minutes"> Representation of minutes over time </param>
         /// <param name="seconds"> Representation of seconds over time </param>
@@ -43,6 +51,7 @@ namespace TimeTimePeriod_Lib
             this.minutes = minutes;
             this.seconds = seconds;
         }
+
         /// <summary>
         /// Constructor of Time struct, which takes a String parameter with the format hh:mm:ss
         /// </summary>
@@ -71,8 +80,7 @@ namespace TimeTimePeriod_Lib
             {
                 hours = byte.Parse(splittedTime[0]);
                 minutes = byte.Parse(splittedTime[1]);
-                seconds = byte.Parse(splittedTime[2]);
-  
+                seconds = byte.Parse(splittedTime[2]);  
             }
             catch (Exception)
             {

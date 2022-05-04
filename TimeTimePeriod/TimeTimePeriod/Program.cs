@@ -54,6 +54,15 @@ namespace TimeTimePeriod
             //Console.WriteLine(time1 < time2);
             //Console.WriteLine(time1 <= time2);
 
+            ///////////////////////////////////////////////////////////////////////////////
+
+            // TimePeriod
+
+            //var timeP = new TimePeriod(27, 2);
+            //var timeP = new TimePeriod("20939:23:");
+            //var timeP = new TimePeriod("20939::");
+            //Console.WriteLine(timeP);
+
         }
     }
 }
