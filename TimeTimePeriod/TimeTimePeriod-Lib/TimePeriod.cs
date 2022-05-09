@@ -202,5 +202,28 @@ namespace TimeTimePeriod_Lib
         /// Overloaded relational operator >=
         /// </summary>
         public static bool operator >=(TimePeriod left, TimePeriod right) => left.CompareTo(right) >= 0;
+
+        /// <summary>
+        /// Add two TimePeriod
+        /// </summary>
+        /// <param name="timePeriod"> TimePeriod to be added </param>
+        /// <returns> Returns a new TimePeriod(sum of two TimePeriod) </returns>
+        public TimePeriod Plus(TimePeriod timePeriod) => new TimePeriod(PeriodSeconds + timePeriod.PeriodSeconds);
+
+        /// <summary>
+        /// Add two TimePeriod
+        /// </summary>
+        /// <param name="timePeriod1"> First TimePeriod to be added </param>
+        /// <param name="timePeriod2"> Second TimePeriod to be added </param>
+        /// <returns> Returns a new TimePeriod(sum of two TimePeriod) </returns>
+        public static TimePeriod Plus(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds + timePeriod2.PeriodSeconds);
+
+        /// <summary>
+        /// Add two TimePeriod, overloaded operator +
+        /// </summary>
+        /// <param name="timePeriod1"> First TimePeriod to be added </param>
+        /// <param name="timePeriod2"> Second TimePeriod to be added </param>
+        /// <returns> Returns a new TimePeriod(sum of two TimePeriod) </returns>
+        public static TimePeriod operator +(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds + timePeriod2.PeriodSeconds);
     }
 }
