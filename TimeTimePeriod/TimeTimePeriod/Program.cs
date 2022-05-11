@@ -82,7 +82,8 @@ namespace TimeTimePeriod
             var time = new Time(23, 40, 6);
             var timePeriod = new TimePeriod(90, 59, 59);
             Console.WriteLine(time - timePeriod);
-
+            Console.WriteLine(time.Minus(timePeriod));
+            Console.WriteLine(Time.Minus(time, timePeriod));
         }
     }
 }

@@ -236,10 +236,10 @@ namespace TimeTimePeriod_Lib
         public Time Plus(TimePeriod timePeriod) => this + timePeriod;
 
         /// <summary>
-        /// Overloaded operator -, subtracts a period (timePeriod) to a point in time (time)
+        /// Overloaded operator -, subtracts a period (timePeriod) from a point in time (time)
         /// </summary>
-        /// <param name="time"> The point in time to which it will be subtracted time period </param>
-        /// <param name="timePeriod"> Time period that will be subtracted to the time </param>
+        /// <param name="time"> The point in time from which the period will be subtracted </param>
+        /// <param name="timePeriod"> Time period that will be subtracted from time </param>
         /// <returns> Returns point in time with an subtracted time period </returns>
         public static Time operator -(Time time, TimePeriod timePeriod)
         {
@@ -259,6 +259,21 @@ namespace TimeTimePeriod_Lib
             return new Time((byte)hours, (byte)minutes, (byte)secunds);
 
         }
+
+        /// <summary>
+        /// Subtracts a period (timePeriod) from a point in time (time)
+        /// </summary>
+        /// <param name="time"> The point in time from which the period will be subtracted </param>
+        /// <param name="timePeriod"> Time period that will be subtracted from time </param>
+        /// <returns> Returns point in time with an subtracted time period </returns>
+        public static Time Minus(Time time, TimePeriod timePeriod) => time - timePeriod;
+
+        /// <summary>
+        /// Subtracts a period (timePeriod) from a point in time
+        /// </summary>
+        /// <param name="timePeriod"> Time period that will be subtracted from time </param>
+        /// <returns> Returns point in time with an subtracted time period </returns>
+        public Time Minus(TimePeriod timePeriod) => this - timePeriod;
     }
 }
 
