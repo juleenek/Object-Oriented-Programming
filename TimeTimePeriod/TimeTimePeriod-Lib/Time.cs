@@ -234,6 +234,31 @@ namespace TimeTimePeriod_Lib
         /// <param name="timePeriod"> Time period that will be added to the time </param>
         /// <returns> Returns point in time with an added time period </returns>
         public Time Plus(TimePeriod timePeriod) => this + timePeriod;
+
+        /// <summary>
+        /// Overloaded operator -, subtracts a period (timePeriod) to a point in time (time)
+        /// </summary>
+        /// <param name="time"> The point in time to which it will be subtracted time period </param>
+        /// <param name="timePeriod"> Time period that will be subtracted to the time </param>
+        /// <returns> Returns point in time with an subtracted time period </returns>
+        public static Time operator -(Time time, TimePeriod timePeriod)
+        {
+            long secondsTime = (time.Hours * 3600) + (time.Minutes * 60) + time.Seconds;
+            long secondsSum = Math.Abs(secondsTime - timePeriod.PeriodSeconds);
+
+            long secunds = secondsSum % 60;
+            long minutes = (secondsSum / 60) % 60;
+            long hours = (secondsSum);
+
+            if (time.Seconds + secunds > 60) minutes++;
+            if (time.Minutes + minutes > 60) hours += 60;
+
+            hours /= 3600;
+            hours %= 24;
+
+            return new Time((byte)hours, (byte)minutes, (byte)secunds);
+
+        }
     }
 }
 
