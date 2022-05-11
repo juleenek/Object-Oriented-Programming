@@ -195,6 +195,12 @@ namespace TimeTimePeriod_Lib
         /// </summary>
         public static bool operator >=(Time left, Time right) => left.CompareTo(right) >= 0;
 
+        /// <summary>
+        /// Overloaded operator +, adds a period of time (timePeriod) to a point in time (time)
+        /// </summary>
+        /// <param name="time"> The point in time to which it will be added time period </param>
+        /// <param name="timePeriod"> Time period that will be added to the time </param>
+        /// <returns> Returns point in time with an added time period </returns>
         public static Time operator +(Time time, TimePeriod timePeriod)
         {
             long secondsTime = (time.Hours * 3600) + (time.Minutes * 60) + time.Seconds;
@@ -213,6 +219,21 @@ namespace TimeTimePeriod_Lib
             return new Time((byte)hours, (byte)minutes, (byte)secunds);
 
         }
+
+        /// <summary>
+        /// Adds a period of time (timePeriod) to a point in time (time)
+        /// </summary>
+        /// <param name="time"> The point in time to which it will be added time period </param>
+        /// <param name="timePeriod"> Time period that will be added to the time </param>
+        /// <returns> Returns point in time with an added time period </returns>
+        public static Time Plus(Time time, TimePeriod timePeriod) => time + timePeriod;
+
+        /// <summary>
+        /// Adds a period of time (timePeriod) to a point in time
+        /// </summary>
+        /// <param name="timePeriod"> Time period that will be added to the time </param>
+        /// <returns> Returns point in time with an added time period </returns>
+        public Time Plus(TimePeriod timePeriod) => this + timePeriod;
     }
 }
 

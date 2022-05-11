@@ -71,11 +71,13 @@ namespace TimeTimePeriod
 
             //var time = new Time(23, 40, 6);
             //var timePeriod = new TimePeriod(30, 59, 59);
-            //Console.WriteLine(time + timePeriod); 
+            //Console.WriteLine(time + timePeriod); ;
 
-            //var time = new Time(23, 40, 6);
-            //var timePeriod = new TimePeriod(90, 59, 59);
-            //Console.WriteLine(time + timePeriod);
+            var time = new Time(23, 40, 6);
+            var timePeriod = new TimePeriod(90, 59, 59);
+            Console.WriteLine(time + timePeriod);
+            Console.WriteLine(time.Plus(timePeriod));
+            Console.WriteLine(Time.Plus(time, timePeriod));
 
         }
     }
