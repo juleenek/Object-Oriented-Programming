@@ -195,6 +195,24 @@ namespace TimeTimePeriod_Lib
         /// </summary>
         public static bool operator >=(Time left, Time right) => left.CompareTo(right) >= 0;
 
+        public static Time operator +(Time time, TimePeriod timePeriod)
+        {
+            long secondsTime = (time.Hours * 3600) + (time.Minutes * 60) + time.Seconds;
+            long secondsSum = secondsTime + timePeriod.PeriodSeconds;
+
+            long secunds = secondsSum % 60;
+            long minutes = (secondsSum / 60) % 60;
+            long hours = (secondsSum);
+
+            if (time.Seconds + secunds > 60) minutes++;
+            if (time.Minutes + minutes > 60) hours += 60;
+
+            hours /= 3600;
+            hours %= 24;
+
+            return new Time((byte)hours, (byte)minutes, (byte)secunds);
+
+        }
     }
 }
 

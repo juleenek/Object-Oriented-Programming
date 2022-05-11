@@ -60,8 +60,22 @@ namespace TimeTimePeriod
 
             //var timeP = new TimePeriod(27, 2);
             //var timeP = new TimePeriod("20939:23:");
-            var timeP = new TimePeriod("20939::");
-            Console.WriteLine(timeP);
+            //var timeP = new TimePeriod("20939::");
+            //Console.WriteLine(timeP);
+
+            // Time + TimePeriod
+
+            //var time = new Time(23, 40, 6);
+            //var timePeriod = new TimePeriod(2, 30, 20);
+            //Console.WriteLine(time + timePeriod);
+
+            //var time = new Time(23, 40, 6);
+            //var timePeriod = new TimePeriod(30, 59, 59);
+            //Console.WriteLine(time + timePeriod); 
+
+            //var time = new Time(23, 40, 6);
+            //var timePeriod = new TimePeriod(90, 59, 59);
+            //Console.WriteLine(time + timePeriod);
 
         }
     }
