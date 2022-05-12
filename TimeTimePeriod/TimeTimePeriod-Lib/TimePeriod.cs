@@ -45,22 +45,18 @@ namespace TimeTimePeriod_Lib
         /// <param name="seconds"> Representation of seconds in a time period </param>
         public TimePeriod(long hours = 0, long minutes = 0, long seconds = 0)
         {
-            TimeParamsCheck(hours, minutes, seconds);
+            TimePeriodParamsCheck(hours, minutes, seconds);
             periodSeconds = (hours * 3600) + (minutes * 60) + seconds;
         }
 
         /// <summary>
-        /// A private method that checks if the arguments (hours, minutes, seconds) are valid.
-        /// Method was used in constructors. 
+        /// Constructor of TimePeriod struct, which takes a time period seconds
         /// </summary>
-        /// <param name="hours"> Representation of hours in a time period </param>
-        /// <param name="minutes"> Representation of minutes in a time period </param>
-        /// <param name="seconds"> Representation of seconds in a time period </param>
-        static private void TimeParamsCheck(long hours, long minutes, long seconds)
+        /// <param name="seconds"> Time period seconds parameter </param>
+        public TimePeriod(long seconds)
         {
-            if (hours < 0) throw new ArgumentException("Hours was entered incorrectly.");
-            if (minutes >= 60 || minutes < 0) throw new ArgumentException("Minutes was entered incorrectly.");
-            if (seconds >= 60 || seconds < 0) throw new ArgumentException("Seconds was entered incorrectly.");
+            if (seconds < 0) throw new ArgumentException("Seconds must be positive.");
+            periodSeconds = seconds;
         }
 
         /// <summary>
@@ -119,8 +115,22 @@ namespace TimeTimePeriod_Lib
                 throw new FormatException("Invalid format, arguments must be a numbers.");
             }
 
-            TimeParamsCheck(hours, minutes, seconds);
+            TimePeriodParamsCheck(hours, minutes, seconds);
             periodSeconds = (hours * 3600) + (minutes * 60) + seconds;
+        }
+
+        /// <summary>
+        /// A private method that checks if the arguments (hours, minutes, seconds) are valid.
+        /// Method was used in constructors. 
+        /// </summary>
+        /// <param name="hours"> Representation of hours in a time period </param>
+        /// <param name="minutes"> Representation of minutes in a time period </param>
+        /// <param name="seconds"> Representation of seconds in a time period </param>
+        static private void TimePeriodParamsCheck(long hours, long minutes, long seconds)
+        {
+            if (hours < 0) throw new ArgumentException("Hours was entered incorrectly.");
+            if (minutes >= 60 || minutes < 0) throw new ArgumentException("Minutes was entered incorrectly.");
+            if (seconds >= 60 || seconds < 0) throw new ArgumentException("Seconds was entered incorrectly.");
         }
 
         /// <summary>
@@ -204,6 +214,14 @@ namespace TimeTimePeriod_Lib
         public static bool operator >=(TimePeriod left, TimePeriod right) => left.CompareTo(right) >= 0;
 
         /// <summary>
+        /// Add two TimePeriod, overloaded operator +
+        /// </summary>
+        /// <param name="timePeriod1"> First TimePeriod to be added </param>
+        /// <param name="timePeriod2"> Second TimePeriod to be added </param>
+        /// <returns> Returns a new TimePeriod(sum of two TimePeriod) </returns>
+        public static TimePeriod operator +(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds + timePeriod2.PeriodSeconds);
+
+        /// <summary>
         /// Add two TimePeriod
         /// </summary>
         /// <param name="timePeriod"> TimePeriod to be added </param>
@@ -219,11 +237,11 @@ namespace TimeTimePeriod_Lib
         public static TimePeriod Plus(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds + timePeriod2.PeriodSeconds);
 
         /// <summary>
-        /// Add two TimePeriod, overloaded operator +
+        /// 
         /// </summary>
-        /// <param name="timePeriod1"> First TimePeriod to be added </param>
-        /// <param name="timePeriod2"> Second TimePeriod to be added </param>
-        /// <returns> Returns a new TimePeriod(sum of two TimePeriod) </returns>
-        public static TimePeriod operator +(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds + timePeriod2.PeriodSeconds);
+        /// <param name="timePeriod1"></param>
+        /// <param name="timePeriod2"></param>
+        /// <returns></returns>
+        public static TimePeriod operator -(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds - timePeriod2.PeriodSeconds);
     }
 }

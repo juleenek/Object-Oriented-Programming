@@ -79,11 +79,17 @@ namespace TimeTimePeriod
             //Console.WriteLine(time.Plus(timePeriod));
             //Console.WriteLine(Time.Plus(time, timePeriod));
 
-            var time = new Time(23, 40, 6);
-            var timePeriod = new TimePeriod(90, 59, 59);
-            Console.WriteLine(time - timePeriod);
-            Console.WriteLine(time.Minus(timePeriod));
-            Console.WriteLine(Time.Minus(time, timePeriod));
+            //var time = new Time(23, 40, 6);
+            //var timePeriod = new TimePeriod(90, 59, 59);
+            //Console.WriteLine(time - timePeriod);
+            //Console.WriteLine(time.Minus(timePeriod));
+            //Console.WriteLine(Time.Minus(time, timePeriod));
+
+            //var timeP1 = new TimePeriod(27, 2);
+            //var timeP2 = new TimePeriod("432000:10:00");
+            //var timeP3 = new TimePeriod("220:59:00");
+            //Console.WriteLine($"{timeP2} {timeP3} {timeP2 - timeP3}");
+
         }
     }
 }
