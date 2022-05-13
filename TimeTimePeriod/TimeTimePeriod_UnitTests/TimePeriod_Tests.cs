@@ -106,4 +106,110 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(timePeriod.Seconds, expectedS);
         }
     }
+    [TestClass]
+    public class UnitTestsTimePeriodToString
+    {
+
+        [DataTestMethod, TestCategory("ToString")]
+        [DataRow("1:1:1", "01:01:01")]
+        [DataRow("23:59:59", "23:59:59")]
+        [DataRow("2:59:59", "02:59:59")]
+        [DataRow("12:25:", "12:25:00")]
+        [DataRow("::", "00:00:00")]
+        [DataRow("2500:59:59", "2500:59:59")]
+        [DataRow("1242:25:59", "1242:25:59")]
+        [DataRow("1111::", "1111:00:00")]
+        public void TimePeriod_StringParams_ToString(string timePeriodS, string expectedToString)
+        {
+            TimePeriod timePeriod = new TimePeriod(timePeriodS);
+            Assert.AreEqual(timePeriod.ToString(), expectedToString);
+        }
+
+        [DataTestMethod, TestCategory("ToString")]
+        [DataRow(1, 1, 1, "01:01:01")]
+        [DataRow(13, 15, 12, "13:15:12")]
+        [DataRow(23, 59, 59, "23:59:59")]
+        [DataRow(0, 59, 0, "00:59:00")]
+        [DataRow(1000, 59, 0, "1000:59:00")]
+        [DataRow(99999, 59, 0, "99999:59:00")]
+        public void TimePeriod_params_ToString(long h, long m, long s, string expectedToString)
+        {
+            TimePeriod timePeriod = new TimePeriod(h, m, s);
+            Assert.AreEqual(timePeriod.ToString(), expectedToString);
+
+            TimePeriod timePeriod2 = new TimePeriod();
+            Assert.AreEqual(timePeriod2.ToString(), "00:00:00");
+        }
+    }
+
+    [TestClass]
+    public class UnitTestsTimePeriodEquals
+    {
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow("1:1:1", 1, 1, 1)]
+        [DataRow("23:59:59", 23, 59, 59)]
+        [DataRow("2:59:59", 2, 59, 59)]
+        [DataRow("::", 0, 0, 0)]
+        [DataRow("2000:59:59", 2000, 59, 59)]
+        [DataRow("123456::", 123456, 0, 0)]
+        public void TimePeriod_Equals_And_Overloaded_Operator(string timeS, long h, long m, long s)
+        {
+            TimePeriod time1 = new TimePeriod(timeS);
+            TimePeriod time2 = new TimePeriod(h, m, s);
+            TimePeriod time3 = new TimePeriod(9, 9, 9);
+
+            Assert.AreEqual(time1.Equals(time2), true);
+            Assert.AreEqual(Equals(time1, time2), true);
+            Assert.AreEqual((time1 == time2), true);
+
+            Assert.AreEqual(time1.Equals(time3), false);
+            Assert.AreEqual(Equals(time1, time3), false);
+            Assert.AreEqual((time1 == time3), false);
+
+            Assert.AreEqual(time2.Equals(time3), false);
+            Assert.AreEqual(Equals(time2, time3), false);
+            Assert.AreEqual((time2 == time3), false);
+        }
+    }
+
+    [TestClass]
+    public class UnitTestsTimePeriodCompare
+    {
+
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow("1:1:1", "2:2:2")]
+        [DataRow("23:59:58", "23:59:59")]
+        [DataRow("2:59:59", "3::")]
+        [DataRow("2:58:59", "2:59:58")]
+        [DataRow("::", "::1")]
+        [DataRow("123456:59:59", "123456:59:58")]
+        [DataRow("11112:58:59", "11112:59:58")]
+        public void TimePeriod_CompareTo_And_Overloaded_Operator(string timeS1, string timeS2)
+        {
+            TimePeriod time1 = new TimePeriod(timeS1);
+            TimePeriod time2 = new TimePeriod(timeS2);
+
+            TimePeriod time3 = new TimePeriod("::");
+            TimePeriod time4 = new TimePeriod();
+
+            Assert.AreEqual(time1.CompareTo(time2), -1);
+            Assert.AreEqual(time2.CompareTo(time1), 1);
+
+            Assert.AreEqual(time3.CompareTo(time4), 0);
+
+            Assert.AreEqual(time1 < time2, true);
+            Assert.AreEqual(time1 <= time2, true);
+
+            Assert.AreEqual(time1 > time2, false);
+            Assert.AreEqual(time1 >= time2, false);
+
+            Assert.AreEqual(time3 >= time4, true);
+            Assert.AreEqual(time3 <= time4, true);
+            Assert.AreEqual(time3 == time4, true);
+
+            Assert.AreEqual(time3 > time4, false);
+            Assert.AreEqual(time3 < time4, false);
+        }
+    }
 }
