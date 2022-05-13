@@ -209,17 +209,17 @@ namespace TimeTimePeriod_Lib
             long secondsTime = (time.Hours * 3600) + (time.Minutes * 60) + time.Seconds;
             long secondsSum = secondsTime + timePeriod.PeriodSeconds;
 
-            long secunds = secondsSum % 60;
+            long seconds = secondsSum % 60;
             long minutes = (secondsSum / 60) % 60;
             long hours = (secondsSum);
 
-            if (time.Seconds + secunds > 60) minutes++;
-            if (time.Minutes + minutes > 60) hours += 60;
+            if (time.Seconds + timePeriod.Seconds > 60) minutes++;
+            if (time.Minutes + timePeriod.Seconds > 60) hours += 60;
 
             hours /= 3600;
             hours %= 24;
 
-            return new Time((byte)hours, (byte)minutes, (byte)secunds);
+            return new Time((byte)hours, (byte)minutes, (byte)seconds);
 
         }
 
@@ -253,8 +253,8 @@ namespace TimeTimePeriod_Lib
             long minutes = (secondsSum / 60) % 60;
             long hours = (secondsSum);
 
-            if (time.Seconds + secunds > 60) minutes++;
-            if (time.Minutes + minutes > 60) hours += 60;
+            if (time.Seconds + timePeriod.Seconds > 60) minutes++;
+            if (time.Minutes + timePeriod.Minutes > 60) hours += 60;
 
             hours /= 3600;
             hours %= 24;

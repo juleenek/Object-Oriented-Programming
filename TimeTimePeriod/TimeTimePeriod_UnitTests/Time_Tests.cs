@@ -170,4 +170,37 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(time3 < time4, false);
         }
     }
+    [TestClass]
+    public class UnitTestsTimeOperations
+    {
+        [DataTestMethod, TestCategory("Operations")]
+        [DataRow("1:1:1", "2:2:2", "03:03:03")]
+        [DataRow("23:59:58", "00:00:01", "23:59:59")]
+        [DataRow("::", "::1", "00:00:01")]
+        public void TimePeriod_Plus(string timeS1, string timeS2, string timeS3)
+        {
+            Time time1 = new Time(timeS1);
+            TimePeriod timePeriod = new TimePeriod(timeS2);
+            Time time2 = new Time(timeS3);
+
+            Assert.AreEqual(time1.Plus(timePeriod), time2);
+            Assert.AreEqual(Time.Plus(time1, timePeriod), time2);
+            Assert.AreEqual(time1 + timePeriod, time2);
+        }
+
+        [DataTestMethod, TestCategory("Operations")]
+        [DataRow("2:2:2", "1:1:1", "01:01:01")]
+        [DataRow("23:59:59", "00:00:01", "23:59:58")]
+        [DataRow("::1", "::1", "00:00:00")]
+        public void TimePeriod_Minus(string timeS1, string timeS2, string timeS3)
+        {
+            Time time1 = new Time(timeS1);
+            TimePeriod timePeriod = new TimePeriod(timeS2);
+            Time time2 = new Time(timeS3);
+
+            Assert.AreEqual(time1.Minus(timePeriod), time2);
+            Assert.AreEqual(Time.Minus(time1, timePeriod), time2);
+            Assert.AreEqual(time1 - timePeriod, time2);
+        }
+    }
 }

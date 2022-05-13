@@ -91,9 +91,9 @@ namespace TimeTimePeriod
             //Console.WriteLine($"{timeP2} {timeP3} {timeP2 - timeP3}");
 
 
-            Time time1 = new Time("2:59:59");
-            Time time2 = new Time("3::");
-            Console.WriteLine(time1.CompareTo(time2));
+            Time time1 = new Time("23:53:54");
+            TimePeriod time2 = new TimePeriod("::1");
+            Console.WriteLine(time1 + time2 );
         }
     }
 }

@@ -177,7 +177,7 @@ namespace TimeTimePeriod_UnitTests
     public class UnitTestsTimePeriodCompare
     {
 
-        [DataTestMethod, TestCategory("Equals")]
+        [DataTestMethod, TestCategory("Compare")]
         [DataRow("1:1:1", "2:2:2")]
         [DataRow("23:59:58", "23:59:59")]
         [DataRow("2:59:59", "3::")]
@@ -212,4 +212,39 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(time3 < time4, false);
         }
     }
+
+    [TestClass]
+    public class UnitTestsTimePeriodOperations
+    {
+        [DataTestMethod, TestCategory("Operations")]
+        [DataRow("1:1:1", "2:2:2", "03:03:03")]
+        [DataRow("23:59:58", "23:59:59", "47:59:57")]
+        [DataRow("::", "::1", "00:00:01")]
+        [DataRow("12345:59:59", "12345:59:59", "24691:59:58")]
+        public void TimePeriod_Plus(string timeS1, string timeS2, string timeS3)
+        {
+            TimePeriod time1 = new TimePeriod(timeS1);
+            TimePeriod time2 = new TimePeriod(timeS2);
+            TimePeriod time3 = new TimePeriod(timeS3);
+
+            Assert.AreEqual(time1.Plus(time2), time3);
+            Assert.AreEqual(TimePeriod.Plus(time1, time2), time3);
+            Assert.AreEqual(time1 + time2, time3);
+        }
+
+        [DataTestMethod, TestCategory("Operations")]
+        [DataRow("2:2:2", "1:1:1", "01:01:01")]
+        [DataRow("23:59:59", "00:59:59", "23:00:00")]
+        public void TimePeriod_Minus(string timeS1, string timeS2, string timeS3)
+        {
+            TimePeriod time1 = new TimePeriod(timeS1);
+            TimePeriod time2 = new TimePeriod(timeS2);
+            TimePeriod time3 = new TimePeriod(timeS3);
+
+            Assert.AreEqual(time1.Minus(time2), time3);
+            Assert.AreEqual(TimePeriod.Minus(time1, time2), time3);
+            Assert.AreEqual(time1 - time2, time3);
+        }
+    }
+
 }

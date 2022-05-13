@@ -237,11 +237,26 @@ namespace TimeTimePeriod_Lib
         public static TimePeriod Plus(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds + timePeriod2.PeriodSeconds);
 
         /// <summary>
-        /// 
+        /// Subtracts a time period (timePeriod1) from a time period (timePeriod2)
         /// </summary>
-        /// <param name="timePeriod1"></param>
-        /// <param name="timePeriod2"></param>
-        /// <returns></returns>
+        /// <param name="timePeriod1"> First time period </param>
+        /// <param name="timePeriod2"> Second time period</param>
+        /// <returns> Returns a new TimePeriod (the difference of two TimePeriod) </returns>
         public static TimePeriod operator -(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds - timePeriod2.PeriodSeconds);
+
+        /// <summary>
+        /// Subtracts a time period (timePeriod1) from a time period (timePeriod2)
+        /// </summary>
+        /// <param name="timePeriod1"> First time period </param>
+        /// <param name="timePeriod2"> Second time period</param>
+        /// <returns> Returns a new TimePeriod (the difference of two TimePeriod) </returns>
+        public static TimePeriod Minus(TimePeriod timePeriod1, TimePeriod timePeriod2) => new TimePeriod(timePeriod1.PeriodSeconds - timePeriod2.PeriodSeconds);
+
+        /// <summary>
+        /// Subtracts a time period from a time period 
+        /// </summary>
+        /// <param name="timePeriod"> Time period to subract </param>
+        /// <returns> Returns a new TimePeriod (the difference of two TimePeriod) </returns>
+        public TimePeriod Minus(TimePeriod timePeriod) => new TimePeriod(this.PeriodSeconds - timePeriod.PeriodSeconds);
     }
 }
