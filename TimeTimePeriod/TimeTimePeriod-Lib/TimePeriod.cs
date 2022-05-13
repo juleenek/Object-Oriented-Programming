@@ -53,10 +53,10 @@ namespace TimeTimePeriod_Lib
         /// Constructor of TimePeriod struct, which takes a time period seconds
         /// </summary>
         /// <param name="seconds"> Time period seconds parameter </param>
-        public TimePeriod(long seconds)
+        public TimePeriod(long periodSeconds)
         {
-            if (seconds < 0) throw new ArgumentException("Seconds must be positive.");
-            periodSeconds = seconds;
+            if (periodSeconds < 0) throw new ArgumentException("Seconds must be positive.");
+            this.periodSeconds = periodSeconds;
         }
 
         /// <summary>

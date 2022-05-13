@@ -90,6 +90,9 @@ namespace TimeTimePeriod
             //var timeP3 = new TimePeriod("220:59:00");
             //Console.WriteLine($"{timeP2} {timeP3} {timeP2 - timeP3}");
 
+
+            var timeP3 = new TimePeriod(periodSeconds: 0);
+            Console.WriteLine(timeP3);
         }
     }
 }
