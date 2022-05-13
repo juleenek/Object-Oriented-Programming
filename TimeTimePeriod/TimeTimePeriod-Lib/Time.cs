@@ -149,6 +149,9 @@ namespace TimeTimePeriod_Lib
             if (Hours > other.Hours)
                 return 1;
 
+            if (Hours < other.Hours)
+                return -1;
+
             if (Minutes > other.Minutes)
                 return 1;
 
