@@ -12,6 +12,23 @@ namespace TimeTimePeriod_UnitTests
     public class UnitTestsTimePeriodConstructors
     {
         [DataTestMethod, TestCategory("Constructors")]
+        [DataRow(1, 1, 1, 1, 1, 1, 1, 1)]
+        [DataRow(13, 15, 12, 24, 13, 15, 12, 24)]
+        [DataRow(23, 59, 59, 999, 23, 59, 59, 999)]
+        [DataRow(123, 15, 12, 243, 123, 15, 12, 243)]
+        [DataRow(200, 59, 59, 999, 200, 59, 59, 999)]
+        [DataRow(0, 59, 0, 0, 0, 59, 0, 0)]
+        public void TimePeriod_Constructor_4params(long h, long m, long s, long milli,
+                                           long expectedH, long expectedM, long expectedS, long expectedMilli)
+        {
+            TimePeriod timePeriod = new TimePeriod(h, m, s, milli);
+            Assert.AreEqual(timePeriod.Hours, expectedH);
+            Assert.AreEqual(timePeriod.Minutes, expectedM);
+            Assert.AreEqual(timePeriod.Seconds, expectedS);
+            Assert.AreEqual(timePeriod.Milliseconds, expectedMilli);
+        }
+
+        [DataTestMethod, TestCategory("Constructors")]
         [DataRow(1, 1, 1, 1, 1, 1)]
         [DataRow(13, 15, 12, 13, 15, 12)]
         [DataRow(23, 59, 59, 23, 59, 59)]
@@ -25,6 +42,7 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(timePeriod.Hours, expectedH);
             Assert.AreEqual(timePeriod.Minutes, expectedM);
             Assert.AreEqual(timePeriod.Seconds, expectedS);
+            Assert.AreEqual(timePeriod.Milliseconds, 0);
         }
 
         [DataTestMethod, TestCategory("Constructors")]
@@ -41,6 +59,7 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(timePeriod.Hours, expectedH);
             Assert.AreEqual(timePeriod.Minutes, expectedM);
             Assert.AreEqual(timePeriod.Seconds, 0);
+            Assert.AreEqual(timePeriod.Milliseconds, 0);
         }
 
         [DataTestMethod, TestCategory("Constructors")]
@@ -56,6 +75,7 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(timePeriod.Hours, expectedH);
             Assert.AreEqual(timePeriod.Minutes, 0);
             Assert.AreEqual(timePeriod.Seconds, 0);
+            Assert.AreEqual(timePeriod.Milliseconds, 0);
         }
 
         [DataTestMethod, TestCategory("Constructors")]
@@ -65,6 +85,7 @@ namespace TimeTimePeriod_UnitTests
             Assert.AreEqual(timePeriod.Hours, 0);
             Assert.AreEqual(timePeriod.Minutes, 0);
             Assert.AreEqual(timePeriod.Seconds, 0);
+            Assert.AreEqual(timePeriod.Milliseconds, 0);
         }
 
         /// <summary>
@@ -75,35 +96,36 @@ namespace TimeTimePeriod_UnitTests
         /// <param name="expectedM"> Expected minutes </param>
         /// <param name="expectedS"> Expected seconds </param>
         [DataTestMethod, TestCategory("Constructors")]
-        [DataRow(1, 0, 0, 1)]
-        [DataRow(100, 0, 1, 40)]
-        [DataRow(5000, 1, 23, 20)]
-        [DataRow(50000, 13, 53, 20)]
-        [DataRow(123456, 34, 17, 36)]
-        [DataRow(0, 0, 0, 0)]
-        public void TimePeriod_Constructor_1param_periodSeconds(long periodSec,
-                                                                long expectedH, long expectedM, long expectedS)
+        [DataRow(1000, 0, 0, 1, 0)]
+        [DataRow(9020, 0, 0, 9, 20)]
+        [DataRow(52320, 0, 0, 52, 320)]
+        [DataRow(12233456, 3, 23, 53, 456)]
+        [DataRow(0, 0, 0, 0, 0)]
+        public void TimePeriod_Constructor_1param_periodMilliseconds(long periodMilli,
+                                                                long expectedH, long expectedM, long expectedS, long expectedMilli)
         {
-            TimePeriod timePeriod = new TimePeriod(periodMilliseconds: periodSec);
+            TimePeriod timePeriod = new TimePeriod(periodMilliseconds: periodMilli);
             Assert.AreEqual(timePeriod.Hours, expectedH);
             Assert.AreEqual(timePeriod.Minutes, expectedM);
             Assert.AreEqual(timePeriod.Seconds, expectedS);
+            Assert.AreEqual(timePeriod.Milliseconds, expectedMilli);
         }
 
         [DataTestMethod, TestCategory("Constructors")]
-        [DataRow("1:1:1" , 1, 1, 1)]
-        [DataRow("23:59:59", 23, 59, 59)]
-        [DataRow("20000:59:59", 20000, 59, 59)]
-        [DataRow("12:45:", 12, 45, 0)]
-        [DataRow("900::", 900, 0, 0)]
-        [DataRow("::", 0, 0, 0)]
+        [DataRow("1:1:1:1" , 1, 1, 1, 1)]
+        [DataRow("23:59:59:999", 23, 59, 59, 999)]
+        [DataRow("20000:59:59:999", 20000, 59, 59, 999)]
+        [DataRow("12:45::", 12, 45, 0, 0)]
+        [DataRow("900:::221", 900, 0, 0, 221)]
+        [DataRow(":::", 0, 0, 0, 0)]
         public void TimePeriod_Constructor_1param_string(string timeP,
-                                                        long expectedH, long expectedM, long expectedS)
+                                                        long expectedH, long expectedM, long expectedS, long expectedMilli)
         {
             TimePeriod timePeriod = new TimePeriod(timeP);
             Assert.AreEqual(timePeriod.Hours, expectedH);
             Assert.AreEqual(timePeriod.Minutes, expectedM);
             Assert.AreEqual(timePeriod.Seconds, expectedS);
+            Assert.AreEqual(timePeriod.Milliseconds, expectedMilli);
         }
     }
     [TestClass]
@@ -111,14 +133,14 @@ namespace TimeTimePeriod_UnitTests
     {
 
         [DataTestMethod, TestCategory("ToString")]
-        [DataRow("1:1:1", "01:01:01")]
-        [DataRow("23:59:59", "23:59:59")]
-        [DataRow("2:59:59", "02:59:59")]
-        [DataRow("12:25:", "12:25:00")]
-        [DataRow("::", "00:00:00")]
-        [DataRow("2500:59:59", "2500:59:59")]
-        [DataRow("1242:25:59", "1242:25:59")]
-        [DataRow("1111::", "1111:00:00")]
+        [DataRow("1:1:1:1", "01:01:01:001")]
+        [DataRow("23:59:59:999", "23:59:59:999")]
+        [DataRow("2:59:59:1", "02:59:59:001")]
+        [DataRow("12:25::", "12:25:00:000")]
+        [DataRow(":::", "00:00:00:000")]
+        [DataRow("2500:59:59:213", "2500:59:59:213")]
+        [DataRow("1242:25:59:999", "1242:25:59:999")]
+        [DataRow("1111:::1", "1111:00:00:001")]
         public void TimePeriod_StringParams_ToString(string timePeriodS, string expectedToString)
         {
             TimePeriod timePeriod = new TimePeriod(timePeriodS);
@@ -126,19 +148,19 @@ namespace TimeTimePeriod_UnitTests
         }
 
         [DataTestMethod, TestCategory("ToString")]
-        [DataRow(1, 1, 1, "01:01:01")]
-        [DataRow(13, 15, 12, "13:15:12")]
-        [DataRow(23, 59, 59, "23:59:59")]
-        [DataRow(0, 59, 0, "00:59:00")]
-        [DataRow(1000, 59, 0, "1000:59:00")]
-        [DataRow(99999, 59, 0, "99999:59:00")]
-        public void TimePeriod_params_ToString(long h, long m, long s, string expectedToString)
+        [DataRow(1, 1, 1, 1, "01:01:01:001")]
+        [DataRow(13, 15, 12, 14, "13:15:12:014")]
+        [DataRow(23, 59, 59, 999, "23:59:59:999")]
+        [DataRow(0, 59, 0, 242, "00:59:00:242")]
+        [DataRow(1000, 59, 0, 0, "1000:59:00:000")]
+        [DataRow(99999, 59, 0, 5, "99999:59:00:005")]
+        public void TimePeriod_params_ToString(long h, long m, long s, long milli, string expectedToString)
         {
-            TimePeriod timePeriod = new TimePeriod(h, m, s);
+            TimePeriod timePeriod = new TimePeriod(h, m, s, milli);
             Assert.AreEqual(timePeriod.ToString(), expectedToString);
 
             TimePeriod timePeriod2 = new TimePeriod();
-            Assert.AreEqual(timePeriod2.ToString(), "00:00:00");
+            Assert.AreEqual(timePeriod2.ToString(), "00:00:00:000");
         }
     }
 
@@ -147,17 +169,17 @@ namespace TimeTimePeriod_UnitTests
     {
 
         [DataTestMethod, TestCategory("Equals")]
-        [DataRow("1:1:1", 1, 1, 1)]
-        [DataRow("23:59:59", 23, 59, 59)]
-        [DataRow("2:59:59", 2, 59, 59)]
-        [DataRow("::", 0, 0, 0)]
-        [DataRow("2000:59:59", 2000, 59, 59)]
-        [DataRow("123456::", 123456, 0, 0)]
-        public void TimePeriod_Equals_And_Overloaded_Operator(string timeS, long h, long m, long s)
+        [DataRow("1:1:1:1", 1, 1, 1, 1)]
+        [DataRow("23:59:59:999", 23, 59, 59, 999)]
+        [DataRow("2:59:59:993", 2, 59, 59, 993)]
+        [DataRow(":::", 0, 0, 0, 0)]
+        [DataRow("2000:59:59:1", 2000, 59, 59, 1)]
+        [DataRow("123456:::", 123456, 0, 0, 0)]
+        public void TimePeriod_Equals_And_Overloaded_Operator(string timeS, long h, long m, long s, long milli)
         {
             TimePeriod time1 = new TimePeriod(timeS);
-            TimePeriod time2 = new TimePeriod(h, m, s);
-            TimePeriod time3 = new TimePeriod(9, 9, 9);
+            TimePeriod time2 = new TimePeriod(h, m, s, milli);
+            TimePeriod time3 = new TimePeriod(9, 9, 9, 9);
 
             Assert.AreEqual(time1.Equals(time2), true);
             Assert.AreEqual(Equals(time1, time2), true);
@@ -178,19 +200,19 @@ namespace TimeTimePeriod_UnitTests
     {
 
         [DataTestMethod, TestCategory("Compare")]
-        [DataRow("1:1:1", "2:2:2")]
-        [DataRow("23:59:58", "23:59:59")]
-        [DataRow("2:59:59", "3::")]
-        [DataRow("2:58:59", "2:59:58")]
-        [DataRow("::", "::1")]
-        [DataRow("123456:59:58", "123456:59:59")]
-        [DataRow("11112:58:59", "11112:59:58")]
+        [DataRow("1:1:1:1", "2:2:2:2")]
+        [DataRow("23:59:59:998", "23:59:59:999")]
+        [DataRow("2:59:59:999", "3:::")]
+        [DataRow("2:58:59:999", "2:59:58:998")]
+        [DataRow(":::", ":::1")]
+        [DataRow("123456:59:58:999", "123456:59:59:999")]
+        [DataRow("11112:58:59:111", "11112:59:58:111")]
         public void TimePeriod_CompareTo_And_Overloaded_Operator(string timeS1, string timeS2)
         {
             TimePeriod time1 = new TimePeriod(timeS1);
             TimePeriod time2 = new TimePeriod(timeS2);
 
-            TimePeriod time3 = new TimePeriod("::");
+            TimePeriod time3 = new TimePeriod(":::");
             TimePeriod time4 = new TimePeriod();
 
             Assert.AreEqual(time1.CompareTo(time2), -1);
@@ -217,10 +239,11 @@ namespace TimeTimePeriod_UnitTests
     public class UnitTestsTimePeriodOperations
     {
         [DataTestMethod, TestCategory("Operations")]
-        [DataRow("1:1:1", "2:2:2", "03:03:03")]
-        [DataRow("23:59:58", "23:59:59", "47:59:57")]
-        [DataRow("::", "::1", "00:00:01")]
-        [DataRow("12345:59:59", "12345:59:59", "24691:59:58")]
+        [DataRow("1:1:1:1", "2:2:2:2", "03:03:03:003")]
+        [DataRow("23:59:58:001", "23:59:59:0019", "47:59:57:020")]
+        [DataRow(":::", ":::1", "00:00:00:001")]
+        [DataRow("12345:59:59:", "12345:59:59:", "24691:59:58:000")]
+        [DataRow("900:1:1:999", ":::1", "900:1:2:000")]
         public void TimePeriod_Plus(string timeS1, string timeS2, string timeS3)
         {
             TimePeriod time1 = new TimePeriod(timeS1);
@@ -233,8 +256,8 @@ namespace TimeTimePeriod_UnitTests
         }
 
         [DataTestMethod, TestCategory("Operations")]
-        [DataRow("2:2:2", "1:1:1", "01:01:01")]
-        [DataRow("23:59:59", "00:59:59", "23:00:00")]
+        [DataRow("2:2:2:2", "1:1:1:1", "01:01:01:001")]
+        [DataRow("23:59:59:999", "00:59:59:999", "23:00:00:000")]
         public void TimePeriod_Minus(string timeS1, string timeS2, string timeS3)
         {
             TimePeriod time1 = new TimePeriod(timeS1);

@@ -98,11 +98,11 @@ namespace TimeTimePeriod_UnitTests
     {
 
         [DataTestMethod, TestCategory("ToString")]
-        [DataRow("1:1:1", "01:01:01")]
-        [DataRow("23:59:59", "23:59:59")]
-        [DataRow("2:59:59", "02:59:59")]
-        [DataRow("12:25:", "12:25:00")]
-        [DataRow("::", "00:00:00")]
+        [DataRow("1:1:1:1", "01:01:01:001")]
+        [DataRow("23:59:59:999", "23:59:59:999")]
+        [DataRow("2:59:59:21", "02:59:59:021")]
+        [DataRow("12:25::", "12:25:00:000")]
+        [DataRow(":::", "00:00:00:000")]
         public void Time_StringParams_ToString(string timeS, string expectedToString)
         {
             Time time = new Time(timeS);
