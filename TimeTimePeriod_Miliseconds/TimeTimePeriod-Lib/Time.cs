@@ -140,7 +140,7 @@ namespace TimeTimePeriod_Lib
         /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
         public override bool Equals(object obj)
         {
-            if(obj is Time) return base.Equals(obj);
+            if (obj is Time) return base.Equals(obj);
             return false;
         }
 
@@ -156,7 +156,7 @@ namespace TimeTimePeriod_Lib
         /// </returns>
         public int CompareTo(Time other)
         {
-            if(Equals(other)) return 0;
+            if (Equals(other)) return 0;
 
             if (Hours > other.Hours)
                 return 1;
@@ -181,7 +181,7 @@ namespace TimeTimePeriod_Lib
                     if (Milliseconds > other.Milliseconds)
                         return 1;
             }
-               
+
             return -1;
         }
 
@@ -238,7 +238,7 @@ namespace TimeTimePeriod_Lib
             long hours = (millisecondsSum);
 
             if (time.Seconds + timePeriod.Seconds > 60) minutes++;
-            if (time.Minutes + timePeriod.Minutes > 60) hours += 60000; 
+            if (time.Minutes + timePeriod.Minutes > 60) hours += 60000;
 
             hours /= 3600000;
             hours %= 24;
@@ -304,4 +304,3 @@ namespace TimeTimePeriod_Lib
         public Time Minus(TimePeriod timePeriod) => this - timePeriod;
     }
 }
-
