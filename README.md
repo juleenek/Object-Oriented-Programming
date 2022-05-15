@@ -19,3 +19,7 @@
 ## Zadanie: Time and TimePeriod
 
 [C#-Lab: Implementacja Time, TimePeriod](https://github.com/wsei-csharp201/cs-lab-Time-and-TimePeriod)
+
+## Zadanie: Implementacja IDisposable 
+
+[Implementacja IDisposable - obsługa plików i folderów tymczasowych](https://github.com/wsei-csharp201/cs-lab-TempElementsFramework)
