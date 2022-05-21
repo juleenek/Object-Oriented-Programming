@@ -23,9 +23,9 @@ namespace TempElementsLib.src
             Console.WriteLine($"File {FilePath} created");
         }
 
-        public void AddText(string value)
+        public void AddText(string text)
         {
-            byte[] info = new UTF8Encoding(true).GetBytes(value);
+            byte[] info = new UTF8Encoding(true).GetBytes(text);
             fileStream.Write(info, 0, info.Length);
             fileStream.Flush();
         }
