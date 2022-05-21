@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using TimeTimePeriod_Lib;
 
 namespace TimeTimePeriod
@@ -7,93 +8,75 @@ namespace TimeTimePeriod
     {
         static void Main(string[] args)
         {
-            // Ogólne
+            Console.WriteLine("Witaj!\nJeśli chcesz użyć zegara, wciśnij \"Z\", jeśli chcesz użyć stopera wciśnij \"S\"");
 
-            //var time = new Time("1:2:1");
-            //var time = new Time("11:2:1");
-            //var time = new Time("11::");
-            //var time = new Time("::");
-            //Console.WriteLine(time);
+            ConsoleKeyInfo key = Console.ReadKey();
 
-            // Equals
+            while (key.KeyChar.ToString() != "Z" && key.KeyChar.ToString() != "S" && key.KeyChar.ToString() != "s" && key.KeyChar.ToString() != "z")
+            {
+                Console.WriteLine("\nZły znak\nJeśli chcesz użyć zegara, wciśnij \"Z\", jeśli chcesz użyć stopera wciśnij \"S\"");
+                key = Console.ReadKey();
+            }
 
-            //var time1 = new Time("::");
-            //var time2 = new Time(0);
+            // ZEGAR 
 
-            //var time1 = new Time("::1");
-            //var time2 = new Time(0, seconds: 1);
-            //Console.WriteLine(time1.Equals(time2));
+            if (key.KeyChar.ToString() == "Z" || key.KeyChar.ToString() == "z")
+            {
+                Console.WriteLine("\nWybrany został zegar, wprowadź godzinę w formacie \"HH:MM:SS\"");
 
-            // CompareTo
+                while (true)
+                {
+                    var input = Console.ReadLine();
 
-            //var time1 = new Time("1::");
-            //var time2 = new Time(1, seconds: 1);
+                    try
+                    {
+                        Time time = new Time(input);
+                        while (true)
+                        {
+                            time += new TimePeriod(0, 0, 1);
+                            Thread.Sleep(1000);
+                            Console.WriteLine(time);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Wprowadź pooprawny format");
+                    }
+                }
+            }
 
-            //var time1 = new Time("::1");
-            //var time2 = new Time(1, seconds: 1);
+            // STOPER
 
-            //var time1 = new Time("::1");
-            //var time2 = new Time(seconds: 1);
+            if (key.KeyChar.ToString() == "S" || key.KeyChar.ToString() == "s")
+            {
+                Console.WriteLine("\nWybrany został stoper\n" +
+                    "Po uruchomieniu stopera, w celu jego zatrzymania wciśnij dowolny klawisz");
+                Thread.Sleep(2000);
+                while (true)
+                {
 
-            //var time1 = new Time("19::59");
-            //var time2 = new Time(19, 1);
+                    try
+                    {
+                        Time time = new Time("::");
 
-            //Console.WriteLine(time1.CompareTo(time2));
-
-            // Operators
-
-            //var time1 = new Time("19:1:");
-            //var time2 = new Time(19, 1);
-            //var time1 = new Time("19:1:");
-            //var time2 = new Time(19, 0, 59);
-
-            //Console.WriteLine(time1 == time2);
-            //Console.WriteLine(time1 != time2);
-            //Console.WriteLine(time1 > time2);
-            //Console.WriteLine(time1 >= time2);
-            //Console.WriteLine(time1 < time2);
-            //Console.WriteLine(time1 <= time2);
-
-            ///////////////////////////////////////////////////////////////////////////////
-
-            // TimePeriod
-
-            //var timeP = new TimePeriod(27, 2);
-            //var timeP = new TimePeriod("20939:23:");
-            //var timeP = new TimePeriod("20939::");
-            //Console.WriteLine(timeP);
-
-            // Time + TimePeriod
-
-            //var time = new Time(23, 40, 6);
-            //var timePeriod = new TimePeriod(2, 30, 20);
-            //Console.WriteLine(time + timePeriod);
-
-            //var time = new Time(23, 40, 6);
-            //var timePeriod = new TimePeriod(30, 59, 59);
-            //Console.WriteLine(time + timePeriod); ;
-
-            //var time = new Time(23, 40, 6);
-            //var timePeriod = new TimePeriod(90, 59, 59);
-            //Console.WriteLine(time + timePeriod);
-            //Console.WriteLine(time.Plus(timePeriod));
-            //Console.WriteLine(Time.Plus(time, timePeriod));
-
-            //var time = new Time(23, 40, 6);
-            //var timePeriod = new TimePeriod(90, 59, 59);
-            //Console.WriteLine(time - timePeriod);
-            //Console.WriteLine(time.Minus(timePeriod));
-            //Console.WriteLine(Time.Minus(time, timePeriod));
-
-            //var timeP1 = new TimePeriod(27, 2);
-            //var timeP2 = new TimePeriod("432000:10:00");
-            //var timeP3 = new TimePeriod("220:59:00");
-            //Console.WriteLine($"{timeP2} {timeP3} {timeP2 - timeP3}");
-
-
-            Time time1 = new Time("23:53:54");
-            TimePeriod time2 = new TimePeriod("::1");
-            Console.WriteLine(time1 + time2 );
+                        while (true)
+                        {
+                            time += new TimePeriod(0, 0, 1);
+                            Thread.Sleep(1000);
+                            Console.WriteLine(time);
+                            if (Console.KeyAvailable == true)
+                            {
+                                Console.WriteLine("Stoper zatrzymany");
+                                return;
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Wprowadź pooprawny format");
+                    }
+                }
+            }
         }
     }
 }

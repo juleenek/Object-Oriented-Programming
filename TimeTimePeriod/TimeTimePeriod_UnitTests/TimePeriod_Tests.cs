@@ -183,7 +183,7 @@ namespace TimeTimePeriod_UnitTests
         [DataRow("2:59:59", "3::")]
         [DataRow("2:58:59", "2:59:58")]
         [DataRow("::", "::1")]
-        [DataRow("123456:59:59", "123456:59:58")]
+        [DataRow("123456:59:58", "123456:59:59")]
         [DataRow("11112:58:59", "11112:59:58")]
         public void TimePeriod_CompareTo_And_Overloaded_Operator(string timeS1, string timeS2)
         {
