@@ -32,23 +32,25 @@ namespace TimeTimePeriod_Lib
         public readonly byte Seconds => seconds;
 
         /// <summary>
-        /// Representation of miliseconds over time, read-only field
+        /// Representation of milliseconds over time, read-only field
         /// </summary>
         public readonly int Milliseconds => milliseconds;
 
         /// <summary>
         /// Constructor of Time struct that takes into account three variants of initializing
-        /// Three parameters: hours, minutes, seconds
-        /// Two parameters: hours, minutes (default value of seconds is 0)  
-        /// One parameter: hours (default value of minutes and seconds is 0)  
+        /// Four parameters: hours, minutes, seconds, milliseconds
+        /// Three parameters: hours, minutes, seconds, milliseconds (default value of milliseconds is 0)  
+        /// Two parameters: hours, minutes (default value of seconds is 0), milliseconds (default value of milliseconds is 0) 
+        /// One parameter: hours (default value of minutes and seconds is 0), milliseconds (default value of milliseconds is 0) 
         /// </summary>
         /// <exception cref="ArgumentException">
-        /// Thrown when parameters are not in range  00:00:00… 23:59:59
+        /// Thrown when parameters are not in range  00:00:00:000 … 23:59:59:999
         /// The "TimeParamsCheck" method is used to throw this exception when the arguments are invalid
         /// </exception>
         /// <param name="hours"> Representation of hours over time </param>
         /// <param name="minutes"> Representation of minutes over time </param>
         /// <param name="seconds"> Representation of seconds over time </param>
+        /// <param name="milliseconds"> Representation of milliseconds over time </param>
         public Time(byte hours = 0, byte minutes = 0, byte seconds = 0, int milliseconds = 0)
         {
             TimeParamsCheck(hours, minutes, seconds, milliseconds);
@@ -60,13 +62,13 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// Constructor of Time struct, which takes a String parameter with the format hh:mm:ss
+        /// Constructor of Time struct, which takes a String parameter with the format HH:MM:SS:mmm
         /// </summary>
         /// <exception cref="FormatException">
-        /// Thrown when the parameter does not match the format hh:mm:ss
+        /// Thrown when the parameter does not match the format HH:MM:SS:mmm
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when parameters are not in range  00:00:00… 23:59:59
+        /// Thrown when parameters are not in range  00:00:00:000 … 23:59:59:999
         /// The "TimeParamsCheck" method is used to throw this exception when the arguments are invalid
         /// </exception>
         /// <param name="time"> Representation of a point in time as String </param>
@@ -106,12 +108,13 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// A private method that checks if the arguments (hours, minutes, seconds) are valid.
+        /// A private method that checks if the arguments (hours, minutes, seconds, milliseconds) are valid.
         /// Method was used in constructors. 
         /// </summary>
         /// <param name="hours"> Representation of hours over time </param>
         /// <param name="minutes"> Representation of minutes over time </param>
         /// <param name="seconds"> Representation of seconds over time </param>
+        /// <param name="milliseconds"> Representation of milliseconds over time </param>
         static private void TimeParamsCheck(byte hours, byte minutes, byte seconds, int milliseconds)
         {
             if (hours >= 24 || hours < 0) throw new ArgumentException("Hours was entered incorrectly.");
@@ -123,21 +126,21 @@ namespace TimeTimePeriod_Lib
         /// <summary>
         /// Overriding ToString method
         /// </summary>
-        /// <returns> Returns the standard text representation of time in the format hh:mm:ss </returns>
+        /// <returns> Returns the standard text representation of time in the format HH:MM:SS:mmm </returns>
         public override string ToString() => $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}:{Milliseconds:D3}";
 
         /// <summary>
         /// Implemented IEquatable<Time> interface
         /// </summary>
         /// <param name="other"> Comparison object of Time type </param>
-        /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
+        /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes, seconds and milliseconds) </returns>
         public bool Equals(Time other) => (Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds && Milliseconds == other.Milliseconds);
 
         /// <summary>
         /// Overloaded Equals method
         /// </summary>
         /// <param name="obj"> Comparison object </param>
-        /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes and seconds) </returns>
+        /// <returns> Returns bool if both objects are equal - have the same parameters (hours, minutes, seconds and milliseconds) </returns>
         public override bool Equals(object obj)
         {
             if (obj is Time) return base.Equals(obj);

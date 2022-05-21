@@ -30,13 +30,17 @@ namespace TimeTimePeriod_Lib
         /// </summary>
         public readonly long Seconds => (periodMilliseconds / 1000) % 60;
 
+        /// <summary>
+        /// Representation of milliseconds in a time period, read-only field
+        /// </summary>
         public readonly long Milliseconds => periodMilliseconds % 1000;
 
         /// <summary>
         /// Constructor of TimePeriod struct that takes into account three variants of initializing
-        /// Three parameters: hours, minutes, seconds
-        /// Two parameters: hours, minutes (default value of seconds is 0)  
-        /// One parameter: hours (default value of minutes and seconds is 0)  
+        /// Four parameters: hours, minutes, seconds, milliseconds
+        /// Three parameters: hours, minutes, seconds, milliseconds (default value of milliseconds is 0)  
+        /// Two parameters: hours, minutes (default value of seconds is 0), milliseconds (default value of milliseconds is 0)  
+        /// One parameter: hours (default value of minutes and seconds is 0), milliseconds (default value of milliseconds is 0)  
         /// </summary>
         /// <exception cref="ArgumentException">
         /// Thrown when parameters are negative and when minutes and seconds are greater than 59
@@ -45,6 +49,7 @@ namespace TimeTimePeriod_Lib
         /// <param name="hours"> Representation of hours in a time period </param>
         /// <param name="minutes"> Representation of minutes in a time period </param>
         /// <param name="seconds"> Representation of seconds in a time period </param>
+        /// <param name="milliseconds"> Representation of milliseconds in a time period </param>
         public TimePeriod(long hours = 0, long minutes = 0, long seconds = 0, long milliseconds = 0)
         {
             TimePeriodParamsCheck(hours, minutes, seconds, milliseconds);
@@ -52,9 +57,9 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// Constructor of TimePeriod struct, which takes a time period seconds
+        /// Constructor of TimePeriod struct, which takes a time period milliseconds
         /// </summary>
-        /// <param name="seconds"> Time period seconds parameter </param>
+        /// <param name="periodMilliseconds"> Time period milliseconds parameter </param>
         public TimePeriod(long periodMilliseconds)
         {
             if (periodMilliseconds < 0) throw new ArgumentException("Milliseconds must be positive.");
@@ -83,10 +88,10 @@ namespace TimeTimePeriod_Lib
         }
 
         /// <summary>
-        /// Constructor of TimePeriod struct, which takes a String parameter with the format hh:mm:ss
+        /// Constructor of TimePeriod struct, which takes a String parameter with the format HH:MM:SS:mmm
         /// </summary>
         /// <exception cref="FormatException">
-        /// Thrown when the parameter does not match the format hh:mm:ss
+        /// Thrown when the parameter does not match the format HH:MM:SS:mmm
         /// </exception>
         /// <exception cref="ArgumentException">
         /// Thrown when parameters are negative and when minutes and seconds are greater than 59
@@ -130,6 +135,7 @@ namespace TimeTimePeriod_Lib
         /// <param name="hours"> Representation of hours in a time period </param>
         /// <param name="minutes"> Representation of minutes in a time period </param>
         /// <param name="seconds"> Representation of seconds in a time period </param>
+        /// <param name="milliseconds"> Representation of milliseconds in a time period </param>
         static private void TimePeriodParamsCheck(long hours, long minutes, long seconds, long milliseconds)
         {
             if (hours < 0) throw new ArgumentException("Hours was entered incorrectly.");
@@ -141,21 +147,21 @@ namespace TimeTimePeriod_Lib
         /// <summary>
         /// Overriding ToString method
         /// </summary>
-        /// <returns> Returns the standard text representation of time period in the format hh:mm:ss </returns>
+        /// <returns> Returns the standard text representation of time period in the format HH:MM:SS:mmm </returns>
         public override string ToString() => $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}:{Milliseconds:D3}";
 
         /// <summary>
         /// Implemented IEquatable<TimePeriod> interface
         /// </summary>
         /// <param name="other"> Comparison object of TimePeriod type </param>
-        /// <returns> Returns bool if both objects are equal - have the same parameter PeriodSecond </returns>
+        /// <returns> Returns bool if both objects are equal - have the same parameter PeriodMilliecond </returns>
         public bool Equals(TimePeriod other) => PeriodMilliseconds == other.PeriodMilliseconds;
 
         /// <summary>
         /// Overloaded Equals method
         /// </summary>
         /// <param name="obj"> Comparison object </param>
-        /// <returns> Returns bool if both objects are equal - have the same parameter PeriodSecond </returns>
+        /// <returns> Returns bool if both objects are equal - have the same parameter PeriodMillisecond </returns>
         public override bool Equals(object obj)
         {
             if (obj is TimePeriod) return base.Equals(obj);
