@@ -48,21 +48,19 @@ namespace TimeTimePeriod
 
             if (key.KeyChar.ToString() == "S" || key.KeyChar.ToString() == "s")
             {
-                Console.WriteLine("\nWybrany został stoper, wprowadź godzinę w formacie \"HH:MM:SS:mmm\"\n" +
+                Console.WriteLine("\nWybrany został stoper\n" +
                     "Po uruchomieniu stopera, w celu jego zatrzymania wciśnij dowolny klawisz");
-
+                Thread.Sleep(2000);
                 while (true)
                 {
-                    var input = Console.ReadLine();
 
                     try
                     {
-                        Time time = new Time(input);
+                        Time time = new Time(":::");
 
                         while (true)
                         {                      
                             time += new TimePeriod(0, 0, 0, 1);
-                            Thread.Sleep(1);
                             Console.WriteLine(time);
                             if (Console.KeyAvailable == true)
                             {
