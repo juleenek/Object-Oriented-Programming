@@ -14,6 +14,8 @@ namespace TempElementsLib.src
         public readonly FileInfo fileInfo;
         public bool IsDestroyed => !fileInfo.Exists;
         public string FilePath => fileInfo.FullName;
+
+        public TempFile() : this(Path.GetTempFileName()) { }
         public TempFile(string fileName)
         {
             fileInfo = new FileInfo(fileName);
@@ -22,6 +24,8 @@ namespace TempElementsLib.src
                 FileAccess.ReadWrite);
             Console.WriteLine($"File {FilePath} created");
         }
+
+        ~TempFile() => Dispose(false);  // Destructor
 
         public void AddText(string text)
         {
@@ -32,10 +36,21 @@ namespace TempElementsLib.src
 
         public void Dispose()
         {
-            if (!IsDestroyed) fileStream.Dispose();
-            if (!IsDestroyed) fileInfo.Delete();
-
-            Console.WriteLine($"File disposed");
+            Dispose(true);
+        }
+        public void Dispose(bool disposing)
+        {
+            if (disposing)
+                fileStream?.Dispose();
+            try
+            {
+                fileInfo?.Delete();
+                Console.WriteLine($"File disposed");
+            }
+            catch (IOException exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.IO;
 using TempElementsLib.src;
 
 namespace TempElements
 {
     class Program
     {
-        static void Zadanie1()
+        static void Zadanie1_TempFile()
         {
             using (var tmpFile = new TempFile("ccc.tmp"))
             {
@@ -24,7 +25,7 @@ namespace TempElements
             tmpFile2.fileStream.WriteByte(63);
         }
 
-        static void Zadanie1_Try()
+        static void Zadanie1_Try_TempFile()
         {
             TempFile tmpFile = new TempFile("ccc.tmp");
             try
@@ -39,10 +40,30 @@ namespace TempElements
                 Console.WriteLine($"{exception.Message} Zgłoszony wyjątek, nie można uzyskać dostępu do usuniętego pliku");
             }
         }
+        static void Zadanie2_TempTxtFile()
+        {
+            using (TempTxtFile tmpTxtFile = new TempTxtFile("ccc.tmp"))
+            {
+                tmpTxtFile.Write("Test12");
+                tmpTxtFile.WriteLine("3");
+                tmpTxtFile.Write("Test4");
+                tmpTxtFile.WriteLine("56");
+                tmpTxtFile.Write("Test");
+                tmpTxtFile.WriteLine("789");
+
+                Console.WriteLine("-------");
+                tmpTxtFile.ReadLine();
+                Console.WriteLine("-------");
+                tmpTxtFile.ReadAllText();
+                //Console.WriteLine(tmpTxtFile.Read());
+                //Console.WriteLine(tmpTxtFile.ReadAllText());
+            }
+        }
         static void Main(string[] args)
         {
-            Zadanie1();
-            Zadanie1_Try();
+            //Zadanie1_TempFile();
+            //Zadanie1_Try_TempFile();
+            Zadanie2_TempTxtFile();
         }
     }
 }
