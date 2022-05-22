@@ -53,10 +53,11 @@ namespace TempElements
 
                 Console.WriteLine("-------");
                 tmpTxtFile.ReadLine();
+                tmpTxtFile.ReadLine();
+                tmpTxtFile.ReadLine();
                 Console.WriteLine("-------");
                 tmpTxtFile.ReadAllText();
-                //Console.WriteLine(tmpTxtFile.Read());
-                //Console.WriteLine(tmpTxtFile.ReadAllText());
+        
             }
         }
         static void Main(string[] args)

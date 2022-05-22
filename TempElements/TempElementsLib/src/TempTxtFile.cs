@@ -9,6 +9,7 @@ namespace TempElementsLib.src
 {
     public class TempTxtFile : TempFile
     {
+
         private TextReader txtReader;
         private TextWriter txtWriter;
 
@@ -45,11 +46,7 @@ namespace TempElementsLib.src
         public void ReadLine()
         {
             fileStream.Position = 0;
-            string line;
-            while ((line = txtReader.ReadLine()) != null)
-            {
-                Console.WriteLine(line);
-            }         
+            Console.WriteLine(txtReader.ReadLine());       
         }
     }
 }
