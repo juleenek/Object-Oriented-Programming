@@ -25,7 +25,7 @@ namespace TempElementsLib.src
             Console.WriteLine($"File {FilePath} created");
         }
 
-        ~TempFile() => Dispose(false);  // Destructor
+        ~TempFile() => Dispose(false);  
 
         public void AddText(string text)
         {
@@ -33,7 +33,7 @@ namespace TempElementsLib.src
             fileStream.Write(info, 0, info.Length);
             fileStream.Flush();
         }
-
+        
         public void Dispose()
         {
             Dispose(true);
@@ -49,7 +49,7 @@ namespace TempElementsLib.src
             }
             catch (IOException exception)
             {
-                Console.WriteLine(exception);
+                Console.WriteLine(exception.Message);
             }
         }
     }

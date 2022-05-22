@@ -56,15 +56,22 @@ namespace TempElements
                 tmpTxtFile.ReadLine();
                 tmpTxtFile.ReadLine();
                 Console.WriteLine("-------");
-                tmpTxtFile.ReadAllText();
-        
+                tmpTxtFile.ReadAllText();      
+            }
+        }
+        static void Zadanie3_TempDir()
+        {
+            using (TempDir tmpDir = new TempDir())
+            {
+                Console.WriteLine("Path:" + tmpDir.DirPath);
             }
         }
         static void Main(string[] args)
         {
             //Zadanie1_TempFile();
             //Zadanie1_Try_TempFile();
-            Zadanie2_TempTxtFile();
+            //Zadanie2_TempTxtFile();
+            Zadanie3_TempDir();
         }
     }
 }
