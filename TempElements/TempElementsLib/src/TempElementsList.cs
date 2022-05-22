@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using TempElementsLib.src;
 using TempElementsLib.src.Interfaces;
 
 namespace TempElementsLib
@@ -11,16 +13,25 @@ namespace TempElementsLib
 
         public IReadOnlyCollection<ITempElement> Elements => elements;
 
-        ~TempElementsList() => throw new NotImplementedException();
+        ~TempElementsList() => Dispose();
 
         public T AddElement<T>() where T : ITempElement, new()
-            => throw new NotImplementedException();
+        {
+            T element = new T();
+            elements.Add(element);
+            return element;
+        }
 
         public void DeleteElement<T>(T element) where T : ITempElement, new()
-            => throw new NotImplementedException();
+        {
+            elements.Remove(element);
+            element.Dispose();
+        }
 
         public void MoveElementTo<T>(T element, string newPath) where T : ITempElement, new()
-            => throw new NotImplementedException();
+        {
+            // ...
+        }
 
         public void RemoveDestroyed()
             => throw new NotImplementedException();
