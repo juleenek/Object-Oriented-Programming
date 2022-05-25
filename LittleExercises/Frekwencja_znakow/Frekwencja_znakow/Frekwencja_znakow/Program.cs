@@ -172,6 +172,7 @@ namespace Frekwencja_znakow
         static void Main(string[] args)
         {
             int testCases = int.Parse(Console.ReadLine());
+            if (testCases < 1 || testCases > 100) throw new Exception();
 
             for (int i = 0; i < testCases; i++)
             {
@@ -180,6 +181,9 @@ namespace Frekwencja_znakow
 
                 List<char> letters = new List<char>();
                 var query = queryInput.Split(' ');
+                int n = int.Parse(query[1]);
+
+                if(n < 1 || n > 1000) throw new Exception();
 
                 for (int j = 0; j < text.Length; j++)
                 {
@@ -189,38 +193,62 @@ namespace Frekwencja_znakow
                 var results = letters.GroupBy(c => c)
                          .ToDictionary(g => g.Key, g => g.Count());
 
-                Dictionary<char, int> firstSort = new Dictionary<char, int>();
+                Dictionary<char, int> sorted = new Dictionary<char, int>();
 
                 switch (query[2])
                 {
                     case "byfreq":
                         if (4 < query.Length && 5 < query.Length)
                         {
-                            if (query[3] == "asc") firstSort = SortByFreqency("asc", results, query[4], query[5]);
-                            if (query[3] == "desc") firstSort = SortByFreqency("desc", results, query[4], query[5]);
+                            if (query[3] == "asc") sorted = SortByFreqency("asc", results, query[4], query[5]);
+                            if (query[3] == "desc") sorted = SortByFreqency("desc", results, query[4], query[5]);
                             break;
                         }
-                        if (query[3] == "asc") firstSort = SortByFreqency("asc", results);
-                        if (query[3] == "desc") firstSort = SortByFreqency("desc", results);
+                        if (query[3] == "asc") sorted = SortByFreqency("asc", results);
+                        if (query[3] == "desc") sorted = SortByFreqency("desc", results);
                         break;
 
                     case "byletter":
                         if (4 < query.Length && 5 < query.Length)
                         {
-                            if (query[3] == "asc") firstSort = SortByLetter("asc", results, query[4], query[5]);
-                            if (query[3] == "desc") firstSort = SortByLetter("desc", results, query[4], query[5]);
+                            if (query[3] == "asc") sorted = SortByLetter("asc", results, query[4], query[5]);
+                            if (query[3] == "desc") sorted = SortByLetter("desc", results, query[4], query[5]);
                             break;
                         }
-                        if (query[3] == "asc") firstSort = SortByLetter("asc", results);
-                        if (query[3] == "desc") firstSort = SortByLetter("desc", results);
+                        if (query[3] == "asc") sorted = SortByLetter("asc", results);
+                        if (query[3] == "desc") sorted = SortByLetter("desc", results);
                         break;
                 }
 
-                foreach (var item in firstSort)
+                if(query[0] == "first")
                 {
-                    Console.WriteLine(item);
+                    var result = sorted.Take(n);
+
+                    foreach (var item in result)
+                    {
+                        Console.WriteLine($"{item.Key} {item.Value}");
+                    }
+                } 
+
+                if(query[0] == "last")
+                {
+                    try
+                    {
+                        for (int j = sorted.Count - n; j < sorted.Count; j++)
+                        {
+                            Console.WriteLine($"{sorted.ElementAt(j).Key} {sorted.ElementAt(j).Value}");
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        for (int j = 0; j < sorted.Count; j++)
+                        {
+                            Console.WriteLine($"{sorted.ElementAt(j).Key} {sorted.ElementAt(j).Value}");
+                        }
+                    }
                 }
 
+                if (i != testCases - 1) Console.WriteLine();
             }
         }
     }
