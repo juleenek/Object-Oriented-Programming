@@ -5,7 +5,7 @@ namespace BitMatrix
 {
     class Program
     {
-        public partial class BitMatrix
+        public partial class BitMatrix : IEquatable<BitMatrix>
         {
             private BitArray data;
             public int NumberOfRows { get; }
@@ -20,6 +20,90 @@ namespace BitMatrix
                 data = new BitArray(numberOfRows * numberOfColumns, BitToBool(defaultValue));
                 NumberOfRows = numberOfRows;
                 NumberOfColumns = numberOfColumns;
+            }
+
+            public BitMatrix(int numberOfRows, int numberOfColumns, params int[] bits)
+            {
+                if (numberOfRows < 1 || numberOfColumns < 1)
+                    throw new ArgumentOutOfRangeException("Incorrect size of matrix");
+
+                if (bits == null || bits.Length == 0)
+                {
+                    data = new BitArray(numberOfRows * numberOfColumns, BitToBool(0));
+                }
+                if (bits != null && bits.Length != 0)
+                {
+                    data = new BitArray(numberOfRows * numberOfColumns, BitToBool(0));
+                    for (int i = 0; i < bits.Length; i++)
+                    {
+                        if (i < data.Length)
+                        {
+                            if(bits[i] == 0)
+                            {
+                                data[i] = BitToBool(0);
+                            }
+                            else
+                            {
+                                data[i] = BitToBool(1);
+                            }
+                           
+                        }
+                    }
+                }
+
+                NumberOfRows = numberOfRows;
+                NumberOfColumns = numberOfColumns;
+            }
+
+            public BitMatrix(int[,] bits)
+            {
+                if (bits == null) throw new NullReferenceException();
+                if (bits.Length == 0) throw new ArgumentOutOfRangeException();
+
+                NumberOfRows = bits.GetLength(0);
+                NumberOfColumns = bits.GetLength(1);
+                data = new BitArray(NumberOfRows * NumberOfColumns, BitToBool(0));
+                int index = 0;
+
+                for (int i = 0; i < NumberOfRows; i++)
+                {
+                    for (int j = 0; j < NumberOfColumns; j++)
+                    {
+                        if (bits[i, j] == 0)
+                        {
+                            data[index] = BitToBool(0);
+                        }
+                        else
+                        {
+                            data[index] = BitToBool(1);
+                        }
+                        index++;
+                    }                  
+                }
+
+            }
+
+            public BitMatrix(bool[,] bits)
+            {
+                if (bits == null) throw new NullReferenceException();
+                if (bits.Length == 0) throw new ArgumentOutOfRangeException();
+
+                NumberOfRows = bits.GetLength(0);
+                NumberOfColumns = bits.GetLength(1);
+                data = new BitArray(NumberOfRows * NumberOfColumns, BitToBool(0));
+                int index = 0;
+
+                for (int i = 0; i < NumberOfRows; i++)
+                {
+                    for (int j = 0; j < NumberOfColumns; j++)
+                    {
+                        if (data.Length >= bits.Length)
+                        {
+                            data[index] = bits[i, j];
+                        }
+                        index++;
+                    }
+                }
             }
 
             public static int BoolToBit(bool boolValue) => boolValue ? 1 : 0;
@@ -40,17 +124,50 @@ namespace BitMatrix
 
                 return result;
             }
+
+            public bool Equals(BitMatrix other)
+            {
+                if (ReferenceEquals(other, null)) return false;
+                if (!(other is BitMatrix)) return false;
+
+                if (NumberOfColumns == other.NumberOfColumns && NumberOfRows == other.NumberOfRows)
+                {
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        if (data[i] == other.data[i]) return true;
+                    }
+                }
+                return false;
+            }
+            public override bool Equals(object obj)
+            {
+                if (obj is BitMatrix) return base.Equals(obj);
+                return false;
+            }
+
+            public static bool operator ==(BitMatrix first, BitMatrix second)
+            {
+                if (ReferenceEquals(first, null) && ReferenceEquals(second, null)) return true;
+                if (ReferenceEquals(first, null)) return false;
+                if (ReferenceEquals(second, null)) return false;
+                return first.Equals(second);
+            }
+            public static bool operator !=(BitMatrix first, BitMatrix second) => !(first == second);
+
+            public override int GetHashCode() => (data, NumberOfRows, NumberOfColumns).GetHashCode();
+
         }
         static void Main(string[] args)
         {
-            // macierz bitów 4x3 wypełniona
-            // domyślną wartością
-            var m = new BitMatrix(4, 3);
-            Console.WriteLine(m.ToString());
+            // operator `==`, `!=`
+            // jeden `null`
+            BitMatrix m1 = new BitMatrix(1, 1);
+            BitMatrix m2 = null;
+            Console.WriteLine(m1 == m2);
+            Console.WriteLine(m1 != m2);
+            Console.WriteLine(m2 == m1);
+            Console.WriteLine(m2 != m1);
 
-            // macierz bitów 3x4 wypełniona 1
-            m = new BitMatrix(3, 4, 1);
-            Console.WriteLine(m);
         }
     }
 }
