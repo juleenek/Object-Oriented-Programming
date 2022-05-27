@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BitMatrix
 {
     class Program
     {
-        public partial class BitMatrix : IEquatable<BitMatrix>, IEnumerable<int>
+        public partial class BitMatrix : IEquatable<BitMatrix>, IEnumerable<int>, ICloneable
         {
             private BitArray data;
             public int NumberOfRows { get; }
@@ -190,26 +191,85 @@ namespace BitMatrix
             {
                 return GetEnumerator();
             }
+
+            public object Clone()
+            {
+                BitMatrix copy = new BitMatrix(NumberOfRows, NumberOfColumns);
+                for (int i = 0; i < data.Length; i++)
+                {
+                    copy.data[i] = data[i];
+                }
+                return copy;
+            }
+
+            public static BitMatrix Parse(string s)
+            {
+                if (string.IsNullOrWhiteSpace(s)) throw new ArgumentNullException();
+
+                List<int> bits = new List<int>();
+                string[] splitted = s.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+                var rowNum = 0;
+                var colNum = -1;
+                for (int i = 0; i < splitted.Length; i++)
+                {
+                    for (int j = 0; j < splitted[i].Trim().Length; j++)
+                    {
+                        if ((int)char.GetNumericValue(splitted[i].Trim()[j]) != 0 
+                            && (int)char.GetNumericValue(splitted[i].Trim()[j]) != 1) throw new FormatException();
+                        bits.Add((int)char.GetNumericValue(splitted[i].Trim()[j]));
+                    }                 
+                    if (colNum != -1 && colNum != splitted[i].Trim().Length) throw new FormatException();
+
+                    colNum = splitted[i].Trim().Length;
+                    rowNum++;
+                }
+                return new BitMatrix(rowNum, colNum, bits.ToArray());
+            }
+
+            public static bool TryParse(string s, out BitMatrix result)
+            {
+                result = null;
+                if (string.IsNullOrWhiteSpace(s)) return false;
+
+                List<int> bits = new List<int>();
+                string[] splitted = s.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+                var rowNum = 0;
+                var colNum = -1;
+                for (int i = 0; i < splitted.Length; i++)
+                {
+                    for (int j = 0; j < splitted[i].Trim().Length; j++)
+                    {
+                        if ((int)char.GetNumericValue(splitted[i].Trim()[j]) != 0
+                            && (int)char.GetNumericValue(splitted[i].Trim()[j]) != 1) return false;
+
+                        bits.Add((int)char.GetNumericValue(splitted[i].Trim()[j]));
+                    }
+                    if (colNum != -1 && colNum != splitted[i].Trim().Length) return false;
+
+                    colNum = splitted[i].Trim().Length;
+                    rowNum++;
+                }
+
+                result = new BitMatrix(splitted.Length, splitted[0].Length, bits.ToArray());
+                return true;
+            }
         }
         static void Main(string[] args)
         {
-
-            // indekser - indeksy poza zakresem
-            int[] arr = new int[] { -1, 1, 3, 4 };
-            foreach (var i in arr)
-                foreach (var j in arr)
-                {
-                    var m = new BitMatrix(3, 4);
-                    try
-                    {
-                        m[i, j] = 1;
-                        Console.WriteLine($"m[{i}, {j}] = {m[i, j]}");
-                    }
-                    catch (IndexOutOfRangeException)
-                    {
-                        Console.WriteLine($"m[{i}, {j}] = exception");
-                    }
-                }
+            // TryParse, błędne symbole
+            BitMatrix m = null;
+            string s = @"12
+03";
+            Console.WriteLine(
+              BitMatrix.TryParse(s, out m)
+            );
+            s = @"cc
+dd";
+            Console.WriteLine(
+              BitMatrix.TryParse(s, out m)
+            );
         }
     }
 }
