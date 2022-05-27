@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace BitMatrix
 {
     class Program
     {
-        public partial class BitMatrix : IEquatable<BitMatrix>
+        public partial class BitMatrix : IEquatable<BitMatrix>, IEnumerable<int>
         {
             private BitArray data;
             public int NumberOfRows { get; }
@@ -155,19 +156,60 @@ namespace BitMatrix
             public static bool operator !=(BitMatrix first, BitMatrix second) => !(first == second);
 
             public override int GetHashCode() => (data, NumberOfRows, NumberOfColumns).GetHashCode();
+            public int this[int i, int j]
+            {
+                get
+                {
+                    if (i < 0 || j < 0 || i >= NumberOfColumns || j >= NumberOfColumns) throw new IndexOutOfRangeException();
+                    return BoolToBit(data[i * NumberOfColumns + j]);
+                }
+                set
+                {
+                    try
+                    {
+                        data[i * NumberOfColumns + j] = BitToBool(value);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
 
+                        throw new IndexOutOfRangeException();
+                    }
+                
+                }
+            }
+
+            public IEnumerator<int> GetEnumerator()
+            {
+                foreach (bool item in data)
+                {
+                    yield return BoolToBit(item);
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
         }
         static void Main(string[] args)
         {
-            // operator `==`, `!=`
-            // jeden `null`
-            BitMatrix m1 = new BitMatrix(1, 1);
-            BitMatrix m2 = null;
-            Console.WriteLine(m1 == m2);
-            Console.WriteLine(m1 != m2);
-            Console.WriteLine(m2 == m1);
-            Console.WriteLine(m2 != m1);
 
+            // indekser - indeksy poza zakresem
+            int[] arr = new int[] { -1, 1, 3, 4 };
+            foreach (var i in arr)
+                foreach (var j in arr)
+                {
+                    var m = new BitMatrix(3, 4);
+                    try
+                    {
+                        m[i, j] = 1;
+                        Console.WriteLine($"m[{i}, {j}] = {m[i, j]}");
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Console.WriteLine($"m[{i}, {j}] = exception");
+                    }
+                }
         }
     }
 }
