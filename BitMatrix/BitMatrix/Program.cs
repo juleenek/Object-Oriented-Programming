@@ -300,10 +300,190 @@ namespace BitMatrix
 
             public static explicit operator BitArray(BitMatrix matrix) => new BitArray(matrix.data);
 
+            public BitMatrix And(BitMatrix other)
+            {
+                if (ReferenceEquals(other, null)) throw new ArgumentNullException();
+                if (NumberOfColumns != other.NumberOfColumns || NumberOfRows != other.NumberOfRows) throw new ArgumentException();
+
+                for (int i = 0; i < NumberOfRows; i++)
+                {
+                    for (int j = 0; j < NumberOfColumns; j++)
+                    {
+                        if(this[i, j] == 1 && other[i, j] == 1)
+                        {
+                            this[i, j] = 1;
+                        } else
+                        {
+                            this[i, j] = 0;
+                        }
+                    }
+                }
+
+                return this;
+            }
+
+            public BitMatrix Or(BitMatrix other)
+            {
+                if (ReferenceEquals(other, null)) throw new ArgumentNullException();
+                if (NumberOfColumns != other.NumberOfColumns || NumberOfRows != other.NumberOfRows) throw new ArgumentException();
+
+                for (int i = 0; i < NumberOfRows; i++)
+                {
+                    for (int j = 0; j < NumberOfColumns; j++)
+                    {
+                        if (this[i, j] == 1 || other[i, j] == 1)
+                        {
+                            this[i, j] = 1;
+                        }
+                        else
+                        {
+                            this[i, j] = 0;
+                        }
+                    }
+                }
+
+                return this;
+            }
+
+            public BitMatrix Xor(BitMatrix other)
+            {
+                if (ReferenceEquals(other, null)) throw new ArgumentNullException();
+                if (NumberOfColumns != other.NumberOfColumns || NumberOfRows != other.NumberOfRows) throw new ArgumentException();
+
+                for (int i = 0; i < NumberOfRows; i++)
+                {
+                    for (int j = 0; j < NumberOfColumns; j++)
+                    {
+                        if ((this[i, j] == 1 || other[i, j] == 1) && !(this[i, j] == 1 && other[i, j] == 1))
+                        {
+                            this[i, j] = 1;
+                        }
+                        else
+                        {
+                            this[i, j] = 0;
+                        }
+                    }
+                }
+
+                return this;
+            }
+
+            public BitMatrix Not()
+            {
+                if (ReferenceEquals(this, null)) throw new ArgumentNullException();
+
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = !data[i];
+                }
+                return this;
+            }
+
+            public static BitMatrix operator &(BitMatrix firstBitMatrix, BitMatrix secondBitMatrix)
+            {
+                if (ReferenceEquals(firstBitMatrix, null) || ReferenceEquals(secondBitMatrix, null)) throw new ArgumentNullException();
+                if (firstBitMatrix.NumberOfColumns != secondBitMatrix.NumberOfColumns ||
+                    firstBitMatrix.NumberOfRows != secondBitMatrix.NumberOfRows) throw new ArgumentException();
+
+                BitMatrix clonedMatrix = (BitMatrix)firstBitMatrix.Clone();
+                return clonedMatrix.And(secondBitMatrix);
+            }
+            public static BitMatrix operator |(BitMatrix firstBitMatrix, BitMatrix secondBitMatrix)
+            {
+                if (ReferenceEquals(firstBitMatrix, null) || ReferenceEquals(secondBitMatrix, null)) throw new ArgumentNullException();
+                if (firstBitMatrix.NumberOfColumns != secondBitMatrix.NumberOfColumns ||
+                    firstBitMatrix.NumberOfRows != secondBitMatrix.NumberOfRows) throw new ArgumentException();
+
+                BitMatrix clonedMatrix = (BitMatrix)firstBitMatrix.Clone();
+                return clonedMatrix.Or(secondBitMatrix);
+            }
+            public static BitMatrix operator ^(BitMatrix firstBitMatrix, BitMatrix secondBitMatrix)
+            {
+                if (ReferenceEquals(firstBitMatrix, null) || ReferenceEquals(secondBitMatrix, null)) throw new ArgumentNullException();
+                if (firstBitMatrix.NumberOfColumns != secondBitMatrix.NumberOfColumns ||
+                    firstBitMatrix.NumberOfRows != secondBitMatrix.NumberOfRows) throw new ArgumentException();
+
+                BitMatrix clonedMatrix = (BitMatrix)firstBitMatrix.Clone();
+                return clonedMatrix.Xor(secondBitMatrix);
+            }
+            public static BitMatrix operator !(BitMatrix bitMatrix)
+            {
+                if (ReferenceEquals(bitMatrix, null)) throw new ArgumentNullException();
+
+                BitMatrix clonedMatrix = (BitMatrix)bitMatrix.Clone();
+                return clonedMatrix.Not();
+            }
+
         }
         static void Main(string[] args)
         {
+            // operator &
+            // poprawne dane
+            var m1 = new BitMatrix(2, 3, 1, 0, 1, 1, 1, 0);
+            var m2 = new BitMatrix(2, 3, 1, 1, 0, 1, 1, 0);
+            //czy & jest symetryczny
+            if ((m1 & m2).Equals(m2 & m1))
+                Console.WriteLine("Correct data, symmetry: Pass");
 
+            //czy wykonany poprawnie &
+            var expected = new BitMatrix(2, 3, 1, 0, 0, 1, 1, 0);
+            var m3 = m1 & m2;
+            if (expected.Equals(m3))
+                Console.WriteLine("Correct data: Pass");
+
+            //czy wynik jest niezależną kopią
+            if (!ReferenceEquals(m1, m3) && !ReferenceEquals(m2, m3))
+                Console.WriteLine("Correct data, ReferenceEquals: Pass");
+            m1[0, 1] = 1; Console.WriteLine(m1[0, 1] != m3[0, 1]);
+            m1[1, 2] = 1; Console.WriteLine(m1[1, 2] != m3[1, 2]);
+
+            // argument `null & null`
+            try
+            {
+                var m = (BitMatrix)null & (BitMatrix)null;
+                Console.WriteLine(m);
+                Console.WriteLine("Arguments null: Fail");
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Arguments null: Pass");
+            }
+
+            // right argument `null`
+            try
+            {
+                var m = (BitMatrix)null & new BitMatrix(2, 2);
+                Console.WriteLine(m);
+                Console.WriteLine("Right argument null: Fail");
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Right argument null: Pass");
+            }
+
+            // left argument `null`
+            try
+            {
+                var m = new BitMatrix(2, 2) & (BitMatrix)null;
+                Console.WriteLine(m);
+                Console.WriteLine("Left argument null: Fail");
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Left argument null: Pass");
+            }
+
+            // incorrect dimensions
+            try
+            {
+                var m = new BitMatrix(2, 3) & new BitMatrix(2, 2);
+                Console.WriteLine(m);
+                Console.WriteLine("Incorrect dimensions: Fail");
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Incorrect dimensions: Pass");
+            }
         }
     }
 }
