@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BitMatrix
 {
@@ -255,21 +254,56 @@ namespace BitMatrix
                 result = new BitMatrix(splitted.Length, splitted[0].Length, bits.ToArray());
                 return true;
             }
+
+            public static explicit operator BitMatrix(int[,] bits)
+            {
+                if (bits == null) throw new NullReferenceException();
+                if (bits.Length == 0) throw new ArgumentOutOfRangeException();
+                return new BitMatrix(bits);
+            }
+            public static explicit operator BitMatrix(bool[,] values)
+            {
+                if (values == null) throw new NullReferenceException();
+                if (values.Length == 0) throw new ArgumentOutOfRangeException();
+                return new BitMatrix(values);
+            }
+
+            public static implicit operator int[,](BitMatrix bitMatrix)
+            {
+                int[,] result = new int[bitMatrix.NumberOfRows, bitMatrix.NumberOfColumns];
+
+                for (int i = 0; i < bitMatrix.NumberOfRows; i++)
+                {
+                    for (int j = 0; j < bitMatrix.NumberOfColumns; j++)
+                    {
+                        result[i, j] = bitMatrix[i, j];
+                    }
+                }
+
+                return result;
+            }
+
+            public static implicit operator bool[,](BitMatrix bitMatrix)
+            {
+                bool[,] result = new bool[bitMatrix.NumberOfRows, bitMatrix.NumberOfColumns];
+
+                for (int i = 0; i < bitMatrix.NumberOfRows; i++)
+                {
+                    for (int j = 0; j < bitMatrix.NumberOfColumns; j++)
+                    {
+                        result[i, j] = BitToBool(bitMatrix[i, j]);
+                    }
+                }
+
+                return result;
+            }
+
+            public static explicit operator BitArray(BitMatrix matrix) => new BitArray(matrix.data);
+
         }
         static void Main(string[] args)
         {
-            // TryParse, błędne symbole
-            BitMatrix m = null;
-            string s = @"12
-03";
-            Console.WriteLine(
-              BitMatrix.TryParse(s, out m)
-            );
-            s = @"cc
-dd";
-            Console.WriteLine(
-              BitMatrix.TryParse(s, out m)
-            );
+
         }
     }
 }
