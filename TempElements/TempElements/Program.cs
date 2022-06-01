@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using TempElementsLib;
 using TempElementsLib.src;
 
 namespace TempElements
@@ -66,12 +67,23 @@ namespace TempElements
                 Console.WriteLine("Path:" + tmpDir.DirPath);
             }
         }
+        public static void Zadanie4_TempElementsList()
+        {
+            using (TempElementsList elements = new TempElementsList())
+            {
+                elements.AddElement<TempDir>();
+                elements.AddElement<TempFile>();
+                elements.AddElement<TempTxtFile>();
+                elements.DeleteElement(new TempTxtFile());
+            }
+        }
         static void Main(string[] args)
         {
             //Zadanie1_TempFile();
             //Zadanie1_Try_TempFile();
             //Zadanie2_TempTxtFile();
-            Zadanie3_TempDir();
+            //Zadanie3_TempDir();
+            Zadanie4_TempElementsList();
         }
     }
 }

@@ -24,17 +24,38 @@ namespace TempElementsLib
 
         public void DeleteElement<T>(T element) where T : ITempElement, new()
         {
-            elements.Remove(element);
             element.Dispose();
         }
 
         public void MoveElementTo<T>(T element, string newPath) where T : ITempElement, new()
         {
-            // ...
+            switch (element)
+            {
+                case TempDir tempDir:
+                    {  
+                        DirectoryInfo dirInfo = new DirectoryInfo(tempDir.DirPath);
+                        if (dirInfo.Exists) Directory.Move(dirInfo.FullName, newPath);
+                        break;
+                    }
+                case TempFile tempFile:
+                    {
+                        FileInfo fileInfo = new FileInfo(tempFile.FilePath);
+                        if (fileInfo.Exists) File.Move(fileInfo.FullName, newPath);
+                        break;
+                    }
+            }
         }
 
         public void RemoveDestroyed()
-            => throw new NotImplementedException();
+        {
+            for (int i = 0; i < elements.Count; i++)
+            {
+                if (elements[i].IsDestroyed) {
+                    elements.Remove(elements[i]);
+                    elements[i].Dispose();
+                }
+            }
+        }
 
         public bool IsEmpty => ((ITempElements)this).IsEmpty;
 
@@ -46,11 +67,12 @@ namespace TempElementsLib
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects)
+                    for (int i = 0; i < elements.Count; i++)
+                    {
+                        elements[i].Dispose();
+                    }
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
                 disposed = true;
             }
         }
